@@ -8,6 +8,11 @@ namespace Models
 {
     internal class Avsnitt
     {
+        public string Titel { get; set; }
+        public DateTime PubliceringsDatum { get; set; }
+        public string Beskrivning { get; set; }
+        
+        // Andra relevanta egenskaper...
 
     }
 }

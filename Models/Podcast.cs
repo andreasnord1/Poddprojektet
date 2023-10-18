@@ -8,6 +8,16 @@ namespace Models
 {
     public class Podcast
     {
+        public string Titel { get; set; }
+        public Kategori PodcastKategori { get; set; }
+        public List<Avsnitt> Avsnitt { get; set; }
+        public string Beskrivning { get; set; }
+        // Andra relevanta egenskaper...
+
+        public Podcast()
+        {
+            Avsnitt = new List<Avsnitt>();
+        }
 
     }
 }
