@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    internal class Avsnitt
+    public class Avsnitt
     {
+
+
+        public Avsnitt() { }
         public string Titel { get; set; }
         public DateTime PubliceringsDatum { get; set; }
         public string Beskrivning { get; set; }

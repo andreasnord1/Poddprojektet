@@ -6,8 +6,12 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    internal class Kategori
+
+    
+    public class Kategori
     {
+
+        public Kategori() { }
         public string Id { get; set; }
         public string Namn { get; set; }
         // Andra relevanta egenskaper...
