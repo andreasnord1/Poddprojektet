@@ -12,9 +12,9 @@ namespace BusinessLogicLayer.Controllers
     {
         private readonly IRepository<Podcast> _repository; // Vårt data repository.
 
-        public PodcastController(IRepository<Podcast> repository)
+        public PodcastController()
         {
-            _repository = repository;
+            _repository = new PodcastRepository();
         }
 
         public void AddPodcast(Podcast newPodcast)

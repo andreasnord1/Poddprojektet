@@ -7,46 +7,49 @@ using Models;
 
 namespace DataAccessLayer.Repositories
 {
-    public class PodcastRepository : IRepository<Podcast>
+    public class KategoriRepository : IRepository<Kategori>
     {
         Serialiserare nySerialiserare;
-        List<Podcast> podcastLista;
+        List<Kategori> kategorier;
 
-        public PodcastRepository()
+        public KategoriRepository()
         {
             nySerialiserare = new Serialiserare();
-            podcastLista = new List<Podcast>();
-            podcastLista = GetAll();
+            kategorier = new List<Kategori>();
+            kategorier = GetAll();
         }
-        public void Create(Podcast entitet)
+
+        public void Create(Kategori entitet)
         {
-            podcastLista.Add(entitet);
+            kategorier.Add(entitet);
             SaveChanges();
         }
 
         public void Delete(int index)
         {
-            podcastLista.RemoveAt(index);
+            kategorier.RemoveAt(index);
             SaveChanges();
         }
 
-        public List<Podcast> GetAll()
+        public List<Kategori> GetAll()
         {
-            return nySerialiserare.DeSerialiseraPodcasts();
+            return nySerialiserare.DeSerialiseraKategorier();
         }
 
         public void SaveChanges()
         {
-            nySerialiserare.SerialiseraPodcasts(podcastLista);
+            nySerialiserare.SerialiseraKategorier(kategorier);
         }
 
-        public void Update(int index, Podcast entitet)
+        public void Update(int index, Kategori entitet)
         {
             if (index >= 0)
             {
-                podcastLista[index] = entitet;
+                kategorier[index] = entitet;
                 SaveChanges();
             }
         }
+
+
     }
 }

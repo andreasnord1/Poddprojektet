@@ -12,15 +12,18 @@ namespace BusinessLogicLayer.Controllers
     {
         private readonly IRepository<Kategori> _repository;
 
-        public KategoriController(IRepository<Kategori> repository)
+        public KategoriController()
         {
-            _repository = repository;
+            _repository = new KategoriRepository();
         }
 
-        public void AddKategori(Kategori newKategori)
+        public void AddKategori(int id, string namn)
         {
             // Valideringar och affärsregler för att lägga till en kategori.
-            _repository.Create(newKategori);
+
+            Kategori nyKategori = new Kategori(id, namn);
+
+            _repository.Create(nyKategori);
         }
 
         public IEnumerable<Kategori> GetAllKategorier()
