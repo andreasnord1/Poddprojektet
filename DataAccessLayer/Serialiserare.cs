@@ -17,6 +17,7 @@ namespace DataAccessLayer
 
 
         // Vi bör skapa ett serializer-interface eller serializer-arv(?) !!
+        // Alternativt ska kategorier bara vara ett string-värde så kanske det ska sparas i en txt?
 
 
         public void SerialiseraPodcasts(List<Podcast> podcastLista)
