@@ -11,6 +11,7 @@ namespace Poddprojektet1
         private TextBox rssFeedTextBox;
         private Button addFeedButton;
         private Label label1;
+        private ListBox listPodcasts; // Ny ListBox för att visa podcasts
 
 
         public Startsida()
@@ -23,6 +24,7 @@ namespace Poddprojektet1
             label1 = new Label();
             rssFeedTextBox = new TextBox();
             addFeedButton = new Button();
+            listPodcasts = new ListBox(); // Initialisera ListBoxen
 
             // Konfigurerar TextBox för RSS-flödet
             rssFeedTextBox.Location = new Point(20, 20);  // Exempelposition
@@ -38,6 +40,7 @@ namespace Poddprojektet1
             Controls.Add(rssFeedTextBox);
             Controls.Add(addFeedButton);
             Controls.Add(label1);
+            Controls.Add(listPodcasts); // Lägg till ListBoxen till formuläret
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -53,6 +56,11 @@ namespace Poddprojektet1
             if (success)
             {
                 MessageBox.Show("Flödet lades till!");
+
+                // Uppdatera ListBox med nytt podcast-flöde
+                listPodcasts.Items.Add(rssFeedTextBox.Text);
+                rssFeedTextBox.Clear(); // Rensa TextBox efter framgångsrikt tillägg
+
             }
             else
             {
@@ -62,11 +70,7 @@ namespace Poddprojektet1
 
          }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        
         private void button1_Click(object sender, EventArgs e)
         {
 

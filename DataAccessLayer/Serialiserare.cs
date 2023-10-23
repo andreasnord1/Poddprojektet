@@ -44,7 +44,11 @@ namespace DataAccessLayer
                 XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Podcast>));
                 using (FileStream fileStream = new FileStream(filePathPodcasts, FileMode.Open, FileAccess.Read))
                 {
-                    return (List<Podcast>)xmlSerializer.Deserialize(fileStream);
+                    object? deserializedObj = xmlSerializer.Deserialize(fileStream);
+                    if (deserializedObj is List<Podcast> podcastList)
+                    {
+                        return podcastList;
+                    }
                 }
             }
             catch (FileNotFoundException) // Första gången programmet körs kanske filen inte finns, så vi returnerar en ny lista.
@@ -57,6 +61,9 @@ namespace DataAccessLayer
                 throw new Exception("Ett fel uppstod vid deserialisering av podcasts.", ex);
                
             }
+
+            return new List<Podcast>(); // Säkerhetsåterkomst i fall något ovan inte returnerar en lista
+
         }
 
         public void SerialiseraKategorier(List<Kategori> kategorier)
@@ -83,7 +90,11 @@ namespace DataAccessLayer
                 XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Kategori>));
                 using (FileStream fileStream = new FileStream(filePathKategorier, FileMode.Open, FileAccess.Read))
                 {
-                    return (List<Kategori>)xmlSerializer.Deserialize(fileStream);
+                    object? deserializedObj = xmlSerializer.Deserialize(fileStream);
+                    if (deserializedObj is List<Kategori> kategoriList)
+                    {
+                        return kategoriList;
+                    }
                 }
             }
             catch (FileNotFoundException) // Första gången programmet körs kanske filen inte finns, så vi returnerar en ny lista.
@@ -93,10 +104,12 @@ namespace DataAccessLayer
             catch (Exception ex)
             {
                 // Ett oväntat fel inträffade, lägger till mer kontext och kastar om undantaget för ytterligare hantering uppåt.
-                throw new Exception("Ett fel uppstod vid deserialisering av podcasts.", ex);
-
+                throw new Exception("Ett fel uppstod vid deserialisering av kategorier.", ex);
             }
+
+            return new List<Kategori>(); // Säkerhetsåterkomst i fall något ovan inte returnerar en lista
         }
+
 
 
 
