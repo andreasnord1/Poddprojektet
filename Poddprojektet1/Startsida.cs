@@ -1,6 +1,7 @@
 using System;
 using System.Windows.Forms;
 using System.Drawing;
+using BusinessLogicLayer.Controllers;
 
 namespace Poddprojektet1
 {
@@ -44,18 +45,22 @@ namespace Poddprojektet1
             // Händelsehanterare för klick på label1
         }
 
-        private void AddFeedButton_Click(object sender, EventArgs e)
+        private void AddFeedButton_Click(object? sender, EventArgs e)
         {
             // Hämta URL från TextBox
-            string rssFeedUrl = rssFeedTextBox.Text;
+            bool success = PodcastController.AddFeed(rssFeedTextBox.Text); // jobba vidare i PodcastController sen
 
-            // TODO: Bearbeta URL:en för att hämta RSS-flödet
-            // (här kan du använda ett extern bibliotek eller något API)
+            if (success)
+            {
+                MessageBox.Show("Flödet lades till!");
+            }
+            else
+            {
+                MessageBox.Show("Ett fel uppstod.");
+            }
 
-            // TODO: Spara RSS-flödet på lämpligt sätt (t.ex. i en lista, en databas, eller en fil)
 
-            // TODO: Visa feedback till användaren, t.ex. genom att uppdatera label1 eller visa en MessageBox
-        }
+         }
 
         private void label1_Click(object sender, EventArgs e)
         {
