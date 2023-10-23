@@ -10,6 +10,8 @@ namespace BusinessLogicLayer.Controllers
 {
     public class PodcastController
     {
+
+
         private readonly IRepository<Podcast> _repository; // Vårt data repository.
 
         public PodcastController()
@@ -19,8 +21,32 @@ namespace BusinessLogicLayer.Controllers
 
         public void AddPodcast(Podcast newPodcast)
         {
-            // Här kan vi lägga till valideringar eller affärsregler.
-            // Till exempel, kolla om podcasten redan finns innan vi lägger till den.
+            if (newPodcast == null)
+            {
+                throw new ArgumentNullException(nameof(newPodcast), "Podcast kan inte vara null.");
+            }
+
+            if (string.IsNullOrEmpty(newPodcast.Url))
+            {
+                throw new ArgumentException("Podcast måste ha en giltig URL.");
+            }
+
+            if (string.IsNullOrEmpty(newPodcast.Titel))
+            {
+                throw new ArgumentException("Podcast måste ha ett namn.");
+            }
+
+            if (string.IsNullOrEmpty(newPodcast.PodcastKategori?.Namn))
+            {
+                throw new ArgumentException("Podcast måste ha en kategori.");
+            }
+
+            // Kontrollera om en podcast med samma URL redan finns.
+            var existingPodcast = _repository.GetAll().FirstOrDefault(p => p.Url == newPodcast.Url);
+            if (existingPodcast != null)
+            {
+                throw new InvalidOperationException("En podcast med samma URL finns redan.");
+            }
 
             _repository.Create(newPodcast);
         }
