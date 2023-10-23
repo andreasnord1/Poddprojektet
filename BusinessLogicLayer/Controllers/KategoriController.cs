@@ -26,7 +26,7 @@ namespace BusinessLogicLayer.Controllers
             _repository.Create(nyKategori);
         }
 
-        public IEnumerable<Kategori> GetAllKategorier()
+        public List<Kategori> GetAllKategorier()
         {
             return _repository.GetAll();
         }

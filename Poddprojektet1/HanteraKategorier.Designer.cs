@@ -33,6 +33,9 @@
             btnAndraNamnKategori = new Button();
             btnTaBortKategori = new Button();
             btnLaggTillKategori = new Button();
+            textBoxNyEllerAndra = new TextBox();
+            btnBekraftaNyKategori = new Button();
+            btnBekraftaAndradKategori = new Button();
             SuspendLayout();
             // 
             // lblKategorier
@@ -64,6 +67,7 @@
             btnAndraNamnKategori.TabIndex = 2;
             btnAndraNamnKategori.Text = "Ändra namn på kategori";
             btnAndraNamnKategori.UseVisualStyleBackColor = true;
+            btnAndraNamnKategori.Click += btnAndraNamnKategori_Click;
             // 
             // btnTaBortKategori
             // 
@@ -86,11 +90,46 @@
             btnLaggTillKategori.UseVisualStyleBackColor = true;
             btnLaggTillKategori.Click += btnLaggTillKategori_Click;
             // 
+            // textBoxNyEllerAndra
+            // 
+            textBoxNyEllerAndra.Location = new Point(429, 168);
+            textBoxNyEllerAndra.Name = "textBoxNyEllerAndra";
+            textBoxNyEllerAndra.Size = new Size(209, 27);
+            textBoxNyEllerAndra.TabIndex = 5;
+            textBoxNyEllerAndra.Text = "Nytt kategorinamn... ";
+            textBoxNyEllerAndra.Visible = false;
+            // 
+            // btnBekraftaNyKategori
+            // 
+            btnBekraftaNyKategori.Font = new Font("Corbel", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            btnBekraftaNyKategori.Location = new Point(429, 211);
+            btnBekraftaNyKategori.Name = "btnBekraftaNyKategori";
+            btnBekraftaNyKategori.Size = new Size(98, 54);
+            btnBekraftaNyKategori.TabIndex = 6;
+            btnBekraftaNyKategori.Text = "Lägg till ny kategori";
+            btnBekraftaNyKategori.UseVisualStyleBackColor = true;
+            btnBekraftaNyKategori.Visible = false;
+            // 
+            // btnBekraftaAndradKategori
+            // 
+            btnBekraftaAndradKategori.Font = new Font("Corbel", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            btnBekraftaAndradKategori.Location = new Point(540, 211);
+            btnBekraftaAndradKategori.Name = "btnBekraftaAndradKategori";
+            btnBekraftaAndradKategori.Size = new Size(98, 54);
+            btnBekraftaAndradKategori.TabIndex = 7;
+            btnBekraftaAndradKategori.Text = "Bekräfta nytt namn";
+            btnBekraftaAndradKategori.UseVisualStyleBackColor = true;
+            btnBekraftaAndradKategori.Visible = false;
+            btnBekraftaAndradKategori.Click += btnBekraftaAndradKategori_Click;
+            // 
             // HanteraKategorier
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(676, 373);
+            Controls.Add(btnBekraftaAndradKategori);
+            Controls.Add(btnBekraftaNyKategori);
+            Controls.Add(textBoxNyEllerAndra);
             Controls.Add(btnLaggTillKategori);
             Controls.Add(btnTaBortKategori);
             Controls.Add(btnAndraNamnKategori);
@@ -109,5 +148,8 @@
         private Button btnAndraNamnKategori;
         private Button btnTaBortKategori;
         private Button btnLaggTillKategori;
+        private TextBox textBoxNyEllerAndra;
+        private Button btnBekraftaNyKategori;
+        private Button btnBekraftaAndradKategori;
     }
 }
