@@ -98,6 +98,7 @@ namespace Poddprojektet1
             btnHanteraKategorier.TabIndex = 4;
             btnHanteraKategorier.Text = "Hantera Kategorier";
             btnHanteraKategorier.UseVisualStyleBackColor = true;
+            btnHanteraKategorier.Click += btnHanteraKategorier_Click;
             // 
             // listboxAvsnitt
             // 
@@ -186,9 +187,9 @@ namespace Poddprojektet1
             // 
             // picBoxAvsnittsBild
             // 
-            picBoxAvsnittsBild.Location = new Point(926, 240);
+            picBoxAvsnittsBild.Location = new Point(935, 240);
             picBoxAvsnittsBild.Name = "picBoxAvsnittsBild";
-            picBoxAvsnittsBild.Size = new Size(195, 126);
+            picBoxAvsnittsBild.Size = new Size(186, 126);
             picBoxAvsnittsBild.TabIndex = 16;
             picBoxAvsnittsBild.TabStop = false;
             // 

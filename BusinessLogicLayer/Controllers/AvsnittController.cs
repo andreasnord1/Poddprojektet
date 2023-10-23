@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLogicLayer.Controllers
 {
-    internal class AvsnittController
+    public class AvsnittController
     {
 
         private readonly IRepository<Avsnitt> _repository;

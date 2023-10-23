@@ -33,7 +33,14 @@ namespace DataAccessLayer.Repositories
 
         public List<Kategori> GetAll()
         {
-            return nySerialiserare.DeSerialiseraKategorier();
+            try
+            {
+                return nySerialiserare.DeSerialiseraKategorier();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public void SaveChanges()

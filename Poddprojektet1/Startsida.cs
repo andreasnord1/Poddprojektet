@@ -1,3 +1,5 @@
+using System;
+
 namespace Poddprojektet1
 {
     public partial class Startsida : Form
@@ -55,6 +57,12 @@ namespace Poddprojektet1
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void btnHanteraKategorier_Click(object sender, EventArgs e)
+        {
+            HanteraKategorier kategoriForm = new HanteraKategorier();
+            kategoriForm.Visible = true;
         }
     }
 }

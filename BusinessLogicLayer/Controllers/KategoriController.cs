@@ -8,7 +8,7 @@ using Models;
 
 namespace BusinessLogicLayer.Controllers
 {
-    internal class KategoriController
+    public class KategoriController
     {
         private readonly IRepository<Kategori> _repository;
 
@@ -17,11 +17,11 @@ namespace BusinessLogicLayer.Controllers
             _repository = new KategoriRepository();
         }
 
-        public void AddKategori(int id, string namn)
+        public void AddKategori(string namn)
         {
             // Valideringar och affärsregler för att lägga till en kategori.
 
-            Kategori nyKategori = new Kategori(id, namn);
+            Kategori nyKategori = new Kategori(namn);
 
             _repository.Create(nyKategori);
         }

@@ -32,7 +32,14 @@ namespace DataAccessLayer.Repositories
 
         public List<Podcast> GetAll()
         {
-            return nySerialiserare.DeSerialiseraPodcasts();
+            try
+            {
+                return nySerialiserare.DeSerialiseraPodcasts();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public void SaveChanges()

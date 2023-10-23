@@ -8,7 +8,7 @@ using Models;
 
 namespace BusinessLogicLayer.Controllers
 {
-    internal class PodcastController
+    public class PodcastController
     {
         private readonly IRepository<Podcast> _repository; // Vårt data repository.
 
