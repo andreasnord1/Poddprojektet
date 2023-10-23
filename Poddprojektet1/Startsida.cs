@@ -18,7 +18,7 @@ namespace Poddprojektet1
             InitializeComponent();
         }
 
-        private void InitializeComponent()
+        private void InitializeComponents()
         {
             label1 = new Label();
             rssFeedTextBox = new TextBox();
