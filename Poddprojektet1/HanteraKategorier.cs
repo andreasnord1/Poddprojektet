@@ -14,7 +14,7 @@ namespace Poddprojektet1
 {
     public partial class HanteraKategorier : Form
     {
-        KategoriController kategoriController; 
+        KategoriController kategoriController;
         public HanteraKategorier()
         {
             InitializeComponent();

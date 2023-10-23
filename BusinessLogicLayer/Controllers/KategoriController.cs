@@ -10,7 +10,7 @@ namespace BusinessLogicLayer.Controllers
 {
     public class KategoriController
     {
-        private readonly IRepository<Kategori> _repository;
+        IRepository<Kategori> _repository;
 
         public KategoriController()
         {

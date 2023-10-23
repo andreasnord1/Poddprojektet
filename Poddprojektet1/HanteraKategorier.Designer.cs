@@ -78,9 +78,9 @@
             // btnLaggTillKategori
             // 
             btnLaggTillKategori.Font = new Font("Corbel", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
-            btnLaggTillKategori.Location = new Point(419, 81);
+            btnLaggTillKategori.Location = new Point(429, 81);
             btnLaggTillKategori.Name = "btnLaggTillKategori";
-            btnLaggTillKategori.Size = new Size(209, 65);
+            btnLaggTillKategori.Size = new Size(209, 38);
             btnLaggTillKategori.TabIndex = 4;
             btnLaggTillKategori.Text = "Lägg till en ny kategori";
             btnLaggTillKategori.UseVisualStyleBackColor = true;
