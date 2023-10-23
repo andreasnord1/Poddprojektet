@@ -1,12 +1,60 @@
 using System;
+using System.Windows.Forms;
+using System.Drawing;
 
 namespace Poddprojektet1
 {
     public partial class Startsida : Form
     {
+
+        private TextBox rssFeedTextBox;
+        private Button addFeedButton;
+        private Label label1;
+
+
         public Startsida()
         {
             InitializeComponent();
+        }
+
+        private void InitializeComponent()
+        {
+            label1 = new Label();
+            rssFeedTextBox = new TextBox();
+            addFeedButton = new Button();
+
+            // Konfigurerar TextBox för RSS-flödet
+            rssFeedTextBox.Location = new Point(20, 20);  // Exempelposition
+            rssFeedTextBox.Size = new Size(250, 30);       // Exempelstorlek
+            rssFeedTextBox.PlaceholderText = "Ange RSS-flödets URL här..."; // Instruktionstext
+
+            // Konfigurera knappen för att lägga till flöde
+            addFeedButton.Text = "Lägg till flöde";
+            addFeedButton.Location = new Point(280, 20); // Exempelposition bredvid TextBox
+            addFeedButton.Click += AddFeedButton_Click;  // Händelsehanterare
+
+            // Lägg till kontroller till formuläret
+            Controls.Add(rssFeedTextBox);
+            Controls.Add(addFeedButton);
+            Controls.Add(label1);
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+            // Händelsehanterare för klick på label1
+        }
+
+        private void AddFeedButton_Click(object sender, EventArgs e)
+        {
+            // Hämta URL från TextBox
+            string rssFeedUrl = rssFeedTextBox.Text;
+
+            // TODO: Bearbeta URL:en för att hämta RSS-flödet
+            // (här kan du använda ett extern bibliotek eller något API)
+
+            // TODO: Spara RSS-flödet på lämpligt sätt (t.ex. i en lista, en databas, eller en fil)
+
+            // TODO: Visa feedback till användaren, t.ex. genom att uppdatera label1 eller visa en MessageBox
         }
 
         private void label1_Click(object sender, EventArgs e)
