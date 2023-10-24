@@ -15,8 +15,8 @@ namespace DataAccessLayer.Repositories
         public PodcastRepository()
         {
             nySerialiserare = new Serialiserare();
-            podcastLista = new List<Podcast>();
             podcastLista = GetAll();
+
         }
         public void Create(Podcast entitet)
         {
@@ -24,36 +24,46 @@ namespace DataAccessLayer.Repositories
             SaveChanges();
         }
 
-        public void Delete(int index)
+        public void DeleteByID(int id)
         {
-            podcastLista.RemoveAt(index);
-            SaveChanges();
+            var podcast = GetById(id);
+            if (podcast != null)
+            {
+                podcastLista.Remove(podcast);
+                SaveChanges();
+            }
         }
 
+
         public List<Podcast> GetAll()
-        {
-            try
-            {
-                return nySerialiserare.DeSerialiseraPodcasts();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+        {          
+            
+        return nySerialiserare.DeSerialiseraPodcasts();
+          
         }
+
+        public Podcast GetById(int id)
+        {
+            return podcastLista.FirstOrDefault(p => p.ID == id);
+        }
+
+        
 
         public void SaveChanges()
         {
             nySerialiserare.SerialiseraPodcasts(podcastLista);
         }
 
-        public void Update(int index, Podcast entitet)
+        public void Update(int id, Podcast entitet)
         {
-            if (index >= 0)
+            var podcastToUpdate = GetById(id);
+            if (podcastToUpdate != null)
             {
+                int index = podcastLista.IndexOf(podcastToUpdate);
                 podcastLista[index] = entitet;
                 SaveChanges();
             }
         }
+
     }
 }
