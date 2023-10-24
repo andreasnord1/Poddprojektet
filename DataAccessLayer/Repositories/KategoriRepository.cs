@@ -1,9 +1,12 @@
-﻿using System;
+﻿#nullable enable
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Models;
+
 
 namespace DataAccessLayer.Repositories
 {
@@ -68,13 +71,17 @@ namespace DataAccessLayer.Repositories
             }
         }
 
+
         public Kategori? GetById(int id)
         {
-            // Använder LINQ för att hitta den första kategorin med det givna ID:t eller returnerar null om ingen sådan kategori finns.
             return kategorier.FirstOrDefault(kat => kat.ID == id);
         }
 
 
 
+
     }
+
+
+#nullable disable
 }

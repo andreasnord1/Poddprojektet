@@ -56,7 +56,7 @@ namespace BusinessLogicLayer.Controllers
             return IRepository.GetAll();
         }
 
-        public Podcast GetPodcastByUrl(string url)
+        public Podcast? GetPodcastByUrl(string url)
         {
             return IRepository.GetAll().FirstOrDefault(p => p.Url == url);
         }
