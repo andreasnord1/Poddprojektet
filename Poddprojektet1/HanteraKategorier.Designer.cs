@@ -36,6 +36,8 @@
             textBoxNyEllerAndra = new TextBox();
             btnBekraftaNyKategori = new Button();
             btnBekraftaAndradKategori = new Button();
+            lblValjKategori = new Label();
+            btnAngra = new Button();
             SuspendLayout();
             // 
             // lblKategorier
@@ -57,6 +59,7 @@
             listBoxKategorier.Name = "listBoxKategorier";
             listBoxKategorier.Size = new Size(299, 184);
             listBoxKategorier.TabIndex = 1;
+            listBoxKategorier.SelectedIndexChanged += listBoxKategorier_SelectedIndexChanged;
             // 
             // btnAndraNamnKategori
             // 
@@ -67,6 +70,7 @@
             btnAndraNamnKategori.TabIndex = 2;
             btnAndraNamnKategori.Text = "Ändra namn på kategori";
             btnAndraNamnKategori.UseVisualStyleBackColor = true;
+            btnAndraNamnKategori.Visible = false;
             btnAndraNamnKategori.Click += btnAndraNamnKategori_Click;
             // 
             // btnTaBortKategori
@@ -78,6 +82,7 @@
             btnTaBortKategori.TabIndex = 3;
             btnTaBortKategori.Text = "Ta bort kategori";
             btnTaBortKategori.UseVisualStyleBackColor = true;
+            btnTaBortKategori.Visible = false;
             // 
             // btnLaggTillKategori
             // 
@@ -92,11 +97,11 @@
             // 
             // textBoxNyEllerAndra
             // 
+            textBoxNyEllerAndra.ForeColor = SystemColors.InfoText;
             textBoxNyEllerAndra.Location = new Point(429, 168);
             textBoxNyEllerAndra.Name = "textBoxNyEllerAndra";
             textBoxNyEllerAndra.Size = new Size(209, 27);
             textBoxNyEllerAndra.TabIndex = 5;
-            textBoxNyEllerAndra.Text = "Nytt kategorinamn... ";
             textBoxNyEllerAndra.Visible = false;
             // 
             // btnBekraftaNyKategori
@@ -109,6 +114,7 @@
             btnBekraftaNyKategori.Text = "Lägg till ny kategori";
             btnBekraftaNyKategori.UseVisualStyleBackColor = true;
             btnBekraftaNyKategori.Visible = false;
+            btnBekraftaNyKategori.Click += btnBekraftaNyKategori_Click;
             // 
             // btnBekraftaAndradKategori
             // 
@@ -122,11 +128,38 @@
             btnBekraftaAndradKategori.Visible = false;
             btnBekraftaAndradKategori.Click += btnBekraftaAndradKategori_Click;
             // 
+            // lblValjKategori
+            // 
+            lblValjKategori.AutoSize = true;
+            lblValjKategori.Font = new Font("Corbel", 10.2F, FontStyle.Italic, GraphicsUnit.Point);
+            lblValjKategori.ForeColor = SystemColors.HotTrack;
+            lblValjKategori.Location = new Point(51, 334);
+            lblValjKategori.Name = "lblValjKategori";
+            lblValjKategori.Size = new Size(173, 21);
+            lblValjKategori.TabIndex = 8;
+            lblValjKategori.Text = "Var god välj en kategori!";
+            lblValjKategori.Visible = false;
+            lblValjKategori.Click += label1_Click;
+            // 
+            // btnAngra
+            // 
+            btnAngra.Font = new Font("Corbel", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            btnAngra.Location = new Point(540, 277);
+            btnAngra.Name = "btnAngra";
+            btnAngra.Size = new Size(98, 31);
+            btnAngra.TabIndex = 9;
+            btnAngra.Text = "Ångra";
+            btnAngra.UseVisualStyleBackColor = true;
+            btnAngra.Visible = false;
+            btnAngra.Click += btnAngra_Click;
+            // 
             // HanteraKategorier
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(676, 373);
+            Controls.Add(btnAngra);
+            Controls.Add(lblValjKategori);
             Controls.Add(btnBekraftaAndradKategori);
             Controls.Add(btnBekraftaNyKategori);
             Controls.Add(textBoxNyEllerAndra);
@@ -151,5 +184,7 @@
         private TextBox textBoxNyEllerAndra;
         private Button btnBekraftaNyKategori;
         private Button btnBekraftaAndradKategori;
+        private Label lblValjKategori;
+        private Button btnAngra;
     }
 }

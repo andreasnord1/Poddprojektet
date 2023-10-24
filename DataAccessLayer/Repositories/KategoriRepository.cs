@@ -25,9 +25,9 @@ namespace DataAccessLayer.Repositories
             SaveChanges();
         }
 
-        public void Delete(int index)
+        public void Delete(int id)
         {
-            kategorier.RemoveAt(index);
+            kategorier.RemoveAt(id);
             SaveChanges();
         }
 
@@ -48,12 +48,15 @@ namespace DataAccessLayer.Repositories
             nySerialiserare.SerialiseraKategorier(kategorier);
         }
 
-        public void Update(int index, Kategori entitet)
+        public void Update(int id, Kategori entitet)
         {
+            int index = kategorier.FindIndex(Kat => Kat.ID == entitet.ID);
+
             if (index >= 0)
             {
                 kategorier[index] = entitet;
                 SaveChanges();
+
             }
         }
 

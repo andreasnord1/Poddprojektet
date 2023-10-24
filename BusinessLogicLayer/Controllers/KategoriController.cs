@@ -20,8 +20,11 @@ namespace BusinessLogicLayer.Controllers
         public void AddKategori(string namn)
         {
             // Valideringar och affärsregler för att lägga till en kategori.
+            List<Kategori> kategoriLista = GetAllKategorier();
+            
+            int id = GetNextAvailableID(kategoriLista);
 
-            Kategori nyKategori = new Kategori(namn);
+            Kategori nyKategori = new Kategori(id, namn);
 
             _repository.Create(nyKategori);
         }
@@ -40,6 +43,19 @@ namespace BusinessLogicLayer.Controllers
         public void DeleteKategori(int id)
         {
             _repository.Delete(id);
+        }
+
+
+        public int GetNextAvailableID(List<Kategori> allaKategorier)
+        {
+            // Hämtar nästa lediga ID
+            if (GetAllKategorier().Count == 0)
+            {
+                return 1;
+            }
+
+            int maxID = allaKategorier.Max(k => k.ID);
+            return maxID + 1;
         }
 
         // ... fler metoder efter behov ...

@@ -13,9 +13,10 @@ namespace Models
 
     public class Kategori
     {
-        public Kategori(string namn)
+        public Kategori(int id, string namn)
         {
             Namn = namn;
+            ID = id;
         }
 
         public Kategori()
@@ -24,6 +25,7 @@ namespace Models
         }
 
         public string Namn { get; set; }
+        public int ID { get; set; }
         // Andra relevanta egenskaper...
 
     }

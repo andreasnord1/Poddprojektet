@@ -68,9 +68,9 @@ namespace Poddprojektet1
             }
 
 
-         }
+        }
 
-        
+
         private void button1_Click(object sender, EventArgs e)
         {
 
@@ -120,6 +120,11 @@ namespace Poddprojektet1
         {
             HanteraKategorier kategoriForm = new HanteraKategorier();
             kategoriForm.Visible = true;
+        }
+
+        private void btnLaggTillPodcast_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

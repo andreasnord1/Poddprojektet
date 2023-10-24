@@ -89,6 +89,7 @@ namespace Poddprojektet1
             btnLaggTillPodcast.TabIndex = 3;
             btnLaggTillPodcast.Text = "Lägg till ny Podcast";
             btnLaggTillPodcast.UseVisualStyleBackColor = false;
+            btnLaggTillPodcast.Click += btnLaggTillPodcast_Click;
             // 
             // btnHanteraKategorier
             // 
