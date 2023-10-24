@@ -74,31 +74,45 @@ namespace Poddprojektet1
 
         private void AddFeedButton_Click(object? sender, EventArgs e)
         {
-            // Hämta URL från TextBox
-            string url = rssFeedTextBox.Text;
+            AddFeedButton_Click(sender, e, rssFeedTextBox);
+        }
 
-            // Skapa en ny podcast med hämtad URL
-            Podcast newPodcast = new Podcast
+        private void AddFeedButton_Click(object? sender, EventArgs e, TextBox? rssFeedTextBox)
+        {
+            // Check if rssFeedTextBox is not null
+            if (rssFeedTextBox != null)
             {
-                Url = url
-                // Andra egenskaper kan också sättas här
-            };
+                // Hämta URL från TextBox
+                string url = rssFeedTextBox.Text;
 
-            try
-            {
-                podcastController.AddPodcast(newPodcast); // Använd instansen istället för klassnamnet
+                // Skapa en ny podcast med hämtad URL
+                Podcast newPodcast = new Podcast
+                {
+                    Url = url
+                    // Andra egenskaper kan också sättas här
+                };
 
-                MessageBox.Show("Flödet lades till!");
+                try
+                {
+                    podcastController?.AddPodcast(newPodcast); // Använd instansen istället för klassnamnet
 
-                // Uppdatera ListBox med nytt podcast-flöde
-                listPodcasts.Items.Add(url);
-                rssFeedTextBox.Clear();
+                    MessageBox.Show("Flödet lades till!");
+
+                    // Check if listPodcasts is not null before accessing its Items
+                    listPodcasts?.Items.Add(url);
+                    rssFeedTextBox.Clear();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Ett fel uppstod: {ex.Message}");
+                }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show($"Ett fel uppstod: {ex.Message}");
+                MessageBox.Show("RSS textfältet är tomt.");
             }
         }
+
 
 
 
@@ -109,13 +123,13 @@ namespace Poddprojektet1
         }
 
 
-        private void EditFeedButton_Click(object sender, EventArgs e)
+        private void EditFeedButton_Click(object? sender, EventArgs e)
         {
             // Exempelkod: Du behöver här hitta det valda podcast-objektet och sedan 
             // redigera det baserat på användarens inmatning.
-            if (listPodcasts.SelectedItem != null)
+            if (listPodcasts?.SelectedItem != null)
             {
-                string url = listPodcasts.SelectedItem.ToString();
+                string url = (string)listPodcasts.SelectedItem;
                 // Här kan du till exempel öppna en dialogruta där användaren kan redigera 
                 // podcast-information och sedan spara ändringarna.
             }
@@ -125,12 +139,12 @@ namespace Poddprojektet1
             }
         }
 
-        private void DeleteFeedButton_Click(object sender, EventArgs e)
+        private void DeleteFeedButton_Click(object? sender, EventArgs e)
         {
             // Exempelkod: Du behöver här hitta det valda podcast-objektet och sedan radera det.
-            if (listPodcasts.SelectedItem != null)
+            if (listPodcasts?.SelectedItem != null)
             {
-                string url = listPodcasts.SelectedItem.ToString();
+                string url = (string)listPodcasts.SelectedItem;
                 // Bekräfta att användaren verkligen vill radera
                 DialogResult result = MessageBox.Show($"Är du säker på att du vill radera podcasten med URL: {url}?", "Bekräfta radering", MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
