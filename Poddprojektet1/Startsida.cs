@@ -9,13 +9,13 @@ namespace Poddprojektet1
     public partial class Startsida : Form
     {
 
-        private TextBox rssFeedTextBox;
-        private Button addFeedButton;
-        private Label label1;
-        private ListBox listPodcasts; // Ny ListBox för att visa podcasts
-        private PodcastController podcastController = new PodcastController();
-        private Button editFeedButton; // Ny knapp för att redigera podcast
-        private Button deleteFeedButton; // Ny knapp för att radera podcast
+        private TextBox? rssFeedTextBox;
+        private Button? addFeedButton;
+        private Label? label1;
+        private ListBox? listPodcasts; // Ny ListBox för att visa podcasts
+        private PodcastController? podcastController = new PodcastController();
+        private Button? editFeedButton; // Ny knapp för att redigera podcast
+        private Button? deleteFeedButton; // Ny knapp för att radera podcast
 
 
 

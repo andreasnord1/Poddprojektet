@@ -13,9 +13,9 @@ namespace Models
 
 
         public Avsnitt() { }
-        public string Titel { get; set; }
-        public DateTime PubliceringsDatum { get; set; }
-        public string Beskrivning { get; set; }
+        public string? Titel { get; set; }
+        public DateTime? PubliceringsDatum { get; set; }
+        public string? Beskrivning { get; set; }
         
         // Andra relevanta egenskaper...
 

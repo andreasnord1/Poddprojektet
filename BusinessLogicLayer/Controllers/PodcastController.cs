@@ -12,11 +12,11 @@ namespace BusinessLogicLayer.Controllers
     {
 
 
-        private readonly IRepository<Podcast> _repository; // Vårt data repository.
+        private readonly IRepository<Podcast> IRepository; // Vårt data repository.
 
         public PodcastController()
         {
-            _repository = new PodcastRepository();
+            IRepository = new PodcastRepository();
         }
 
         public void AddPodcast(Podcast newPodcast)
@@ -42,27 +42,27 @@ namespace BusinessLogicLayer.Controllers
             }
 
             // Kontrollera om en podcast med samma URL redan finns.
-            var existingPodcast = _repository.GetAll().FirstOrDefault(p => p.Url == newPodcast.Url);
+            var existingPodcast = IRepository.GetAll().FirstOrDefault(p => p.Url == newPodcast.Url);
             if (existingPodcast != null)
             {
                 throw new InvalidOperationException("En podcast med samma URL finns redan.");
             }
 
-            _repository.Create(newPodcast);
+            IRepository.Create(newPodcast);
         }
 
         public IEnumerable<Podcast> GetAllPodcasts()
         {
-            return _repository.GetAll();
+            return IRepository.GetAll();
         }
 
         public Podcast GetPodcastByUrl(string url)
         {
-            return _repository.GetAll().FirstOrDefault(p => p.Url == url);
+            return IRepository.GetAll().FirstOrDefault(p => p.Url == url);
         }
         public void UpdatePodcast(int id, Podcast updatedPodcast)
         {
-            var existingPodcast = _repository.GetAll().FirstOrDefault(p => p.id == id);
+            var existingPodcast = IRepository.GetAll().FirstOrDefault(p => p.id == id);
             if (existingPodcast == null)
             {
                 throw new InvalidOperationException("Podcasten hittades inte.");
@@ -76,7 +76,7 @@ namespace BusinessLogicLayer.Controllers
 
             // Du kan lägga till fler valideringar här om det behövs.
 
-            _repository.Update(id, updatedPodcast);
+            IRepository.Update(id, updatedPodcast);
         }
 
 
@@ -96,7 +96,7 @@ namespace BusinessLogicLayer.Controllers
 
         public void DeletePodcast(int id)
         {
-            _repository.Delete(id);
+            IRepository.Delete(id);
         }
 
         public void DeletePodcastByUrl(string url)

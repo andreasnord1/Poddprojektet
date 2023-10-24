@@ -68,7 +68,7 @@ namespace DataAccessLayer.Repositories
             }
         }
 
-        public Kategori GetById(int id)
+        public Kategori? GetById(int id)
         {
             // Använder LINQ för att hitta den första kategorin med det givna ID:t eller returnerar null om ingen sådan kategori finns.
             return kategorier.FirstOrDefault(kat => kat.ID == id);
