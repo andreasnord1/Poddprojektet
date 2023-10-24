@@ -55,6 +55,11 @@ namespace BusinessLogicLayer.Controllers
         {
             return _repository.GetAll();
         }
+        
+        public Podcast GetPodcastByUrl(string url)
+        {
+            return _repository.GetAll().FirstOrDefault(p => p.Url == url);
+        }
 
         public void UpdatePodcast(int id, Podcast updatedPodcast)
         {
@@ -62,10 +67,38 @@ namespace BusinessLogicLayer.Controllers
             _repository.Update(id, updatedPodcast);
         }
 
+        public void UpdatePodcastByUrl(string url, Podcast updatedPodcast)
+        {
+            var podcastToUpdate = GetPodcastByUrl(url);
+            if (podcastToUpdate != null)
+            {
+                UpdatePodcast(podcastToUpdate.Id, updatedPodcast);
+            }
+            else
+            {
+                throw new InvalidOperationException("Ingen podcast med den angivna URL:en hittades.");
+            }
+        }
+
+
         public void DeletePodcast(int id)
         {
             _repository.Delete(id);
         }
+
+        public void DeletePodcastByUrl(string url)
+        {
+            var podcastToDelete = GetPodcastByUrl(url);
+            if (podcastToDelete != null)
+            {
+                DeletePodcast(podcastToDelete.Id);
+            }
+            else
+            {
+                throw new InvalidOperationException("Ingen podcast med den angivna URL:en hittades.");
+            }
+        }
+
 
         // ... andra relevanta metoder för affärslogik ...
     }
