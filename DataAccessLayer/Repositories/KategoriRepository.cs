@@ -13,13 +13,15 @@ namespace DataAccessLayer.Repositories
     public class KategoriRepository : IRepository<Kategori>
     {
         Serialiserare nySerialiserare;
-        List<Kategori> kategorier;
+        List<Kategori> kategorier;        
+
 
         public KategoriRepository()
         {
             nySerialiserare = new Serialiserare();
             kategorier = new List<Kategori>();
             kategorier = GetAll();
+            
         }
 
         public void Create(Kategori entitet)

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BusinessLogicLayer.Controllers;
+using DataAccessLayer.Repositories;
 using Models;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
@@ -20,7 +21,7 @@ namespace Poddprojektet1
         public HanteraKategorier()
         {
             InitializeComponent();
-            kategoriController = new KategoriController();
+            kategoriController = new KategoriController(new KategoriRepository());
             fyllMedKategorier();
         }
 
@@ -66,7 +67,10 @@ namespace Poddprojektet1
             // Kontrollerar så att ett alternativ är valt
             if (listBoxKategorier.SelectedItems.Count > 0)
             {
-                string stringKategori = listBoxKategorier.SelectedItem.ToString();
+                string? stringKategori = listBoxKategorier.SelectedItem as string;
+                if (stringKategori == null) return; // Avbryt metoden om kastningen misslyckades.
+
+
 
 
                 textBoxNyEllerAndra.Text = stringKategori;
@@ -98,37 +102,39 @@ namespace Poddprojektet1
 
         private void btnBekraftaAndradKategori_Click(object sender, EventArgs e)
         {
-            List<Kategori> allaKategorier = kategoriController.GetAllKategorier();
+            if (!TryUpdateKategori()) return;
 
-            string tidigareNamn = listBoxKategorier.SelectedItem.ToString();
+            UpdateUIAfterKategoriChange();
+        }
 
-            Kategori kategoriAttUppdatera = allaKategorier.FirstOrDefault(k => k.Namn == tidigareNamn);
+        private bool TryUpdateKategori()
+        {
+            string? tidigareNamn = listBoxKategorier.SelectedItem as string;
+            if (tidigareNamn == null) return false;
+
+            Kategori? kategoriAttUppdatera = kategoriController.GetAllKategorier().FirstOrDefault(k => k.Namn == tidigareNamn);
+            if (kategoriAttUppdatera == null) return false;
 
             string nyttNamnPaKategori = textBoxNyEllerAndra.Text;
-            int kategorinsID = kategoriAttUppdatera.ID;
-
-
-            if (kategoriAttUppdatera != null)
-            {
-                kategoriAttUppdatera.Namn = nyttNamnPaKategori;
-            }
-
-            kategoriController.UpdateKategori(kategorinsID, kategoriAttUppdatera);
+            kategoriAttUppdatera.Namn = nyttNamnPaKategori;
+            kategoriController.UpdateKategori(kategoriAttUppdatera.ID, kategoriAttUppdatera);
 
             fyllMedKategorier();
 
+            return true;
+        }
+
+        private void UpdateUIAfterKategoriChange()
+        {
             textBoxNyEllerAndra.Visible = false;
             btnBekraftaAndradKategori.Visible = false;
-
             btnLaggTillKategori.Visible = true;
 
-
             listBoxKategorier.Enabled = true;
-
             listBoxKategorier.BackColor = SystemColors.Window;
             listBoxKategorier.ForeColor = SystemColors.WindowText;
-
         }
+
 
         private void btnBekraftaNyKategori_Click(object sender, EventArgs e)
         {
