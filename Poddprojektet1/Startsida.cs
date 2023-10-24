@@ -15,11 +15,15 @@ namespace Poddprojektet1
         private Label label1;
         private ListBox listPodcasts; // Ny ListBox för att visa podcasts
         private PodcastController podcastController = new PodcastController();
+        private Button editFeedButton; // Ny knapp för att redigera podcast
+        private Button deleteFeedButton; // Ny knapp för att radera podcast
+
 
 
         public Startsida()
         {
             InitializeComponent();
+            InitializeComponents();
         }
 
         private void InitializeComponents()
@@ -39,11 +43,29 @@ namespace Poddprojektet1
             addFeedButton.Location = new Point(280, 20); // Exempelposition bredvid TextBox
             addFeedButton.Click += AddFeedButton_Click;  // Händelsehanterare
 
+            // Konfigurera knappen för att redigera podcast
+            editFeedButton = new Button
+            {
+                Text = "Redigera flöde",
+                Location = new Point(280, 60), // Exempelposition under andra knappen
+            };
+            editFeedButton.Click += EditFeedButton_Click;
+
+            // Konfigurera knappen för att radera podcast
+            deleteFeedButton = new Button
+            {
+                Text = "Radera flöde",
+                Location = new Point(280, 100), // Exempelposition under redigera-knappen
+            };
+            deleteFeedButton.Click += DeleteFeedButton_Click;
+
             // Lägg till kontroller till formuläret
             Controls.Add(rssFeedTextBox);
             Controls.Add(addFeedButton);
             Controls.Add(label1);
-            Controls.Add(listPodcasts); // Lägg till ListBoxen till formuläret
+            Controls.Add(listPodcasts); 
+            Controls.Add(editFeedButton);
+            Controls.Add(deleteFeedButton);
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -132,9 +154,45 @@ namespace Poddprojektet1
             kategoriForm.Visible = true;
         }
 
-        private void btnLaggTillPodcast_Click(object sender, EventArgs e)
-        {
 
+        private void EditFeedButton_Click(object sender, EventArgs e)
+        {
+            // Exempelkod: Du behöver här hitta det valda podcast-objektet och sedan 
+            // redigera det baserat på användarens inmatning.
+            if (listPodcasts.SelectedItem != null)
+            {
+                string url = listPodcasts.SelectedItem.ToString();
+                // Här kan du till exempel öppna en dialogruta där användaren kan redigera 
+                // podcast-information och sedan spara ändringarna.
+            }
+            else
+            {
+                MessageBox.Show("Vänligen välj en podcast att redigera.");
+            }
         }
+
+        private void DeleteFeedButton_Click(object sender, EventArgs e)
+        {
+            // Exempelkod: Du behöver här hitta det valda podcast-objektet och sedan radera det.
+            if (listPodcasts.SelectedItem != null)
+            {
+                string url = listPodcasts.SelectedItem.ToString();
+                // Bekräfta att användaren verkligen vill radera
+                DialogResult result = MessageBox.Show($"Är du säker på att du vill radera podcasten med URL: {url}?", "Bekräfta radering", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    // Radera podcast och uppdatera listan
+                    // (Observera att detta bara är exempelkod, och du behöver troligen 
+                    // göra mer arbete här beroende på hur din applikation är uppbyggd)
+                    listPodcasts.Items.Remove(url);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vänligen välj en podcast att radera.");
+            }
+        }
+
+
     }
 }
