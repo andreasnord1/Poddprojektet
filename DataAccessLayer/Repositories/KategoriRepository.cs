@@ -27,8 +27,16 @@ namespace DataAccessLayer.Repositories
 
         public void Delete(int id)
         {
-            kategorier.RemoveAt(id);
-            SaveChanges();
+            // Hitta kategorin med det givna ID:t.
+            var kategoriToRemove = kategorier.FirstOrDefault(kat => kat.ID == id);
+
+            // Om kategorin finns, ta bort den från listan och spara ändringarna.
+            if (kategoriToRemove != null)
+            {
+                kategorier.Remove(kategoriToRemove);
+                SaveChanges();
+
+            }
         }
 
         public List<Kategori> GetAll()
@@ -59,6 +67,13 @@ namespace DataAccessLayer.Repositories
 
             }
         }
+
+        public Kategori GetById(int id)
+        {
+            // Använder LINQ för att hitta den första kategorin med det givna ID:t eller returnerar null om ingen sådan kategori finns.
+            return kategorier.FirstOrDefault(kat => kat.ID == id);
+        }
+
 
 
     }
