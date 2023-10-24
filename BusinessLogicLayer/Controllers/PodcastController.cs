@@ -55,24 +55,37 @@ namespace BusinessLogicLayer.Controllers
         {
             return _repository.GetAll();
         }
-        
+
         public Podcast GetPodcastByUrl(string url)
         {
             return _repository.GetAll().FirstOrDefault(p => p.Url == url);
         }
-
         public void UpdatePodcast(int id, Podcast updatedPodcast)
         {
-            // Lägg till valideringar och affärsregler här.
+            var existingPodcast = _repository.GetAll().FirstOrDefault(p => p.id == id);
+            if (existingPodcast == null)
+            {
+                throw new InvalidOperationException("Podcasten hittades inte.");
+            }
+
+            // Validering för att inte tillåta URL att ändras.
+            if (existingPodcast.Url != updatedPodcast.Url)
+            {
+                throw new InvalidOperationException("Det är inte tillåtet att ändra podcastens URL.");
+            }
+
+            // Du kan lägga till fler valideringar här om det behövs.
+
             _repository.Update(id, updatedPodcast);
         }
+
 
         public void UpdatePodcastByUrl(string url, Podcast updatedPodcast)
         {
             var podcastToUpdate = GetPodcastByUrl(url);
             if (podcastToUpdate != null)
             {
-                UpdatePodcast(podcastToUpdate.Id, updatedPodcast);
+                UpdatePodcast(podcastToUpdate.id, updatedPodcast);
             }
             else
             {
