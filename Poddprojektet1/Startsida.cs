@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using System.Drawing;
 using BusinessLogicLayer.Controllers;
 using System.Security.Policy;
+using Models;
 
 namespace Poddprojektet1
 {
@@ -13,6 +14,7 @@ namespace Poddprojektet1
         private Button addFeedButton;
         private Label label1;
         private ListBox listPodcasts; // Ny ListBox för att visa podcasts
+        private PodcastController podcastController = new PodcastController();
 
 
         public Startsida()
@@ -52,25 +54,31 @@ namespace Poddprojektet1
         private void AddFeedButton_Click(object? sender, EventArgs e)
         {
             // Hämta URL från TextBox
-            Url = rssFeedTextBox.Text;
-            bool success = PodcastController.AddPodcast(Url); // jobba vidare i PodcastController sen
+            string url = rssFeedTextBox.Text;
 
-            if (success)
+            // Skapa en ny podcast med hämtad URL
+            Podcast newPodcast = new Podcast
             {
+                Url = url
+                // Andra egenskaper kan också sättas här
+            };
+
+            try
+            {
+                podcastController.AddPodcast(newPodcast); // Använd instansen istället för klassnamnet
+
                 MessageBox.Show("Flödet lades till!");
 
                 // Uppdatera ListBox med nytt podcast-flöde
-                listPodcasts.Items.Add(rssFeedTextBox.Text);
-                rssFeedTextBox.Clear(); // Rensa TextBox efter framgångsrikt tillägg
-
+                listPodcasts.Items.Add(url);
+                rssFeedTextBox.Clear();
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Ett fel uppstod.");
+                MessageBox.Show($"Ett fel uppstod: {ex.Message}");
             }
-
-
         }
+
 
 
         private void button1_Click(object sender, EventArgs e)
