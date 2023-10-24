@@ -2,6 +2,7 @@ using System;
 using System.Windows.Forms;
 using System.Drawing;
 using BusinessLogicLayer.Controllers;
+using System.Security.Policy;
 
 namespace Poddprojektet1
 {
@@ -51,7 +52,8 @@ namespace Poddprojektet1
         private void AddFeedButton_Click(object? sender, EventArgs e)
         {
             // Hämta URL från TextBox
-            bool success = PodcastController.AddFeed(rssFeedTextBox.Text); // jobba vidare i PodcastController sen
+            Url = rssFeedTextBox.Text;
+            bool success = PodcastController.AddPodcast(Url); // jobba vidare i PodcastController sen
 
             if (success)
             {
