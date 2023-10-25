@@ -279,5 +279,11 @@ namespace Poddprojektet1
             // Fyller avsnittsinformationen
             fyllAvsnittsinformation(valtAvsnitt);
         }
+
+        private void btnLaggTillPodcast_Click(object sender, EventArgs e)
+        {
+            LaggTillPodcast laggTillPodcastForm = new LaggTillPodcast();
+            laggTillPodcastForm.Visible = true;
+        }
     }
 }
