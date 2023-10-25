@@ -25,6 +25,25 @@ namespace Poddprojektet1
         {
             InitializeComponent();
             InitializeComponents();
+            UppdateraPodcasts();
+        }
+
+        private void UppdateraPodcasts()
+        {
+            // Rensa den nuvarande listan
+            listPodcasts?.Items.Clear();
+
+            // Hämta en lista över alla podcasts
+            var podcasts = podcastController?.GetAllPodcasts();
+            if (podcasts != null)
+            {
+                foreach (var podcast in podcasts)
+                {
+                    // Lägg till varje podcast i listrutan
+                    // Antag att du vill visa podcastens namn
+                    listPodcasts?.Items.Add(podcast.Namn);
+                }
+            }
         }
 
         private void InitializeComponents()
@@ -103,6 +122,7 @@ namespace Poddprojektet1
                     // Check if listPodcasts is not null before accessing its Items
                     listPodcasts?.Items.Add(url);
                     rssFeedTextBox.Clear();
+                    UppdateraPodcasts();
                 }
                 catch (Exception ex)
                 {
@@ -155,6 +175,7 @@ namespace Poddprojektet1
                     // (Observera att detta bara är exempelkod, och du behöver troligen 
                     // göra mer arbete här beroende på hur din applikation är uppbyggd)
                     listPodcasts.Items.Remove(url);
+                    UppdateraPodcasts();
                 }
             }
             else
