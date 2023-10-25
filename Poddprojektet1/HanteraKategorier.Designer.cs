@@ -83,6 +83,7 @@
             btnTaBortKategori.Text = "Ta bort kategori";
             btnTaBortKategori.UseVisualStyleBackColor = true;
             btnTaBortKategori.Visible = false;
+            btnTaBortKategori.Click += btnTaBortKategori_Click;
             // 
             // btnLaggTillKategori
             // 
@@ -103,6 +104,7 @@
             textBoxNyEllerAndra.Size = new Size(209, 27);
             textBoxNyEllerAndra.TabIndex = 5;
             textBoxNyEllerAndra.Visible = false;
+            textBoxNyEllerAndra.TextChanged += textBoxNyEllerAndra_TextChanged;
             // 
             // btnBekraftaNyKategori
             // 

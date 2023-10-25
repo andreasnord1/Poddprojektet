@@ -42,6 +42,8 @@ namespace Poddprojektet1
         {
             textBoxNyEllerAndra.Text = "";
 
+            textBoxNyEllerAndra.PlaceholderText = "Ange ny kategori här...";
+
             textBoxNyEllerAndra.Visible = true;
 
             btnBekraftaNyKategori.Visible = true;
@@ -79,6 +81,7 @@ namespace Poddprojektet1
                 btnBekraftaAndradKategori.Visible = true;
 
                 btnLaggTillKategori.Visible = false;
+                btnTaBortKategori.Visible = false;
                 btnAngra.Visible = true;
 
 
@@ -128,6 +131,7 @@ namespace Poddprojektet1
         {
             textBoxNyEllerAndra.Visible = false;
             btnBekraftaAndradKategori.Visible = false;
+            btnAngra.Visible = false;
             btnLaggTillKategori.Visible = true;
 
             listBoxKategorier.Enabled = true;
@@ -146,6 +150,7 @@ namespace Poddprojektet1
 
             textBoxNyEllerAndra.Visible = false;
             btnBekraftaNyKategori.Visible = false;
+            btnAngra.Visible = false;
 
             btnAndraNamnKategori.Visible = true;
 
@@ -172,6 +177,7 @@ namespace Poddprojektet1
         {
             textBoxNyEllerAndra.Visible = false;
             btnBekraftaNyKategori.Visible = false;
+            btnBekraftaAndradKategori.Visible = false;
             btnLaggTillKategori.Visible = true;
             btnAndraNamnKategori.Visible = true;
 
@@ -183,6 +189,21 @@ namespace Poddprojektet1
 
             listBoxKategorier.BackColor = SystemColors.Window;
             listBoxKategorier.ForeColor = SystemColors.WindowText;
+        }
+
+        private void textBoxNyEllerAndra_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnTaBortKategori_Click(object sender, EventArgs e)
+        {
+            string? kategoriString = listBoxKategorier.SelectedItem as string;
+
+            Kategori? kategoriAttTaBort = kategoriController.GetAllKategorier().FirstOrDefault(k => k.Namn == kategoriString);
+            BekraftaTaBortKategori bekraftaTaBortKategori = new BekraftaTaBortKategori(kategoriAttTaBort, kategoriController);
+            bekraftaTaBortKategori.Visible = true;
+            this.Dispose();
         }
 
 
