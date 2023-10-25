@@ -78,7 +78,6 @@ namespace Poddprojektet1
             btnHanteraPodcast.TabIndex = 2;
             btnHanteraPodcast.Text = "Hantera Podcast";
             btnHanteraPodcast.UseVisualStyleBackColor = true;
-            btnHanteraPodcast.Click += button1_Click_1;
             // 
             // btnLaggTillPodcast
             // 
@@ -89,7 +88,6 @@ namespace Poddprojektet1
             btnLaggTillPodcast.TabIndex = 3;
             btnLaggTillPodcast.Text = "Lägg till ny Podcast";
             btnLaggTillPodcast.UseVisualStyleBackColor = false;
-            btnLaggTillPodcast.Click += btnLaggTillPodcast_Click;
             // 
             // btnHanteraKategorier
             // 
@@ -118,7 +116,6 @@ namespace Poddprojektet1
             lblPodcastNamn.Size = new Size(197, 46);
             lblPodcastNamn.TabIndex = 8;
             lblPodcastNamn.Text = "PodcastNamn";
-            lblPodcastNamn.Click += label2_Click;
             // 
             // lblPodcastTitel
             // 
@@ -137,7 +134,6 @@ namespace Poddprojektet1
             lblKategori.Size = new Size(142, 27);
             lblKategori.TabIndex = 10;
             lblKategori.Text = "Kategori";
-            lblKategori.Click += lblKategori_Click;
             // 
             // lblPodcastBeskrivning
             // 
@@ -147,7 +143,6 @@ namespace Poddprojektet1
             lblPodcastBeskrivning.Size = new Size(248, 67);
             lblPodcastBeskrivning.TabIndex = 11;
             lblPodcastBeskrivning.Text = "PodcastBeskrivningstext";
-            lblPodcastBeskrivning.Click += label2_Click_1;
             // 
             // lblAuthor
             // 
@@ -157,7 +152,6 @@ namespace Poddprojektet1
             lblAuthor.Size = new Size(142, 40);
             lblAuthor.TabIndex = 12;
             lblAuthor.Text = "Author";
-            lblAuthor.Click += lblAuthor_Click;
             // 
             // lblAvsnittsTitel
             // 
@@ -221,7 +215,6 @@ namespace Poddprojektet1
             gridPodcasts.RowTemplate.Height = 29;
             gridPodcasts.Size = new Size(642, 380);
             gridPodcasts.TabIndex = 18;
-            gridPodcasts.CellContentClick += dataGridView1_CellContentClick;
             // 
             // podcastNamn
             // 

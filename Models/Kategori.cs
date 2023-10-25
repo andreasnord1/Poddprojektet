@@ -19,6 +19,11 @@ namespace Models
             ID = id;
         }
 
+        public Kategori()
+        {
+
+        }
+
         public string Namn { get; set; }
         public int ID { get; set; }
         // Andra relevanta egenskaper...
