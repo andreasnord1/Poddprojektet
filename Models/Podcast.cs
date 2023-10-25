@@ -23,6 +23,8 @@ namespace Models
         public string Author { get; set; }
         public string BildUrl { get; set; }
 
+        public string CustomName { get; set; }
+
         // Andra relevanta egenskaper...
 
         public Podcast()

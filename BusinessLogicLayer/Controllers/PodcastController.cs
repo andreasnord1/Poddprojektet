@@ -113,6 +113,29 @@ namespace BusinessLogicLayer.Controllers
         }
 
 
+
+        public void UpdatePodcastCustomName(int id, string newCustomName)
+        {
+            var existingPodcast = IRepository.GetAll().FirstOrDefault(p => p.ID == id);
+            if (existingPodcast == null)
+            {
+                throw new InvalidOperationException("Podcasten hittades inte.");
+            }
+
+            if (string.IsNullOrWhiteSpace(newCustomName))
+            {
+                throw new ArgumentException("Custom name måste ha ett värde.");
+            }
+
+            // Uppdatera det anpassade namnet för podcasten
+            existingPodcast.CustomName = newCustomName;
+
+            // Här använder vi Update-metoden från ditt repository för att spara ändringarna
+            IRepository.Update(id, existingPodcast);
+        }
+
+
+
         // ... andra relevanta metoder för affärslogik ...
     }
 }
