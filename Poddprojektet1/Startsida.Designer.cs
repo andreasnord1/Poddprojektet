@@ -107,6 +107,7 @@ namespace Poddprojektet1
             listboxAvsnitt.Name = "listboxAvsnitt";
             listboxAvsnitt.Size = new Size(389, 344);
             listboxAvsnitt.TabIndex = 7;
+            listboxAvsnitt.SelectedIndexChanged += listboxAvsnitt_SelectedIndexChanged;
             // 
             // lblPodcastNamn
             // 

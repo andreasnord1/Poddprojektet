@@ -27,7 +27,7 @@ namespace Poddprojektet1
 
         private void fyllMedKategorier()
         {
-            List<Kategori> kategorier = kategoriController.GetAllKategorier();
+            IEnumerable<Kategori> kategorier = kategoriController.GetAllKategorier();
 
             listBoxKategorier.Items.Clear();
 

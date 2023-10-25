@@ -179,6 +179,23 @@ namespace Poddprojektet1
                 string avsnittsTiteln = avsnitt.Titel;
                 listboxAvsnitt.Items.Add(avsnittsTiteln);
             }
+
+            // Automarkerar det sist laddade avsnittet
+            listboxAvsnitt.SelectedIndex = listboxAvsnitt.Items.Count - 1;
+
+            string avsnittetsTitel = listboxAvsnitt.SelectedItem.ToString();
+            Avsnitt valtAvsnitt = podcastensAvsnitt.FirstOrDefault(a => a.Titel == avsnittetsTitel);
+
+            fyllAvsnittsinformation(valtAvsnitt);
+
+        }
+
+
+        private void fyllAvsnittsinformation(Avsnitt avsnitt)
+        {
+            lblAvsnittsTitel.Text = avsnitt.Titel;
+            lblPubDate.Text = avsnitt.PubliceringsDatum.ToString();
+            lblAvsnittsBeskrivning.Text = avsnitt.Beskrivning;
         }
 
         private void gridPodcasts_SelectedIndexChanged(object? sender, EventArgs e)
@@ -195,12 +212,28 @@ namespace Poddprojektet1
             }
             else
             {
-                string podcastensNamn = gridPodcasts.SelectedCells[0].Value.ToString();
-                Podcast valdPodcast = podcastController.GetAllPodcasts().FirstOrDefault(p => p.Namn == podcastensNamn);
+                string podcastensTitel = gridPodcasts.SelectedCells[1].Value.ToString();
+                Podcast valdPodcast = podcastController.GetAllPodcasts().FirstOrDefault(p => p.Titel == podcastensTitel);
 
                 fyllPodcastinformation(valdPodcast);
 
             }
+        }
+
+        private void listboxAvsnitt_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Hämtar aktuell podcast
+            Podcast valdPodcast = podcastController.GetAllPodcasts().FirstOrDefault(p => p.Titel == lblPodcastTitel.Text);
+
+            // Hämtar podcastens avsnitt
+            List<Avsnitt> podcastensAvsnitt = valdPodcast.Avsnitt;
+
+            // Hämtar aktuellt avsnitt
+            string avsnittetsTitel = listboxAvsnitt.SelectedItem.ToString();
+            Avsnitt valtAvsnitt = podcastensAvsnitt.FirstOrDefault(a => a.Titel == avsnittetsTitel);
+
+            // Fyller avsnittsinformationen
+            fyllAvsnittsinformation(valtAvsnitt);
         }
     }
 }
