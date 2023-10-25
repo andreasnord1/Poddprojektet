@@ -213,8 +213,10 @@ namespace Poddprojektet1
             gridPodcasts.Name = "gridPodcasts";
             gridPodcasts.RowHeadersWidth = 40;
             gridPodcasts.RowTemplate.Height = 29;
+            gridPodcasts.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             gridPodcasts.Size = new Size(642, 380);
             gridPodcasts.TabIndex = 18;
+            gridPodcasts.CellContentClick += gridPodcasts_CellContentClick;
             // 
             // podcastNamn
             // 

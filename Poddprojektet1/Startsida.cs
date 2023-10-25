@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Drawing;
 using BusinessLogicLayer.Controllers;
@@ -62,7 +63,7 @@ namespace Poddprojektet1
             Controls.Add(rssFeedTextBox);
             Controls.Add(addFeedButton);
             Controls.Add(label1);
-            Controls.Add(listPodcasts); 
+            Controls.Add(listPodcasts);
             Controls.Add(editFeedButton);
             Controls.Add(deleteFeedButton);
         }
@@ -162,5 +163,32 @@ namespace Poddprojektet1
         }
 
 
+
+        private void fyllPodcastinformation()
+        {
+            
+        }
+
+        private void gridPodcasts_SelectedIndexChanged(object? sender, EventArgs e)
+        {
+
+        }
+
+        private void gridPodcasts_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Kontrollerar så att det finns en markerad rad i grid
+            if (gridPodcasts.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Var god markera en rad!");
+            }
+            else
+            {
+                string podcastensNamn = gridPodcasts.SelectedCells[0].Value.ToString();
+                // Podcast valdPodcast = podcastController.GetAllPodcasts().Where(p => p.Namn == podcastensNamn);
+
+
+
+            }
+        }
     }
 }

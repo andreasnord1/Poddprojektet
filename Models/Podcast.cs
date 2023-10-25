@@ -15,6 +15,7 @@ namespace Models
         public int ID;
 
         public string? Url { get; set; }
+        public string Namn { get; set; }
         public string? Titel { get; set; }
         public Kategori? PodcastKategori { get; set; }
         public List<Avsnitt>? Avsnitt { get; set; }
