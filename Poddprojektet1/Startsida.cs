@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Drawing;
+using System.Net;
 using BusinessLogicLayer.Controllers;
 using Models;
 
@@ -171,6 +172,9 @@ namespace Poddprojektet1
             lblKategori.Text = valdPodcast.PodcastKategori.ToString();
             lblAuthor.Text = valdPodcast.Author;
             lblPodcastBeskrivning.Text = valdPodcast.Beskrivning;
+            string bildUrl = valdPodcast.BildUrl;
+
+            laddaUppBildFranUrl(bildUrl);
 
             List<Avsnitt> podcastensAvsnitt = valdPodcast.Avsnitt;
 
@@ -190,6 +194,25 @@ namespace Poddprojektet1
 
         }
 
+        private void laddaUppBildFranUrl(string bildUrl)
+        {
+            try
+            {
+                using (WebClient webClient = new WebClient())
+                {
+                    byte[] data = webClient.DownloadData(bildUrl);
+                    using (var stream = new System.IO.MemoryStream(data))
+                    {
+                        Image avsnittetsBild = Image.FromStream(stream);
+                        picBoxPodcastBild.Image = avsnittetsBild;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Kan inte ladda bilden" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
         private void fyllAvsnittsinformation(Avsnitt avsnitt)
         {

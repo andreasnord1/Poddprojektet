@@ -49,14 +49,14 @@ namespace Poddprojektet1
             lblAvsnittsTitel = new Label();
             lblPubDate = new Label();
             lblAvsnittsBeskrivning = new Label();
-            picBoxAvsnittsBild = new PictureBox();
+            picBoxPodcastBild = new PictureBox();
             label2 = new Label();
             gridPodcasts = new DataGridView();
             podcastNamn = new DataGridViewTextBoxColumn();
             podcastTitel = new DataGridViewTextBoxColumn();
             kategori = new DataGridViewTextBoxColumn();
             senasteAvsnitt = new DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)picBoxAvsnittsBild).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picBoxPodcastBild).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gridPodcasts).BeginInit();
             SuspendLayout();
             // 
@@ -181,13 +181,13 @@ namespace Poddprojektet1
             lblAvsnittsBeskrivning.TabIndex = 15;
             lblAvsnittsBeskrivning.Text = "AvsnittsBeskrivningstext";
             // 
-            // picBoxAvsnittsBild
+            // picBoxPodcastBild
             // 
-            picBoxAvsnittsBild.Location = new Point(935, 240);
-            picBoxAvsnittsBild.Name = "picBoxAvsnittsBild";
-            picBoxAvsnittsBild.Size = new Size(186, 126);
-            picBoxAvsnittsBild.TabIndex = 16;
-            picBoxAvsnittsBild.TabStop = false;
+            picBoxPodcastBild.Location = new Point(935, 240);
+            picBoxPodcastBild.Name = "picBoxPodcastBild";
+            picBoxPodcastBild.Size = new Size(186, 126);
+            picBoxPodcastBild.TabIndex = 16;
+            picBoxPodcastBild.TabStop = false;
             // 
             // label2
             // 
@@ -255,7 +255,7 @@ namespace Poddprojektet1
             ClientSize = new Size(1182, 753);
             Controls.Add(gridPodcasts);
             Controls.Add(label2);
-            Controls.Add(picBoxAvsnittsBild);
+            Controls.Add(picBoxPodcastBild);
             Controls.Add(lblAvsnittsBeskrivning);
             Controls.Add(lblPubDate);
             Controls.Add(lblAvsnittsTitel);
@@ -272,7 +272,7 @@ namespace Poddprojektet1
             Margin = new Padding(3, 4, 3, 4);
             Name = "Startsida";
             Text = "Startsida";
-            ((System.ComponentModel.ISupportInitialize)picBoxAvsnittsBild).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picBoxPodcastBild).EndInit();
             ((System.ComponentModel.ISupportInitialize)gridPodcasts).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -293,7 +293,7 @@ namespace Poddprojektet1
         private Label lblAvsnittsTitel;
         private Label lblPubDate;
         private Label lblAvsnittsBeskrivning;
-        private PictureBox picBoxAvsnittsBild;
+        private PictureBox picBoxPodcastBild;
         private Label label2;
         private DataGridView gridPodcasts;
         private DataGridViewTextBoxColumn podcastNamn;
