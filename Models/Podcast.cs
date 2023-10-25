@@ -12,7 +12,7 @@ namespace Models
 
     public class Podcast
     {
-        public int id;
+        public int ID;
 
         public string? Url { get; set; }
         public string? Titel { get; set; }

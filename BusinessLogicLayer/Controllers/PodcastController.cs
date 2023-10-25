@@ -62,7 +62,7 @@ namespace BusinessLogicLayer.Controllers
         }
         public void UpdatePodcast(int id, Podcast updatedPodcast)
         {
-            var existingPodcast = IRepository.GetAll().FirstOrDefault(p => p.id == id);
+            var existingPodcast = IRepository.GetAll().FirstOrDefault(p => p.ID == id);
             if (existingPodcast == null)
             {
                 throw new InvalidOperationException("Podcasten hittades inte.");
@@ -85,7 +85,7 @@ namespace BusinessLogicLayer.Controllers
             var podcastToUpdate = GetPodcastByUrl(url);
             if (podcastToUpdate != null)
             {
-                UpdatePodcast(podcastToUpdate.id, updatedPodcast);
+                UpdatePodcast(podcastToUpdate.ID, updatedPodcast);
             }
             else
             {
@@ -104,7 +104,7 @@ namespace BusinessLogicLayer.Controllers
             var podcastToDelete = GetPodcastByUrl(url);
             if (podcastToDelete != null)
             {
-                DeletePodcast(podcastToDelete.Id);
+                DeletePodcast(podcastToDelete.ID);
             }
             else
             {

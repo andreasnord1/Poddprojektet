@@ -24,7 +24,7 @@ namespace DataAccessLayer.Repositories
             SaveChanges();
         }
 
-        public void DeleteByID(int id)
+        public void Delete(int id)
         {
             var podcast = GetById(id);
             if (podcast != null)
