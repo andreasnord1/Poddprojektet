@@ -20,6 +20,8 @@ namespace Models
         public Kategori? PodcastKategori { get; set; }
         public List<Avsnitt>? Avsnitt { get; set; }
         public string? Beskrivning { get; set; }
+
+        public string Author { get; set; }
         // Andra relevanta egenskaper...
 
         public Podcast()

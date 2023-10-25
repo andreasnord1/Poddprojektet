@@ -51,7 +51,7 @@ namespace BusinessLogicLayer.Controllers
             IRepository.Create(newPodcast);
         }
 
-        public IEnumerable<Podcast> GetAllPodcasts()
+        public List<Podcast> GetAllPodcasts()
         {
             return IRepository.GetAll();
         }

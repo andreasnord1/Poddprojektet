@@ -164,9 +164,21 @@ namespace Poddprojektet1
 
 
 
-        private void fyllPodcastinformation()
+        private void fyllPodcastinformation(Podcast valdPodcast)
         {
-            
+            lblPodcastNamn.Text = valdPodcast.Namn;
+            lblPodcastTitel.Text = valdPodcast.Titel;
+            lblKategori.Text = valdPodcast.PodcastKategori.ToString();
+            lblAuthor.Text = valdPodcast.Author;
+            lblPodcastBeskrivning.Text = valdPodcast.Beskrivning;
+
+            List<Avsnitt> podcastensAvsnitt = valdPodcast.Avsnitt;
+
+            foreach (Avsnitt avsnitt in podcastensAvsnitt)
+            {
+                string avsnittsTiteln = avsnitt.Titel;
+                listboxAvsnitt.Items.Add(avsnittsTiteln);
+            }
         }
 
         private void gridPodcasts_SelectedIndexChanged(object? sender, EventArgs e)
@@ -184,9 +196,9 @@ namespace Poddprojektet1
             else
             {
                 string podcastensNamn = gridPodcasts.SelectedCells[0].Value.ToString();
-                // Podcast valdPodcast = podcastController.GetAllPodcasts().Where(p => p.Namn == podcastensNamn);
+                Podcast valdPodcast = podcastController.GetAllPodcasts().FirstOrDefault(p => p.Namn == podcastensNamn);
 
-
+                fyllPodcastinformation(valdPodcast);
 
             }
         }

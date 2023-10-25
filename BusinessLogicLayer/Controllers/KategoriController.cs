@@ -50,7 +50,7 @@ namespace BusinessLogicLayer.Controllers
             _repository.Create(nyKategori);
         }
 
-        public List<Kategori> GetAllKategorier()
+        public IEnumerable<Kategori> GetAllKategorier()
         {
             return _repository.GetAll();
         }
