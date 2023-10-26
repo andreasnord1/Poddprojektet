@@ -9,7 +9,7 @@ using Models;
 
 namespace DataAccessLayer
 {
-    internal class Serialiserare
+    public class Serialiserare
     {
         private static readonly string filePathPodcasts = "Podcasts.xml";
         private static readonly string filePathKategorier = "Kategorier.xml";

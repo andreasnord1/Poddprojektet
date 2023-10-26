@@ -2,6 +2,7 @@
 using DataAccessLayer.Repositories;
 using Models;
 using System.Windows.Forms;
+using DataAccessLayer;
 
 namespace Poddprojektet1
 {
@@ -9,14 +10,44 @@ namespace Poddprojektet1
     {
         private PodcastController podcastController;
         private KategoriController kategoriController;
+        private Serialiserare Serialiserare = new Serialiserare();
+        private KategoriRepository kategoriRepo = new KategoriRepository();
+
 
         public LaggTillPodcast()
         {
             InitializeComponent();
             podcastController = new PodcastController(); 
             kategoriController = new KategoriController(new KategoriRepository());
+            LoadCategories();
 
         }
+
+        private void LoadCategories()
+        {
+            // Rensa kategori-comboboxen för att undvika upprepningar
+            cmbPodcastKategori.Items.Clear();
+
+            // Hämta alla tillgängliga kategorier
+            var kategorier = kategoriRepo.GetAll();
+
+            // Lägg till varje kategori i comboboxen
+            foreach (var kategori in kategorier)
+            {
+                cmbPodcastKategori.Items.Add(kategori.Namn);
+            }
+        }
+
+        private void btnManageCategories_Click(object sender, EventArgs e)
+        {
+            // Öppna Hantera Kategorier-formuläret och ladda om kategorierna när det stängs
+            using (var form = new HanteraKategorier())
+            {
+                form.ShowDialog();
+                LoadCategories();
+            }
+        }
+
 
         private void LaggTillPodcast_Load(object sender, EventArgs e)
         {
@@ -43,14 +74,7 @@ namespace Poddprojektet1
 
                 if (string.IsNullOrEmpty(podcastUrl) || string.IsNullOrEmpty(podcastTitel))
                 {
-                    MessageBox.Show("Vänligen ange både en URL för podcasten.", "Fel", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-
-                if (string.IsNullOrEmpty(podcastTitel))
-                {
-                    MessageBox.Show("Vänligen ange ett namn för podcasten.", "Fel", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Vänligen ange både en URL och ett namn för podcasten.", "Fel", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
@@ -71,6 +95,12 @@ namespace Poddprojektet1
                 }
 
                 podcastController.AddPodcast(newPodcast);
+
+                // Uppdatera XML-filen med den nya podcasten
+                List<Podcast> podcasts = Serialiserare.DeSerialiseraPodcasts();
+                podcasts.Add(newPodcast);
+                Serialiserare.SerialiseraPodcasts(podcasts);
+
                 MessageBox.Show("Podcast har lagts till framgångsrikt!");
             }
             catch (Exception ex)
@@ -78,6 +108,7 @@ namespace Poddprojektet1
                 MessageBox.Show(ex.Message, "Fel", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private void btnAvbryt_Click(object sender, EventArgs e)
         {
