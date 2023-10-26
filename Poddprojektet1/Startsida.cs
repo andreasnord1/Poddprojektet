@@ -336,5 +336,43 @@ namespace Poddprojektet1
             LaggTillPodcast laggTillPodcastForm = new LaggTillPodcast();
             laggTillPodcastForm.Visible = true;
         }
+
+        private void btnHanteraPodcast_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnRaderaPodcast_Click(object sender, EventArgs e)
+
+            //JAG HAR INTE LAGT TILL NÅGON KONTROLL T.EX. "ÄR DU SÄKER PÅ ATT DU VILL RADERA DENNA PODCAST?" /DENIS
+        {
+            try
+            {
+                if (gridPodcasts.SelectedRows.Count > 0)
+                {
+                    // Hämta den valda podcasten från gridPodcasts : DataGridView
+                    Podcast selectedPodcast = gridPodcasts.SelectedRows[0].DataBoundItem as Podcast;
+
+                    // Anropa PodcastController för att radera podcasten baserat på dess ID
+                    podcastController.DeletePodcast(selectedPodcast.ID);
+
+                    // Uppdatera gridPodcasts : DataGridView efter radering
+                    gridPodcasts.DataSource = null; // Ta bort datakällan
+                    gridPodcasts.DataSource = podcastController.GetAllPodcasts(); // Fyll på igen med uppdaterad data
+
+                    MessageBox.Show("Den valda Podcasten har nu raderats!");
+                }
+                else
+                {
+                    MessageBox.Show("Vänligen välj en podcast att radera.", "Fel", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Fel", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
     }
 }

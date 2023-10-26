@@ -57,6 +57,7 @@ namespace Poddprojektet1
             kategori = new DataGridViewTextBoxColumn();
             senasteAvsnitt = new DataGridViewTextBoxColumn();
             comboBox1 = new ComboBox();
+            btnRaderaPodcast = new Button();
             ((System.ComponentModel.ISupportInitialize)picBoxPodcastBild).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gridPodcasts).BeginInit();
             SuspendLayout();
@@ -79,6 +80,7 @@ namespace Poddprojektet1
             btnHanteraPodcast.TabIndex = 2;
             btnHanteraPodcast.Text = "Hantera Podcast";
             btnHanteraPodcast.UseVisualStyleBackColor = true;
+            btnHanteraPodcast.Click += btnHanteraPodcast_Click;
             // 
             // btnLaggTillPodcast
             // 
@@ -257,12 +259,23 @@ namespace Poddprojektet1
             comboBox1.Size = new Size(174, 28);
             comboBox1.TabIndex = 19;
             // 
+            // btnRaderaPodcast
+            // 
+            btnRaderaPodcast.Location = new Point(57, 684);
+            btnRaderaPodcast.Name = "btnRaderaPodcast";
+            btnRaderaPodcast.Size = new Size(156, 29);
+            btnRaderaPodcast.TabIndex = 20;
+            btnRaderaPodcast.Text = "Radera Podcast";
+            btnRaderaPodcast.UseVisualStyleBackColor = true;
+            btnRaderaPodcast.Click += btnRaderaPodcast_Click;
+            // 
             // Startsida
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
             ClientSize = new Size(1182, 753);
+            Controls.Add(btnRaderaPodcast);
             Controls.Add(comboBox1);
             Controls.Add(gridPodcasts);
             Controls.Add(label2);
@@ -312,5 +325,6 @@ namespace Poddprojektet1
         private DataGridViewTextBoxColumn kategori;
         private DataGridViewTextBoxColumn senasteAvsnitt;
         private ComboBox comboBox1;
+        private Button btnRaderaPodcast;
     }
 }
