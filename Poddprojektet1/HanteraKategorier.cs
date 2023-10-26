@@ -198,12 +198,21 @@ namespace Poddprojektet1
 
         private void btnTaBortKategori_Click(object sender, EventArgs e)
         {
-            string? kategoriString = listBoxKategorier.SelectedItem as string;
+            // Kontrollerar så att en kategori är vald i listboxen
+            if (listBoxKategorier.SelectedItems.Count > 0)
+            {
+                string? kategoriString = listBoxKategorier.SelectedItem as string;
 
-            Kategori? kategoriAttTaBort = kategoriController.GetAllKategorier().FirstOrDefault(k => k.Namn == kategoriString);
-            BekraftaTaBortKategori bekraftaTaBortKategori = new BekraftaTaBortKategori(kategoriAttTaBort, kategoriController);
-            bekraftaTaBortKategori.Visible = true;
-            this.Dispose();
+                Kategori? kategoriAttTaBort = kategoriController.GetAllKategorier().FirstOrDefault(k => k.Namn == kategoriString);
+                BekraftaTaBortKategori bekraftaTaBortKategori = new BekraftaTaBortKategori(kategoriAttTaBort, kategoriController);
+                bekraftaTaBortKategori.Visible = true;
+                this.Dispose();
+            }
+            else
+            {
+                lblValjKategori.Visible = true;
+            }
+            
         }
 
 
