@@ -16,5 +16,10 @@ namespace Poddprojektet1
         {
             InitializeComponent();
         }
+
+        private void btnAvbryt_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+        }
     }
 }

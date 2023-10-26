@@ -114,6 +114,7 @@
             btnAvbryt.TabIndex = 8;
             btnAvbryt.Text = "Avbryt";
             btnAvbryt.UseVisualStyleBackColor = true;
+            btnAvbryt.Click += btnAvbryt_Click;
             // 
             // LaggTillPodcast
             // 
