@@ -1,5 +1,6 @@
 ﻿using BusinessLogicLayer.Controllers;
 using Models;
+using System.Windows.Forms;
 
 namespace Poddprojektet1
 {
@@ -13,16 +14,26 @@ namespace Poddprojektet1
             podcastController = new PodcastController(); // Skapar en ny instans av PodcastController
         }
 
+        private void LaggTillPodcast_Load(object sender, EventArgs e)
+        {
+            // Här kan du initialisera saker när formuläret först laddas.
+            // Exempel: Förbereda dropdown-listor, sätta standardvärden etc.
+        }
+
         private void btnLaggTill_Click(object sender, EventArgs e)
         {
             try
             {
-                // Hämta data från UI-element
-                string podcastUrl = txtURL.Text;
-                string podcastTitel = txtNamn.Text;
+                string podcastUrl = txtURL.Text.Trim();
+                string podcastTitel = txtNamn.Text.Trim();
                 string? podcastKategori = cmbPodcastKategori.SelectedItem?.ToString();
 
-                // Skapa nytt Podcast-objekt
+                if (string.IsNullOrEmpty(podcastUrl) || string.IsNullOrEmpty(podcastTitel))
+                {
+                    MessageBox.Show("Vänligen ange både en URL och en titel för podcasten.", "Information saknas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 Podcast newPodcast = new Podcast()
                 {
                     Url = podcastUrl,
@@ -35,22 +46,18 @@ namespace Poddprojektet1
                 }
                 else
                 {
-                    Console.WriteLine("Värdet kan inte vara null!");
-                    return; // Avbryt metoden om podcastKategori är null
+                    MessageBox.Show("Välj en kategori för podcasten.", "Kategori saknas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
                 }
 
-                // Lägg till Podcast
                 podcastController.AddPodcast(newPodcast);
-
                 MessageBox.Show("Podcast har lagts till framgångsrikt!");
             }
             catch (Exception ex)
             {
-                // Visa felmeddelande till användaren om något går fel
                 MessageBox.Show(ex.Message, "Fel", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
 
         private void btnAvbryt_Click(object sender, EventArgs e)
         {
