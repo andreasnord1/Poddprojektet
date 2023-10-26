@@ -1,4 +1,5 @@
 ﻿using BusinessLogicLayer.Controllers;
+using DataAccessLayer.Repositories;
 using Models;
 using System.Windows.Forms;
 
@@ -7,17 +8,29 @@ namespace Poddprojektet1
     public partial class LaggTillPodcast : Form
     {
         private PodcastController podcastController;
+        private KategoriController kategoriController;
 
         public LaggTillPodcast()
         {
             InitializeComponent();
-            podcastController = new PodcastController(); // Skapar en ny instans av PodcastController
+            podcastController = new PodcastController(); 
+            kategoriController = new KategoriController(new KategoriRepository());
+
         }
 
         private void LaggTillPodcast_Load(object sender, EventArgs e)
         {
-            // Här kan du initialisera saker när formuläret först laddas.
-            // Exempel: Förbereda dropdown-listor, sätta standardvärden etc.
+            try
+            {
+                List<Kategori> kategorier = kategoriController.GetAllKategorier();
+                cmbPodcastKategori.DataSource = kategorier;
+                cmbPodcastKategori.DisplayMember = "Namn";
+            }
+            catch (Exception ex)
+            {
+                // Visa ett felmeddelande om något går fel
+                MessageBox.Show($"Ett fel uppstod när kategorier skulle hämtas: {ex.Message}", "Fel", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnLaggTill_Click(object sender, EventArgs e)
@@ -30,7 +43,14 @@ namespace Poddprojektet1
 
                 if (string.IsNullOrEmpty(podcastUrl) || string.IsNullOrEmpty(podcastTitel))
                 {
-                    MessageBox.Show("Vänligen ange både en URL och en titel för podcasten.", "Information saknas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Vänligen ange både en URL för podcasten.", "Fel", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+
+                if (string.IsNullOrEmpty(podcastTitel))
+                {
+                    MessageBox.Show("Vänligen ange ett namn för podcasten.", "Fel", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
