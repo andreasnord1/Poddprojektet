@@ -169,19 +169,49 @@ namespace Poddprojektet1
 
         private void EditFeedButton_Click(object? sender, EventArgs e)
         {
-            // Exempelkod: Du behöver här hitta det valda podcast-objektet och sedan 
-            // redigera det baserat på användarens inmatning.
             if (listPodcasts?.SelectedItem != null)
             {
-                string url = (string)listPodcasts.SelectedItem;
-                // Här kan du till exempel öppna en dialogruta där användaren kan redigera 
-                // podcast-information och sedan spara ändringarna.
+                try
+                {
+                    string url = (string)listPodcasts.SelectedItem;
+
+                    // Antag att 'GetPodcastByURL' är en metod som returnerar en Podcast-objekt
+                    // baserat på URL:en. Du behöver implementera en sådan metod beroende på din lagringslösning.
+                    Podcast selectedPodcast = podcastController?.GetPodcastByURL(url);
+
+                    if (selectedPodcast != null)
+                    {
+                        // Öppna en redigeringsdialogruta och skicka den valda podcasten som parameter.
+                        // 'EditPodcastForm' skulle vara ett nytt Form som du skapar för att ta emot och 
+                        // redigera information om en podcast.
+                        EditPodcastForm editForm = new EditPodcastForm(selectedPodcast);
+                        var result = editForm.ShowDialog(this);
+
+                        if (result == DialogResult.OK)
+                        {
+                            // Antag att 'UpdatePodcast' är en metod inom din PodcastController som
+                            // uppdaterar en befintlig podcast i din lagring.
+                            podcastController?.UpdatePodcast(editForm.UpdatedPodcast);
+
+                            UppdateraPodcasts(); // Uppdatera listan med podcasts i gränssnittet
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Kunde inte hitta podcasten.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Ett fel uppstod vid redigering: {ex.Message}");
+                }
             }
             else
             {
                 MessageBox.Show("Vänligen välj en podcast att redigera.");
             }
         }
+
 
         private void DeleteFeedButton_Click(object? sender, EventArgs e)
         {
