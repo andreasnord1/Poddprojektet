@@ -167,33 +167,29 @@ namespace Poddprojektet1
         }
 
 
-        private void EditFeedButton_Click(object? sender, EventArgs e)
+        private void EditFeedButton_Click(object sender, EventArgs e)
         {
             if (listPodcasts?.SelectedItem != null)
             {
                 try
                 {
                     string url = (string)listPodcasts.SelectedItem;
-
-                    // Antag att 'GetPodcastByURL' är en metod som returnerar en Podcast-objekt
-                    // baserat på URL:en. Du behöver implementera en sådan metod beroende på din lagringslösning.
-                    Podcast selectedPodcast = podcastController?.GetPodcastByURL(url);
+                    Podcast? selectedPodcast = podcastController?.GetPodcastByUrl(url);
 
                     if (selectedPodcast != null)
                     {
-                        // Öppna en redigeringsdialogruta och skicka den valda podcasten som parameter.
-                        // 'EditPodcastForm' skulle vara ett nytt Form som du skapar för att ta emot och 
-                        // redigera information om en podcast.
                         EditPodcastForm editForm = new EditPodcastForm(selectedPodcast);
                         var result = editForm.ShowDialog(this);
 
                         if (result == DialogResult.OK)
                         {
-                            // Antag att 'UpdatePodcast' är en metod inom din PodcastController som
-                            // uppdaterar en befintlig podcast i din lagring.
-                            podcastController?.UpdatePodcast(editForm.UpdatedPodcast);
+                            // Hämta den uppdaterade podcasten från formuläret
+                            Podcast updatedPodcast = editForm.UpdatedPodcast;
 
-                            UppdateraPodcasts(); // Uppdatera listan med podcasts i gränssnittet
+                            // Uppdatera podcasten i lagringen
+                            podcastController?.UpdatePodcast(updatedPodcast);
+
+                            UppdateraPodcasts(); // Uppdatera listan med podcasts
                         }
                     }
                     else
