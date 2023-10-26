@@ -56,6 +56,7 @@ namespace Poddprojektet1
             podcastTitel = new DataGridViewTextBoxColumn();
             kategori = new DataGridViewTextBoxColumn();
             senasteAvsnitt = new DataGridViewTextBoxColumn();
+            comboBox1 = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)picBoxPodcastBild).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gridPodcasts).BeginInit();
             SuspendLayout();
@@ -248,12 +249,21 @@ namespace Poddprojektet1
             senasteAvsnitt.Name = "senasteAvsnitt";
             senasteAvsnitt.Width = 150;
             // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(525, 643);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(174, 28);
+            comboBox1.TabIndex = 19;
+            // 
             // Startsida
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
             ClientSize = new Size(1182, 753);
+            Controls.Add(comboBox1);
             Controls.Add(gridPodcasts);
             Controls.Add(label2);
             Controls.Add(picBoxPodcastBild);
@@ -301,5 +311,6 @@ namespace Poddprojektet1
         private DataGridViewTextBoxColumn podcastTitel;
         private DataGridViewTextBoxColumn kategori;
         private DataGridViewTextBoxColumn senasteAvsnitt;
+        private ComboBox comboBox1;
     }
 }

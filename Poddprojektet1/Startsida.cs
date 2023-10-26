@@ -26,6 +26,7 @@ namespace Poddprojektet1
             InitializeComponent();
             InitializeComponents();
             UppdateraPodcasts();
+            // UppdateraGridMedPodcasts();
         }
 
         private void UppdateraPodcasts()
@@ -44,6 +45,27 @@ namespace Poddprojektet1
                     listPodcasts?.Items.Add(podcast.Namn);
                 }
             }
+        }
+
+        private void UppdateraGridMedPodcasts()
+        {
+            // Rensar gridboxen innan laddning av uppdaterad lista
+            gridPodcasts.Rows.Clear();
+
+            var podcasts = podcastController?.GetAllPodcasts();
+            if (podcasts != null)
+            {
+                foreach (Podcast podcast in podcasts)
+                {
+                    // Lägg till en ny rad i gridPodcasts som vi ladda innehållet till
+                    int radIndex = gridPodcasts.Rows.Add();
+                    gridPodcasts.Rows[radIndex].Cells["podcastNamn"].Value = "Exempelnamn"; // Istället för Exemplen här ska aktuell podcasts värden hämtas, exempelvis podcast.Namn
+                    gridPodcasts.Rows[radIndex].Cells["podcastTitel"].Value = "Exempeltitel";
+                    gridPodcasts.Rows[radIndex].Cells["kategori"].Value = "ExempelKategori";
+                    gridPodcasts.Rows[radIndex].Cells["senasteAvsnitt"].Value = "ExempelSenaste Avsnitt";
+                }
+            }
+
         }
 
         private void InitializeComponents()
