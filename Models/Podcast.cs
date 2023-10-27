@@ -30,6 +30,11 @@ namespace Models
         public Podcast()
         {
             Avsnitt = new List<Avsnitt>();
+
+            Namn = string.Empty;
+            Author = string.Empty;
+            BildUrl = string.Empty;
+            CustomName = string.Empty;
         }
 
     }
