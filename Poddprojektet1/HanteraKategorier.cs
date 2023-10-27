@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BusinessLogicLayer.Controllers;
+using BusinessLogicLayer;
 using DataAccessLayer.Repositories;
 using Models;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
@@ -105,26 +106,34 @@ namespace Poddprojektet1
 
         private void btnBekraftaAndradKategori_Click(object sender, EventArgs e)
         {
-            if (!TryUpdateKategori()) return;
-
-            UpdateUIAfterKategoriChange();
+            TryUpdateKategori();
         }
 
-        private bool TryUpdateKategori()
+        private void TryUpdateKategori()
         {
-            string? tidigareNamn = listBoxKategorier.SelectedItem as string;
-            if (tidigareNamn == null) return false;
+            string valideringsTyp = "kategori";
+            if (Validering.vardeFinns(listBoxKategorier, valideringsTyp) && Validering.vardeFinns(textBoxNyEllerAndra))
+            {
+                string? tidigareNamn = listBoxKategorier.SelectedItem as string;
+                string nyttNamnPaKategori = textBoxNyEllerAndra.Text;
+                int antalTeckenInput = nyttNamnPaKategori.Length;
+                int antalMinTecken = 3;
+                int antalMaxTecken = 20;
+                string inputTyp = "ny kategori";
 
-            Kategori? kategoriAttUppdatera = kategoriController.GetAllKategorier().FirstOrDefault(k => k.Namn == tidigareNamn);
-            if (kategoriAttUppdatera == null) return false;
+                if (Validering.KontrolleraTeckenAntal(antalTeckenInput, antalMinTecken, antalMaxTecken, inputTyp))
+                {
+                    Kategori? kategoriAttUppdatera = kategoriController.GetAllKategorier().FirstOrDefault(k => k.Namn == tidigareNamn);
 
-            string nyttNamnPaKategori = textBoxNyEllerAndra.Text;
-            kategoriAttUppdatera.Namn = nyttNamnPaKategori;
-            kategoriController.UpdateKategori(kategoriAttUppdatera.ID, kategoriAttUppdatera);
+                    kategoriAttUppdatera.Namn = nyttNamnPaKategori;
 
-            fyllMedKategorier();
+                    kategoriController.UpdateKategori(kategoriAttUppdatera.ID, kategoriAttUppdatera);
 
-            return true;
+                    fyllMedKategorier();
+
+                    UpdateUIAfterKategoriChange();
+                }
+            }
         }
 
         private void UpdateUIAfterKategoriChange()
@@ -138,10 +147,11 @@ namespace Poddprojektet1
             listBoxKategorier.BackColor = SystemColors.Window;
             listBoxKategorier.ForeColor = SystemColors.WindowText;
         }
-
-
+        
+        
         private void btnBekraftaNyKategori_Click(object sender, EventArgs e)
         {
+
             string nyKategori = textBoxNyEllerAndra.Text;
 
             kategoriController.AddKategori(nyKategori);

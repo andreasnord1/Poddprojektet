@@ -175,7 +175,7 @@ namespace Poddprojektet1
                 {
                     string url = (string)listPodcasts.SelectedItem;
                     Podcast? selectedPodcast = podcastController?.GetPodcastByUrl(url);
-                    ''
+
                     if (selectedPodcast != null)
                     {
                         EditPodcastForm editForm = new EditPodcastForm(selectedPodcast);
@@ -308,7 +308,7 @@ namespace Poddprojektet1
             else
             {
                 string podcastensTitel = gridPodcasts.SelectedCells[1].Value.ToString();
-                Podcast valdPodcast = PodcastController.GetAllPodcasts().FirstOrDefault(p => p.Titel == podcastensTitel);
+                Podcast valdPodcast = podcastController.GetAllPodcasts().FirstOrDefault(p => p.Titel == podcastensTitel);
 
                 fyllPodcastinformation(valdPodcast);
 
@@ -318,7 +318,7 @@ namespace Poddprojektet1
         private void listboxAvsnitt_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Hämtar aktuell podcast
-            Podcast valdPodcast = PodcastController.GetAllPodcasts().FirstOrDefault(p => p.Titel == lblPodcastTitel.Text);
+            Podcast valdPodcast = podcastController.GetAllPodcasts().FirstOrDefault(p => p.Titel == lblPodcastTitel.Text);
 
             // Hämtar podcastens avsnitt
             List<Avsnitt> podcastensAvsnitt = valdPodcast.Avsnitt;
