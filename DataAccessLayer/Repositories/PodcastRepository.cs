@@ -42,7 +42,7 @@ namespace DataAccessLayer.Repositories
           
         }
 
-        public Podcast GetById(int id)
+        public Podcast? GetById(int id)
         {
             return podcastLista.FirstOrDefault(p => p.ID == id);
         }

@@ -125,7 +125,11 @@ namespace Poddprojektet1
                 {
                     Kategori? kategoriAttUppdatera = kategoriController.GetAllKategorier().FirstOrDefault(k => k.Namn == tidigareNamn);
 
+                    if(kategoriAttUppdatera != null)
+
                     kategoriAttUppdatera.Namn = nyttNamnPaKategori;
+
+                    if(kategoriAttUppdatera != null)
 
                     kategoriController.UpdateKategori(kategoriAttUppdatera.ID, kategoriAttUppdatera);
 
@@ -214,10 +218,13 @@ namespace Poddprojektet1
                 string? kategoriString = listBoxKategorier.SelectedItem as string;
 
                 Kategori? kategoriAttTaBort = kategoriController.GetAllKategorier().FirstOrDefault(k => k.Namn == kategoriString);
-                BekraftaTaBortKategori bekraftaTaBortKategori = new BekraftaTaBortKategori(kategoriAttTaBort, kategoriController);
-                bekraftaTaBortKategori.Visible = true;
-                this.Dispose();
-            }
+
+                if (kategoriAttTaBort != null)
+                {
+                    BekraftaTaBortKategori bekraftaTaBortKategori = new BekraftaTaBortKategori(kategoriAttTaBort, kategoriController);
+                    bekraftaTaBortKategori.Visible = true;
+                    this.Dispose();
+                }
             else
             {
                 lblValjKategori.Visible = true;

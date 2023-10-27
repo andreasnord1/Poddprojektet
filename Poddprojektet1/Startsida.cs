@@ -76,9 +76,15 @@ namespace Poddprojektet1
             listPodcasts = new ListBox(); // Initialisera ListBoxen
 
             // Konfigurerar TextBox för RSS-flödet
+           
             rssFeedTextBox.Location = new Point(20, 20);  // Exempelposition
             rssFeedTextBox.Size = new Size(250, 30);       // Exempelstorlek
             rssFeedTextBox.PlaceholderText = "Ange RSS-flödets URL här..."; // Instruktionstext
+            rssFeedTextBox.ForeColor = Color.Gray;
+
+            // Bind Enter och Leave händelser
+            rssFeedTextBox.Enter += RssFeedTextBox_Enter;
+            rssFeedTextBox.Leave += RssFeedTextBox_Leave;
 
             // Konfigurera knappen för att lägga till flöde
             addFeedButton.Text = "Lägg till flöde";
@@ -108,6 +114,25 @@ namespace Poddprojektet1
             Controls.Add(listPodcasts);
             Controls.Add(editFeedButton);
             Controls.Add(deleteFeedButton);
+        }
+
+        private void RssFeedTextBox_Enter(object sender, EventArgs e)
+        {
+            // Kod som körs när rssFeedTextBox får fokus
+            if (rssFeedTextBox?.Text == "Ange RSS-flödets URL här...")
+            {   rssFeedTextBox.Text = "";
+                rssFeedTextBox.ForeColor = Color.Black;
+            }
+        }
+
+        private void RssFeedTextBox_Leave(object sender, EventArgs e)
+        {
+            // Kod som körs när rssFeedTextBox förlorar fokus
+            if (string.IsNullOrWhiteSpace(rssFeedTextBox?.Text))
+            {
+                Text = "Ange RSS-flödets URL här...";
+                ForeColor = Color.Gray;
+            }
         }
 
         private void label1_Click(object sender, EventArgs e)
