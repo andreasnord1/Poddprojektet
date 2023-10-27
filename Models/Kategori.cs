@@ -13,6 +13,8 @@ namespace Models
 
     public class Kategori
     {
+
+
         public Kategori(int id, string namn)
         {
             Namn = namn;

@@ -76,7 +76,7 @@ namespace Poddprojektet1
             listPodcasts = new ListBox(); // Initialisera ListBoxen
 
             // Konfigurerar TextBox för RSS-flödet
-           
+
             rssFeedTextBox.Location = new Point(20, 20);  // Exempelposition
             rssFeedTextBox.Size = new Size(250, 30);       // Exempelstorlek
             rssFeedTextBox.PlaceholderText = "Ange RSS-flödets URL här..."; // Instruktionstext
@@ -123,7 +123,7 @@ namespace Poddprojektet1
         {
             // Kod som körs när rssFeedTextBox får fokus
             if (rssFeedTextBox?.Text == "Ange RSS-flödets URL här...")
-            {   rssFeedTextBox.Text = "";
+            { rssFeedTextBox.Text = "";
                 rssFeedTextBox.ForeColor = Color.Black;
             }
         }
@@ -321,13 +321,15 @@ namespace Poddprojektet1
         }
 
 
-        private void laddaUppBildFranUrl(string bildUrl)
+        private async void laddaUppBildFranUrl(string bildUrl)
         {
             try
             {
-                using (WebClient webClient = new WebClient())
+                using (HttpClient httpClient = new HttpClient())
                 {
-                    byte[] data = webClient.DownloadData(bildUrl);
+                    // Använda GetByteArrayAsync för att ladda ner bilden som en byte array
+                    byte[] data = await httpClient.GetByteArrayAsync(bildUrl);
+
                     using (var stream = new System.IO.MemoryStream(data))
                     {
                         Image avsnittetsBild = Image.FromStream(stream);
@@ -335,11 +337,16 @@ namespace Poddprojektet1
                     }
                 }
             }
-            catch (Exception ex)
+            catch (HttpRequestException httpEx) // Fånga specifika fel relaterade till HTTP-begäranden
             {
-                MessageBox.Show("Kan inte ladda bilden" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Problem med att hämta bilden från nätet: " + httpEx.Message, "Nätverksfel", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex) // Generellt fånga andra typer av fel
+            {
+                MessageBox.Show("Kan inte ladda bilden: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private void fyllAvsnittsinformation(Avsnitt avsnitt)
         {
@@ -362,32 +369,81 @@ namespace Poddprojektet1
             }
             else
             {
-                string? podcastensTitel = gridPodcasts.SelectedCells[1].Value.ToString();
+                // Skyddar oss mot möjligheten att cellvärdet är null
+                string? podcastensTitel = gridPodcasts.SelectedCells[1].Value?.ToString(); // Lägger till en null-kontroll här
+
+                if (podcastensTitel == null)
+                {
+                    MessageBox.Show("Ingen titel tillgänglig för vald podcast.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
                 Podcast? valdPodcast = podcastController?.GetAllPodcasts().FirstOrDefault(p => p.Titel == podcastensTitel);
 
-                fyllPodcastinformation(valdPodcast);
-
+                if (valdPodcast == null)
+                {
+                    MessageBox.Show("Kunde inte hitta den valda podcasten.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    fyllPodcastinformation(valdPodcast); // Nu vet vi att 'valdPodcast' inte är null
+                }
             }
         }
 
+
         private void listboxAvsnitt_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Hämtar aktuell podcast
-            Podcast? valdPodcast = podcastController?.GetAllPodcasts().FirstOrDefault(p => p.Titel == lblPodcastTitel.Text);
+            // Först kontrollerar vi om podcastController är null.
+            if (podcastController == null)
+            {
+                MessageBox.Show("Podcast-controller är inte tillgänglig.", "Fel", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-            // Hämtar podcastens avsnitt
-          
+            // Sedan, vi ser till att en podcast verkligen hittades baserat på titeln.
+            Podcast? valdPodcast = podcastController.GetAllPodcasts().FirstOrDefault(p => p.Titel == lblPodcastTitel.Text);
 
-            List<Avsnitt> podcastensAvsnitt = valdPodcast.Avsnitt;
-            
+            if (valdPodcast == null)
+            {
+                MessageBox.Show("Ingen podcast matchade den valda titeln.", "Fel", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-            // Hämtar aktuellt avsnitt
-            string avsnittetsTitel = listboxAvsnitt.SelectedItem.ToString();
-            Avsnitt valtAvsnitt = podcastensAvsnitt.FirstOrDefault(a => a.Titel == avsnittetsTitel);
+            // Vi ser till att det finns ett valt objekt i listboxen och att det inte är null.
+            if (listboxAvsnitt.SelectedItem == null)
+            {
+                MessageBox.Show("Vänligen välj ett avsnitt först.", "Inget avsnitt valt", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-            // Fyller avsnittsinformationen
+            // Vi ser till att det finns ett valt objekt i listboxen och att det är av typen string.
+            if (!(listboxAvsnitt.SelectedItem is string avsnittetsTitel))
+            {
+                MessageBox.Show("Det valda avsnittet har ogiltig information eller är inte valt.", "Fel vid val av avsnitt", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Skyddar mot en situation där 'Avsnitt' listan själv kan vara null eller tom.
+            if (valdPodcast.Avsnitt == null || !valdPodcast.Avsnitt.Any())
+            {
+                MessageBox.Show("Inga avsnitt tillgängliga för denna podcast.", "Inga avsnitt", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Försök hitta avsnittet. Eftersom vi kontrollerar om listan är null ovan, bör detta inte orsaka en CS8604-varning.
+            Avsnitt? valtAvsnitt = valdPodcast.Avsnitt.FirstOrDefault(a => a.Titel == avsnittetsTitel);
+
+            if (valtAvsnitt == null)
+            {
+                MessageBox.Show("Det valda avsnittet finns inte i listan.", "Avsnitt ej funnet", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Nu när vi är säkra på att vi har ett giltigt avsnitt, fortsätt med att fylla i informationen.
             fyllAvsnittsinformation(valtAvsnitt);
         }
+
 
         private void btnLaggTillPodcast_Click(object sender, EventArgs e)
         {
@@ -401,36 +457,39 @@ namespace Poddprojektet1
         }
 
         private void btnRaderaPodcast_Click(object sender, EventArgs e)
-
-            //JAG HAR INTE LAGT TILL NÅGON KONTROLL T.EX. "ÄR DU SÄKER PÅ ATT DU VILL RADERA DENNA PODCAST?" /DENIS
         {
             try
             {
                 if (gridPodcasts.SelectedRows.Count > 0)
                 {
-                    // Hämta den valda podcasten från gridPodcasts : DataGridView
-                    Podcast selectedPodcast = gridPodcasts.SelectedRows[0].DataBoundItem as Podcast;
+                    // Hämtar den valda podcasten från gridPodcasts, men var medveten om att den kan vara null.
+                    var dataBoundItem = gridPodcasts.SelectedRows[0].DataBoundItem;
+                    if (dataBoundItem is Podcast selectedPodcast) // säkerställer att objektet är en Podcast
+                    {
+                        // Nu är vi säkra på att selectedPodcast inte är null och kan säkert komma åt dess ID.
+                        podcastController?.DeletePodcast(selectedPodcast.ID);
 
-                    // Anropa PodcastController för att radera podcasten baserat på dess ID
-                    podcastController.DeletePodcast(selectedPodcast.ID);
+                        // Uppdatera gridPodcasts efter radering
+                        gridPodcasts.DataSource = null; // Ta bort datakällan
+                        gridPodcasts.DataSource = podcastController?.GetAllPodcasts(); // Fyll på igen med uppdaterad data
 
-                    // Uppdatera gridPodcasts : DataGridView efter radering
-                    gridPodcasts.DataSource = null; // Ta bort datakällan
-                    gridPodcasts.DataSource = podcastController.GetAllPodcasts(); // Fyll på igen med uppdaterad data
-
-                    MessageBox.Show("Den valda Podcasten har nu raderats!");
+                        MessageBox.Show("Den valda podcasten har nu raderats!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Det valda objektet är inte en giltig podcast.", "Fel", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Vänligen välj en podcast att radera.", "Fel", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Vänligen välj en podcast att radera.", "Ingen podcast vald", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
-            catch (Exception ex)
+            catch (Exception ex) // Här fångas eventuella undantag som uppstår i try-blocket.
             {
                 MessageBox.Show(ex.Message, "Fel", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
 
     }
 }

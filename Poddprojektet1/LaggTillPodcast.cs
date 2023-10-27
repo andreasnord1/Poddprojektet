@@ -3,6 +3,7 @@ using DataAccessLayer.Repositories;
 using Models;
 using System.Windows.Forms;
 using DataAccessLayer;
+using System.Collections.Generic;
 
 namespace Poddprojektet1
 {
@@ -86,8 +87,11 @@ namespace Poddprojektet1
 
                 if (podcastKategori != null)
                 {
-                    newPodcast.PodcastKategori = new Kategori() { Namn = podcastKategori };
+                    KategoriController kategoriController = new KategoriController();
+                    int kategoriId = kategoriController.GetNextAvailableID(allaKategorier);
+                    newPodcast.PodcastKategori = new Kategori(kategoriId, podcastKategori);
                 }
+
                 else
                 {
                     MessageBox.Show("Välj en kategori för podcasten.", "Kategori saknas", MessageBoxButtons.OK, MessageBoxIcon.Warning);

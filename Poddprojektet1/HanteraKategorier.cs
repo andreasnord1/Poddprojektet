@@ -125,13 +125,13 @@ namespace Poddprojektet1
                 {
                     Kategori? kategoriAttUppdatera = kategoriController.GetAllKategorier().FirstOrDefault(k => k.Namn == tidigareNamn);
 
-                    if(kategoriAttUppdatera != null)
+                    if (kategoriAttUppdatera != null)
 
-                    kategoriAttUppdatera.Namn = nyttNamnPaKategori;
+                        kategoriAttUppdatera.Namn = nyttNamnPaKategori;
 
-                    if(kategoriAttUppdatera != null)
+                    if (kategoriAttUppdatera != null)
 
-                    kategoriController.UpdateKategori(kategoriAttUppdatera.ID, kategoriAttUppdatera);
+                        kategoriController.UpdateKategori(kategoriAttUppdatera.ID, kategoriAttUppdatera);
 
                     fyllMedKategorier();
 
@@ -151,8 +151,8 @@ namespace Poddprojektet1
             listBoxKategorier.BackColor = SystemColors.Window;
             listBoxKategorier.ForeColor = SystemColors.WindowText;
         }
-        
-        
+
+
         private void btnBekraftaNyKategori_Click(object sender, EventArgs e)
         {
 
@@ -225,60 +225,61 @@ namespace Poddprojektet1
                     bekraftaTaBortKategori.Visible = true;
                     this.Dispose();
                 }
-            else
-            {
-                lblValjKategori.Visible = true;
+                else
+                {
+                    lblValjKategori.Visible = true;
+                }
+
             }
-            
+
+
+            //private void textBoxNyEllerAndra_GotFocus(object sender, EventArgs e)
+            //{
+            //    if (textBoxNyEllerAndra.Text == "Nytt kategorinamn...")
+            //    {
+            //        textBoxNyEllerAndra.Text = "";
+            //        textBoxNyEllerAndra.ForeColor = System.Drawing.SystemColors.WindowText;
+            //    }
+            //}
+
+            //private void textBoxNyEllerAndra_LostFocus(object sender, EventArgs e)
+            //{
+            //    if (string.IsNullOrWhiteSpace(textBoxNyEllerAndra.Text))
+            //    {
+            //        textBoxNyEllerAndra.Text = "Nytt kategorinamn...";
+            //        textBoxNyEllerAndra.ForeColor = System.Drawing.SystemColors.InactiveCaption;
+            //    }
+            //}
+
+
+            //private void textBoxNyEllerAndra_Enter(object sender, EventArgs e)
+            //{
+            //    if (textBoxNyEllerAndra.Text == "Ny Kategori")
+            //    {
+            //        textBoxNyEllerAndra.Text = "";
+            //        textBoxNyEllerAndra.ForeColor = Color.Black;
+            //    }
+            //}
+
+            //private void textBoxNyEllerAndra_Leave(object sender, EventArgs e)
+            //{
+            //    if (textBoxNyEllerAndra.Text == "")
+            //    {
+            //        textBoxNyEllerAndra.Text = "Ny Kategori";
+            //        textBoxNyEllerAndra.ForeColor = Color.LightGray;
+            //    }
+            //}
+
+            //private void HanteraKategorier_Load(object sender, EventArgs e)
+            //{
+            //    textBoxNyEllerAndra.Text = "Ny Kategori";
+            //    textBoxNyEllerAndra.ForeColor = Color.LightGray;
+
+
+
+            //}
+
         }
-
-
-        //private void textBoxNyEllerAndra_GotFocus(object sender, EventArgs e)
-        //{
-        //    if (textBoxNyEllerAndra.Text == "Nytt kategorinamn...")
-        //    {
-        //        textBoxNyEllerAndra.Text = "";
-        //        textBoxNyEllerAndra.ForeColor = System.Drawing.SystemColors.WindowText;
-        //    }
-        //}
-
-        //private void textBoxNyEllerAndra_LostFocus(object sender, EventArgs e)
-        //{
-        //    if (string.IsNullOrWhiteSpace(textBoxNyEllerAndra.Text))
-        //    {
-        //        textBoxNyEllerAndra.Text = "Nytt kategorinamn...";
-        //        textBoxNyEllerAndra.ForeColor = System.Drawing.SystemColors.InactiveCaption;
-        //    }
-        //}
-
-
-        //private void textBoxNyEllerAndra_Enter(object sender, EventArgs e)
-        //{
-        //    if (textBoxNyEllerAndra.Text == "Ny Kategori")
-        //    {
-        //        textBoxNyEllerAndra.Text = "";
-        //        textBoxNyEllerAndra.ForeColor = Color.Black;
-        //    }
-        //}
-
-        //private void textBoxNyEllerAndra_Leave(object sender, EventArgs e)
-        //{
-        //    if (textBoxNyEllerAndra.Text == "")
-        //    {
-        //        textBoxNyEllerAndra.Text = "Ny Kategori";
-        //        textBoxNyEllerAndra.ForeColor = Color.LightGray;
-        //    }
-        //}
-
-        //private void HanteraKategorier_Load(object sender, EventArgs e)
-        //{
-        //    textBoxNyEllerAndra.Text = "Ny Kategori";
-        //    textBoxNyEllerAndra.ForeColor = Color.LightGray;
-
-
-
-        //}
-
     }
 }
 

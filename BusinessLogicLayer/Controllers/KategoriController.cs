@@ -87,7 +87,7 @@ namespace BusinessLogicLayer.Controllers
         }
 
 
-        private int GetNextAvailableID(List<Kategori> allaKategorier)
+        public int GetNextAvailableID(List<Kategori> allaKategorier)
         {
             // Hämtar nästa lediga ID
             if (allaKategorier.Count == 0)
