@@ -42,12 +42,16 @@ namespace DataAccessLayer.Repositories
           
         }
 
-        public Podcast? GetById(int id)
+        public Podcast GetById(int id)
         {
-            return podcastLista.FirstOrDefault(p => p.ID == id);
+            var podcast = podcastLista.FirstOrDefault(p => p.ID == id);
+            if (podcast == null)
+            {
+                throw new Exception("Ingen podcast hittad med det angivna ID:t.");
+            }
+            return podcast;
         }
 
-        
 
         public void SaveChanges()
         {

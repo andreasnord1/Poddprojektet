@@ -74,14 +74,17 @@ namespace DataAccessLayer.Repositories
         }
 
 
-        public Kategori? GetById(int id)
+        public Kategori GetById(int id)
         {
-            return kategorier.FirstOrDefault(kat => kat.ID == id);
+            var podcast = kategorier.FirstOrDefault(p => p.ID == id);
+            if (podcast == null)
+            {
+                throw new Exception("Ingen podcast hittad med det angivna ID:t.");
+            }
+            return podcast;
         }
 
-
-
-
+       
     }
 
 

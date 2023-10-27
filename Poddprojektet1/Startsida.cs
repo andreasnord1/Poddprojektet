@@ -83,8 +83,11 @@ namespace Poddprojektet1
             rssFeedTextBox.ForeColor = Color.Gray;
 
             // Bind Enter och Leave händelser
-            rssFeedTextBox.Enter += RssFeedTextBox_Enter;
-            rssFeedTextBox.Leave += RssFeedTextBox_Leave;
+            if (rssFeedTextBox != null)
+            {
+                rssFeedTextBox.Enter += RssFeedTextBox_Enter;
+                rssFeedTextBox.Leave += RssFeedTextBox_Leave;
+            }
 
             // Konfigurera knappen för att lägga till flöde
             addFeedButton.Text = "Lägg till flöde";
@@ -128,10 +131,10 @@ namespace Poddprojektet1
         private void RssFeedTextBox_Leave(object sender, EventArgs e)
         {
             // Kod som körs när rssFeedTextBox förlorar fokus
-            if (string.IsNullOrWhiteSpace(rssFeedTextBox?.Text))
+            if (rssFeedTextBox != null && string.IsNullOrWhiteSpace(rssFeedTextBox.Text))
             {
-                Text = "Ange RSS-flödets URL här...";
-                ForeColor = Color.Gray;
+                rssFeedTextBox.Text = "Ange RSS-flödets URL här...";
+                rssFeedTextBox.ForeColor = Color.Gray;
             }
         }
 
