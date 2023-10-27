@@ -185,15 +185,11 @@ namespace Poddprojektet1
             }
         }
 
-
-
-
         private void btnHanteraKategorier_Click(object sender, EventArgs e)
         {
             HanteraKategorier kategoriForm = new HanteraKategorier();
             kategoriForm.Visible = true;
         }
-
 
         private void EditFeedButton_Click(object? sender, EventArgs e)
         {
@@ -263,36 +259,67 @@ namespace Poddprojektet1
             }
         }
 
-
-
         private void fyllPodcastinformation(Podcast valdPodcast)
         {
-            lblPodcastNamn.Text = valdPodcast.Namn;
-            lblPodcastTitel.Text = valdPodcast.Titel;
-            lblKategori.Text = valdPodcast.PodcastKategori.ToString();
-            lblAuthor.Text = valdPodcast.Author;
-            lblPodcastBeskrivning.Text = valdPodcast.Beskrivning;
-            string bildUrl = valdPodcast.BildUrl;
-
-            laddaUppBildFranUrl(bildUrl);
-
-            List<Avsnitt> podcastensAvsnitt = valdPodcast.Avsnitt;
-
-            foreach (Avsnitt avsnitt in podcastensAvsnitt)
+            // Först kontrollera om 'valdPodcast' är null
+            if (valdPodcast == null)
             {
-                string avsnittsTiteln = avsnitt.Titel;
-                listboxAvsnitt.Items.Add(avsnittsTiteln);
+                MessageBox.Show("Ingen podcast vald. Vänligen välj en podcast först.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return; // Avsluta metoden eftersom det inte finns någon podcast att bearbeta
             }
 
-            // Automarkerar det sist laddade avsnittet
-            listboxAvsnitt.SelectedIndex = listboxAvsnitt.Items.Count - 1;
+            lblPodcastNamn.Text = valdPodcast.Namn ?? "Information saknas";
+            lblPodcastTitel.Text = valdPodcast.Titel ?? "Information saknas";
+            lblAuthor.Text = valdPodcast.Author ?? "Information saknas";
+            lblPodcastBeskrivning.Text = valdPodcast.Beskrivning ?? "Information saknas";
+            string bildUrl = valdPodcast.BildUrl;
+            lblKategori.Text = valdPodcast.PodcastKategori?.ToString() ?? "Okategoriserad";
 
-            string avsnittetsTitel = listboxAvsnitt.SelectedItem.ToString();
-            Avsnitt valtAvsnitt = podcastensAvsnitt.FirstOrDefault(a => a.Titel == avsnittetsTitel);
+            laddaUppBildFranUrl(bildUrl); // Antag att denna metod kan hantera null 'bildUrl'
 
-            fyllAvsnittsinformation(valtAvsnitt);
+            // Nu hanterar vi möjligheten att 'Avsnitt' kan vara null eller tom
+            if (valdPodcast.Avsnitt == null || !valdPodcast.Avsnitt.Any())
+            {
+                MessageBox.Show("Det finns inga avsnitt tillgängliga för den här podcasten.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                // Om vi har giltiga avsnitt, fortsätt som vanligt
+                List<Avsnitt> podcastensAvsnitt = valdPodcast.Avsnitt;
+                listboxAvsnitt.Items.Clear(); // Rensa tidigare poster för att undvika dubbletter
 
+                foreach (Avsnitt avsnitt in podcastensAvsnitt)
+                {
+                    string avsnittsTiteln = avsnitt?.Titel ?? "Okänd titel"; // Hantera möjligheten att 'Titel' kan vara null
+                    listboxAvsnitt.Items.Add(avsnittsTiteln);
+                }
+
+                // Kontrollera om det finns några objekt i listan innan du ställer in vald index
+                if (listboxAvsnitt.Items.Count > 0)
+                {
+                    // Automarkerar det sist laddade avsnittet
+                    listboxAvsnitt.SelectedIndex = listboxAvsnitt.Items.Count - 1;
+
+                    // Eftersom 'SelectedItem' inte är null här (vi har poster och en är vald), kan vi göra en säker omvandling
+                    string? avsnittetsTitel = listboxAvsnitt.SelectedItem.ToString();
+                    Avsnitt? valtAvsnitt = podcastensAvsnitt.FirstOrDefault(a => a.Titel == avsnittetsTitel);
+
+                    if (valtAvsnitt != null)
+                    {
+                        fyllAvsnittsinformation(valtAvsnitt); // Antag att denna metod kan hantera all nödvändig logik
+                    }
+                    else
+                    {
+                        MessageBox.Show("Kunde inte hitta information för det valda avsnittet.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Inga avsnitt finns tillgängliga för visning.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
         }
+
 
         private void laddaUppBildFranUrl(string bildUrl)
         {
@@ -335,8 +362,8 @@ namespace Poddprojektet1
             }
             else
             {
-                string podcastensTitel = gridPodcasts.SelectedCells[1].Value.ToString();
-                Podcast valdPodcast = podcastController.GetAllPodcasts().FirstOrDefault(p => p.Titel == podcastensTitel);
+                string? podcastensTitel = gridPodcasts.SelectedCells[1].Value.ToString();
+                Podcast? valdPodcast = podcastController?.GetAllPodcasts().FirstOrDefault(p => p.Titel == podcastensTitel);
 
                 fyllPodcastinformation(valdPodcast);
 
@@ -346,10 +373,13 @@ namespace Poddprojektet1
         private void listboxAvsnitt_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Hämtar aktuell podcast
-            Podcast valdPodcast = podcastController.GetAllPodcasts().FirstOrDefault(p => p.Titel == lblPodcastTitel.Text);
+            Podcast? valdPodcast = podcastController?.GetAllPodcasts().FirstOrDefault(p => p.Titel == lblPodcastTitel.Text);
 
             // Hämtar podcastens avsnitt
+          
+
             List<Avsnitt> podcastensAvsnitt = valdPodcast.Avsnitt;
+            
 
             // Hämtar aktuellt avsnitt
             string avsnittetsTitel = listboxAvsnitt.SelectedItem.ToString();
