@@ -119,7 +119,7 @@ namespace Poddprojektet1
             Controls.Add(deleteFeedButton);
         }
 
-        private void RssFeedTextBox_Enter(object sender, EventArgs e)
+        private void RssFeedTextBox_Enter(object? sender, EventArgs e)
         {
             // Kod som körs när rssFeedTextBox får fokus
             if (rssFeedTextBox?.Text == "Ange RSS-flödets URL här...")
@@ -128,7 +128,7 @@ namespace Poddprojektet1
             }
         }
 
-        private void RssFeedTextBox_Leave(object sender, EventArgs e)
+        private void RssFeedTextBox_Leave(object? sender, EventArgs e)
         {
             // Kod som körs när rssFeedTextBox förlorar fokus
             if (rssFeedTextBox != null && string.IsNullOrWhiteSpace(rssFeedTextBox.Text))
@@ -195,7 +195,7 @@ namespace Poddprojektet1
         }
 
 
-        private void EditFeedButton_Click(object sender, EventArgs e)
+        private void EditFeedButton_Click(object? sender, EventArgs e)
         {
             if (listPodcasts?.SelectedItem != null)
             {
