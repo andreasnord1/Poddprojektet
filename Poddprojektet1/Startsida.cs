@@ -460,8 +460,13 @@ namespace Poddprojektet1
 
         private void btnHanteraPodcast_Click(object sender, EventArgs e)
         {
+            // Behöver läggas in en check / If sats här för att podcast är vald innan användaren kan 
+            //navigera sig vidare till "Hantera Podcast"-formuläret + else sats med MessageBox-felmeddelande
+            // - Victor
+
+
             HanteraPodcast hanteraPodcastForm = new HanteraPodcast();
-            hanteraPodcastForm.Visible= true;
+            hanteraPodcastForm.ShowDialog();
         }
 
         private void btnRedigeraPodcast_Click(object sender, EventArgs e)
