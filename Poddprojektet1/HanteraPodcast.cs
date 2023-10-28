@@ -25,10 +25,10 @@ namespace Poddprojektet1
             InitializeComponent();
             kategoriController = new KategoriController(new KategoriRepository());
             podcastController = new PodcastController();
-            fyllMedKategorier(); 
-    }
+            fyllMedKategorier();
+        }
 
-    private void btnRadera_Click(object sender, EventArgs e)
+        private void btnRadera_Click(object sender, EventArgs e)
         {
 
             try
@@ -40,7 +40,8 @@ namespace Poddprojektet1
 
                     // Anropa PodcastController för att radera podcasten baserat på dess ID
 
-                    if (selectedPodcast != null) { 
+                    if (selectedPodcast != null)
+                    {
 
                         podcastController.DeletePodcast(selectedPodcast.ID);
 
@@ -52,7 +53,7 @@ namespace Poddprojektet1
                         MessageBox.Show("Den valda Podcasten har nu raderats!");
 
                     }
-                                        
+
                 }
                 else
                 {

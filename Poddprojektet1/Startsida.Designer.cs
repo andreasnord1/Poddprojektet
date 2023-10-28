@@ -58,7 +58,6 @@ namespace Poddprojektet1
             senasteAvsnitt = new DataGridViewTextBoxColumn();
             comboBox1 = new ComboBox();
             btnRaderaPodcast = new Button();
-            btnRedigeraPodcast = new Button();
             ((System.ComponentModel.ISupportInitialize)picBoxPodcastBild).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gridPodcasts).BeginInit();
             SuspendLayout();
@@ -288,23 +287,12 @@ namespace Poddprojektet1
             btnRaderaPodcast.UseVisualStyleBackColor = true;
             btnRaderaPodcast.Click += btnRaderaPodcast_Click;
             // 
-            // btnRedigeraPodcast
-            // 
-            btnRedigeraPodcast.Location = new Point(312, 804);
-            btnRedigeraPodcast.Margin = new Padding(4);
-            btnRedigeraPodcast.Name = "btnRedigeraPodcast";
-            btnRedigeraPodcast.Size = new Size(195, 36);
-            btnRedigeraPodcast.TabIndex = 21;
-            btnRedigeraPodcast.Text = "Redigera Podcast";
-            btnRedigeraPodcast.UseVisualStyleBackColor = true;
-            // 
             // Startsida
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
             ClientSize = new Size(1478, 959);
-            Controls.Add(btnRedigeraPodcast);
             Controls.Add(btnRaderaPodcast);
             Controls.Add(comboBox1);
             Controls.Add(gridPodcasts);
@@ -356,6 +344,5 @@ namespace Poddprojektet1
         private DataGridViewTextBoxColumn senasteAvsnitt;
         private ComboBox comboBox1;
         private Button btnRaderaPodcast;
-        private Button btnRedigeraPodcast;
     }
 }

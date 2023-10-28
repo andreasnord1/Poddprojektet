@@ -46,6 +46,8 @@
             cmbKategori = new ComboBox();
             lblEller = new Label();
             lblMarkera = new Label();
+            btnRedigeraNamn = new Button();
+            label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)gridPodcasts).BeginInit();
             ((System.ComponentModel.ISupportInitialize)podcastBindingSource1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)podcastBindingSource).BeginInit();
@@ -58,11 +60,12 @@
             gridPodcasts.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             gridPodcasts.Columns.AddRange(new DataGridViewColumn[] { urlDataGridViewTextBoxColumn, namnDataGridViewTextBoxColumn, titelDataGridViewTextBoxColumn, podcastKategoriDataGridViewTextBoxColumn, beskrivningDataGridViewTextBoxColumn, authorDataGridViewTextBoxColumn, bildUrlDataGridViewTextBoxColumn, customNameDataGridViewTextBoxColumn });
             gridPodcasts.DataSource = podcastBindingSource1;
-            gridPodcasts.Location = new Point(119, 26);
+            gridPodcasts.Location = new Point(149, 32);
+            gridPodcasts.Margin = new Padding(4);
             gridPodcasts.Name = "gridPodcasts";
             gridPodcasts.RowHeadersWidth = 51;
             gridPodcasts.RowTemplate.Height = 29;
-            gridPodcasts.Size = new Size(551, 188);
+            gridPodcasts.Size = new Size(689, 235);
             gridPodcasts.TabIndex = 0;
             // 
             // urlDataGridViewTextBoxColumn
@@ -144,9 +147,10 @@
             // 
             // btnRadera
             // 
-            btnRadera.Location = new Point(321, 370);
+            btnRadera.Location = new Point(498, 414);
+            btnRadera.Margin = new Padding(4);
             btnRadera.Name = "btnRadera";
-            btnRadera.Size = new Size(158, 29);
+            btnRadera.Size = new Size(198, 36);
             btnRadera.TabIndex = 1;
             btnRadera.Text = "Radera";
             btnRadera.UseVisualStyleBackColor = true;
@@ -154,9 +158,10 @@
             // 
             // btnAndraKategori
             // 
-            btnAndraKategori.Location = new Point(399, 282);
+            btnAndraKategori.Location = new Point(499, 352);
+            btnAndraKategori.Margin = new Padding(4);
             btnAndraKategori.Name = "btnAndraKategori";
-            btnAndraKategori.Size = new Size(158, 29);
+            btnAndraKategori.Size = new Size(198, 36);
             btnAndraKategori.TabIndex = 2;
             btnAndraKategori.Text = "Ändra kategori";
             btnAndraKategori.UseVisualStyleBackColor = true;
@@ -165,41 +170,67 @@
             // cmbKategori
             // 
             cmbKategori.FormattingEnabled = true;
-            cmbKategori.Location = new Point(235, 282);
+            cmbKategori.Location = new Point(294, 352);
+            cmbKategori.Margin = new Padding(4);
             cmbKategori.Name = "cmbKategori";
-            cmbKategori.Size = new Size(158, 28);
+            cmbKategori.Size = new Size(196, 33);
             cmbKategori.TabIndex = 3;
             cmbKategori.SelectedIndexChanged += cmbKategori_SelectedIndexChanged;
             // 
             // lblEller
             // 
             lblEller.AutoSize = true;
-            lblEller.Location = new Point(378, 331);
+            lblEller.Location = new Point(434, 414);
+            lblEller.Margin = new Padding(4, 0, 4, 0);
             lblEller.Name = "lblEller";
-            lblEller.Size = new Size(47, 20);
+            lblEller.Size = new Size(56, 25);
             lblEller.TabIndex = 4;
             lblEller.Text = "Eller...";
             // 
             // lblMarkera
             // 
             lblMarkera.AutoSize = true;
-            lblMarkera.Location = new Point(260, 238);
+            lblMarkera.Location = new Point(325, 298);
+            lblMarkera.Margin = new Padding(4, 0, 4, 0);
             lblMarkera.Name = "lblMarkera";
-            lblMarkera.Size = new Size(277, 20);
+            lblMarkera.Size = new Size(334, 25);
             lblMarkera.TabIndex = 5;
             lblMarkera.Text = "Markera en podcast i listan ovan för att...";
             // 
+            // btnRedigeraNamn
+            // 
+            btnRedigeraNamn.Location = new Point(499, 477);
+            btnRedigeraNamn.Margin = new Padding(4);
+            btnRedigeraNamn.Name = "btnRedigeraNamn";
+            btnRedigeraNamn.Size = new Size(198, 36);
+            btnRedigeraNamn.TabIndex = 6;
+            btnRedigeraNamn.Text = "Lägg till-/ändra namn";
+            btnRedigeraNamn.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(435, 477);
+            label1.Margin = new Padding(4, 0, 4, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(56, 25);
+            label1.TabIndex = 7;
+            label1.Text = "Eller...";
+            // 
             // HanteraPodcast
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1000, 562);
+            Controls.Add(label1);
+            Controls.Add(btnRedigeraNamn);
             Controls.Add(lblMarkera);
             Controls.Add(lblEller);
             Controls.Add(cmbKategori);
             Controls.Add(btnAndraKategori);
             Controls.Add(btnRadera);
             Controls.Add(gridPodcasts);
+            Margin = new Padding(4);
             Name = "HanteraPodcast";
             Text = "HanteraPodcast";
             ((System.ComponentModel.ISupportInitialize)gridPodcasts).EndInit();
@@ -229,5 +260,7 @@
         private ComboBox cmbKategori;
         private Label lblEller;
         private Label lblMarkera;
+        private Button btnRedigeraNamn;
+        private Label label1;
     }
 }
