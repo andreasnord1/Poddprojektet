@@ -72,10 +72,10 @@ namespace Poddprojektet1
                 string podcastUrl = txtURL.Text.Trim();
                 string podcastTitel = txtNamn.Text.Trim();
                 string? podcastKategori = cmbPodcastKategori.SelectedItem?.ToString();
+
+                // Skapar en instans av repositoriet och kontrollern en gång.
                 KategoriRepository kategoriRepo = new KategoriRepository();
                 KategoriController kategoriController = new KategoriController(kategoriRepo);
-
-
 
                 if (string.IsNullOrEmpty(podcastUrl) || string.IsNullOrEmpty(podcastTitel))
                 {
@@ -91,10 +91,11 @@ namespace Poddprojektet1
 
                 if (podcastKategori != null)
                 {
-                    int kategoriId = kategoriController.GetNextAvailableID();
+                    // Använd instansen av KategoriController här.
+                    List<Kategori> allaKategorier = kategoriController.GetAllKategorier(); 
+                    int kategoriId = kategoriController.GetNextAvailableID(allaKategorier);
                     newPodcast.PodcastKategori = new Kategori(kategoriId, podcastKategori);
                 }
-
                 else
                 {
                     MessageBox.Show("Välj en kategori för podcasten.", "Kategori saknas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -115,6 +116,7 @@ namespace Poddprojektet1
                 MessageBox.Show(ex.Message, "Fel", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
 
         private void btnAvbryt_Click(object sender, EventArgs e)
