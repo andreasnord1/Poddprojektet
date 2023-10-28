@@ -58,6 +58,7 @@ namespace Poddprojektet1
             senasteAvsnitt = new DataGridViewTextBoxColumn();
             comboBox1 = new ComboBox();
             btnRaderaPodcast = new Button();
+            btnRedigeraPodcast = new Button();
             ((System.ComponentModel.ISupportInitialize)picBoxPodcastBild).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gridPodcasts).BeginInit();
             SuspendLayout();
@@ -66,17 +67,19 @@ namespace Poddprojektet1
             // 
             lblPodcasts.AutoSize = true;
             lblPodcasts.Font = new Font("Corbel", 36F, FontStyle.Bold, GraphicsUnit.Point);
-            lblPodcasts.Location = new Point(471, 30);
+            lblPodcasts.Location = new Point(589, 38);
+            lblPodcasts.Margin = new Padding(4, 0, 4, 0);
             lblPodcasts.Name = "lblPodcasts";
-            lblPodcasts.Size = new Size(261, 73);
+            lblPodcasts.Size = new Size(315, 88);
             lblPodcasts.TabIndex = 0;
             lblPodcasts.Text = "Podcasts";
             // 
             // btnHanteraPodcast
             // 
-            btnHanteraPodcast.Location = new Point(57, 643);
+            btnHanteraPodcast.Location = new Point(71, 804);
+            btnHanteraPodcast.Margin = new Padding(4);
             btnHanteraPodcast.Name = "btnHanteraPodcast";
-            btnHanteraPodcast.Size = new Size(156, 34);
+            btnHanteraPodcast.Size = new Size(195, 42);
             btnHanteraPodcast.TabIndex = 2;
             btnHanteraPodcast.Text = "Hantera Podcast";
             btnHanteraPodcast.UseVisualStyleBackColor = true;
@@ -85,9 +88,10 @@ namespace Poddprojektet1
             // btnLaggTillPodcast
             // 
             btnLaggTillPodcast.BackColor = Color.Khaki;
-            btnLaggTillPodcast.Location = new Point(57, 117);
+            btnLaggTillPodcast.Location = new Point(71, 146);
+            btnLaggTillPodcast.Margin = new Padding(4);
             btnLaggTillPodcast.Name = "btnLaggTillPodcast";
-            btnLaggTillPodcast.Size = new Size(186, 46);
+            btnLaggTillPodcast.Size = new Size(232, 58);
             btnLaggTillPodcast.TabIndex = 3;
             btnLaggTillPodcast.Text = "Lägg till ny Podcast";
             btnLaggTillPodcast.UseVisualStyleBackColor = false;
@@ -95,9 +99,10 @@ namespace Poddprojektet1
             // 
             // btnHanteraKategorier
             // 
-            btnHanteraKategorier.Location = new Point(543, 199);
+            btnHanteraKategorier.Location = new Point(679, 249);
+            btnHanteraKategorier.Margin = new Padding(4);
             btnHanteraKategorier.Name = "btnHanteraKategorier";
-            btnHanteraKategorier.Size = new Size(156, 29);
+            btnHanteraKategorier.Size = new Size(195, 36);
             btnHanteraKategorier.TabIndex = 4;
             btnHanteraKategorier.Text = "Hantera Kategorier";
             btnHanteraKategorier.UseVisualStyleBackColor = true;
@@ -106,90 +111,100 @@ namespace Poddprojektet1
             // listboxAvsnitt
             // 
             listboxAvsnitt.FormattingEnabled = true;
-            listboxAvsnitt.ItemHeight = 20;
-            listboxAvsnitt.Location = new Point(732, 369);
+            listboxAvsnitt.ItemHeight = 25;
+            listboxAvsnitt.Location = new Point(915, 461);
+            listboxAvsnitt.Margin = new Padding(4);
             listboxAvsnitt.Name = "listboxAvsnitt";
-            listboxAvsnitt.Size = new Size(389, 344);
+            listboxAvsnitt.Size = new Size(485, 429);
             listboxAvsnitt.TabIndex = 7;
             listboxAvsnitt.SelectedIndexChanged += listboxAvsnitt_SelectedIndexChanged;
             // 
             // lblPodcastNamn
             // 
             lblPodcastNamn.BorderStyle = BorderStyle.FixedSingle;
-            lblPodcastNamn.Location = new Point(732, 117);
+            lblPodcastNamn.Location = new Point(915, 146);
+            lblPodcastNamn.Margin = new Padding(4, 0, 4, 0);
             lblPodcastNamn.Name = "lblPodcastNamn";
-            lblPodcastNamn.Size = new Size(197, 46);
+            lblPodcastNamn.Size = new Size(246, 57);
             lblPodcastNamn.TabIndex = 8;
             lblPodcastNamn.Text = "PodcastNamn";
             // 
             // lblPodcastTitel
             // 
             lblPodcastTitel.BorderStyle = BorderStyle.FixedSingle;
-            lblPodcastTitel.Location = new Point(926, 117);
+            lblPodcastTitel.Location = new Point(1158, 146);
+            lblPodcastTitel.Margin = new Padding(4, 0, 4, 0);
             lblPodcastTitel.Name = "lblPodcastTitel";
-            lblPodcastTitel.Size = new Size(195, 46);
+            lblPodcastTitel.Size = new Size(243, 57);
             lblPodcastTitel.TabIndex = 9;
             lblPodcastTitel.Text = "PodcastTitel";
             // 
             // lblKategori
             // 
             lblKategori.BorderStyle = BorderStyle.FixedSingle;
-            lblKategori.Location = new Point(732, 163);
+            lblKategori.Location = new Point(915, 204);
+            lblKategori.Margin = new Padding(4, 0, 4, 0);
             lblKategori.Name = "lblKategori";
-            lblKategori.Size = new Size(142, 27);
+            lblKategori.Size = new Size(177, 33);
             lblKategori.TabIndex = 10;
             lblKategori.Text = "Kategori";
             // 
             // lblPodcastBeskrivning
             // 
             lblPodcastBeskrivning.BorderStyle = BorderStyle.FixedSingle;
-            lblPodcastBeskrivning.Location = new Point(873, 163);
+            lblPodcastBeskrivning.Location = new Point(1091, 204);
+            lblPodcastBeskrivning.Margin = new Padding(4, 0, 4, 0);
             lblPodcastBeskrivning.Name = "lblPodcastBeskrivning";
-            lblPodcastBeskrivning.Size = new Size(248, 67);
+            lblPodcastBeskrivning.Size = new Size(310, 83);
             lblPodcastBeskrivning.TabIndex = 11;
             lblPodcastBeskrivning.Text = "PodcastBeskrivningstext";
             // 
             // lblAuthor
             // 
             lblAuthor.BorderStyle = BorderStyle.FixedSingle;
-            lblAuthor.Location = new Point(732, 190);
+            lblAuthor.Location = new Point(915, 238);
+            lblAuthor.Margin = new Padding(4, 0, 4, 0);
             lblAuthor.Name = "lblAuthor";
-            lblAuthor.Size = new Size(142, 40);
+            lblAuthor.Size = new Size(177, 50);
             lblAuthor.TabIndex = 12;
             lblAuthor.Text = "Author";
             // 
             // lblAvsnittsTitel
             // 
             lblAvsnittsTitel.BorderStyle = BorderStyle.FixedSingle;
-            lblAvsnittsTitel.Location = new Point(732, 240);
+            lblAvsnittsTitel.Location = new Point(915, 300);
+            lblAvsnittsTitel.Margin = new Padding(4, 0, 4, 0);
             lblAvsnittsTitel.Name = "lblAvsnittsTitel";
-            lblAvsnittsTitel.Size = new Size(197, 42);
+            lblAvsnittsTitel.Size = new Size(246, 52);
             lblAvsnittsTitel.TabIndex = 13;
             lblAvsnittsTitel.Text = "AvsnittsTitel";
             // 
             // lblPubDate
             // 
             lblPubDate.BorderStyle = BorderStyle.FixedSingle;
-            lblPubDate.Location = new Point(732, 282);
+            lblPubDate.Location = new Point(915, 352);
+            lblPubDate.Margin = new Padding(4, 0, 4, 0);
             lblPubDate.Name = "lblPubDate";
-            lblPubDate.Size = new Size(197, 26);
+            lblPubDate.Size = new Size(246, 32);
             lblPubDate.TabIndex = 14;
             lblPubDate.Text = "Publiceringsdatum";
             // 
             // lblAvsnittsBeskrivning
             // 
             lblAvsnittsBeskrivning.BorderStyle = BorderStyle.FixedSingle;
-            lblAvsnittsBeskrivning.Location = new Point(732, 308);
+            lblAvsnittsBeskrivning.Location = new Point(915, 385);
+            lblAvsnittsBeskrivning.Margin = new Padding(4, 0, 4, 0);
             lblAvsnittsBeskrivning.Name = "lblAvsnittsBeskrivning";
-            lblAvsnittsBeskrivning.Size = new Size(197, 58);
+            lblAvsnittsBeskrivning.Size = new Size(246, 72);
             lblAvsnittsBeskrivning.TabIndex = 15;
             lblAvsnittsBeskrivning.Text = "AvsnittsBeskrivningstext";
             // 
             // picBoxPodcastBild
             // 
-            picBoxPodcastBild.Location = new Point(935, 240);
+            picBoxPodcastBild.Location = new Point(1169, 300);
+            picBoxPodcastBild.Margin = new Padding(4);
             picBoxPodcastBild.Name = "picBoxPodcastBild";
-            picBoxPodcastBild.Size = new Size(186, 126);
+            picBoxPodcastBild.Size = new Size(232, 158);
             picBoxPodcastBild.TabIndex = 16;
             picBoxPodcastBild.TabStop = false;
             // 
@@ -197,9 +212,10 @@ namespace Poddprojektet1
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Corbel", 24F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.Location = new Point(57, 181);
+            label2.Location = new Point(71, 226);
+            label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
-            label2.Size = new Size(270, 49);
+            label2.Size = new Size(324, 59);
             label2.TabIndex = 17;
             label2.Text = "Mina Podcasts";
             // 
@@ -212,14 +228,15 @@ namespace Poddprojektet1
             gridPodcasts.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCells;
             gridPodcasts.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             gridPodcasts.Columns.AddRange(new DataGridViewColumn[] { podcastNamn, podcastTitel, kategori, senasteAvsnitt });
-            gridPodcasts.Location = new Point(57, 240);
-            gridPodcasts.MaximumSize = new Size(642, 380);
+            gridPodcasts.Location = new Point(71, 300);
+            gridPodcasts.Margin = new Padding(4);
+            gridPodcasts.MaximumSize = new Size(802, 475);
             gridPodcasts.MultiSelect = false;
             gridPodcasts.Name = "gridPodcasts";
             gridPodcasts.RowHeadersWidth = 40;
             gridPodcasts.RowTemplate.Height = 29;
             gridPodcasts.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            gridPodcasts.Size = new Size(642, 380);
+            gridPodcasts.Size = new Size(802, 475);
             gridPodcasts.TabIndex = 18;
             gridPodcasts.CellContentClick += gridPodcasts_CellContentClick;
             // 
@@ -254,27 +271,40 @@ namespace Poddprojektet1
             // comboBox1
             // 
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(525, 643);
+            comboBox1.Location = new Point(656, 804);
+            comboBox1.Margin = new Padding(4);
             comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(174, 28);
+            comboBox1.Size = new Size(216, 33);
             comboBox1.TabIndex = 19;
             // 
             // btnRaderaPodcast
             // 
-            btnRaderaPodcast.Location = new Point(57, 684);
+            btnRaderaPodcast.Location = new Point(71, 866);
+            btnRaderaPodcast.Margin = new Padding(4);
             btnRaderaPodcast.Name = "btnRaderaPodcast";
-            btnRaderaPodcast.Size = new Size(156, 29);
+            btnRaderaPodcast.Size = new Size(195, 36);
             btnRaderaPodcast.TabIndex = 20;
             btnRaderaPodcast.Text = "Radera Podcast";
             btnRaderaPodcast.UseVisualStyleBackColor = true;
             btnRaderaPodcast.Click += btnRaderaPodcast_Click;
             // 
+            // btnRedigeraPodcast
+            // 
+            btnRedigeraPodcast.Location = new Point(312, 804);
+            btnRedigeraPodcast.Margin = new Padding(4);
+            btnRedigeraPodcast.Name = "btnRedigeraPodcast";
+            btnRedigeraPodcast.Size = new Size(195, 36);
+            btnRedigeraPodcast.TabIndex = 21;
+            btnRedigeraPodcast.Text = "Redigera Podcast";
+            btnRedigeraPodcast.UseVisualStyleBackColor = true;
+            // 
             // Startsida
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
-            ClientSize = new Size(1182, 753);
+            ClientSize = new Size(1478, 959);
+            Controls.Add(btnRedigeraPodcast);
             Controls.Add(btnRaderaPodcast);
             Controls.Add(comboBox1);
             Controls.Add(gridPodcasts);
@@ -293,7 +323,7 @@ namespace Poddprojektet1
             Controls.Add(btnLaggTillPodcast);
             Controls.Add(btnHanteraPodcast);
             Controls.Add(lblPodcasts);
-            Margin = new Padding(3, 4, 3, 4);
+            Margin = new Padding(4, 5, 4, 5);
             Name = "Startsida";
             Text = "Startsida";
             ((System.ComponentModel.ISupportInitialize)picBoxPodcastBild).EndInit();
@@ -326,5 +356,6 @@ namespace Poddprojektet1
         private DataGridViewTextBoxColumn senasteAvsnitt;
         private ComboBox comboBox1;
         private Button btnRaderaPodcast;
+        private Button btnRedigeraPodcast;
     }
 }

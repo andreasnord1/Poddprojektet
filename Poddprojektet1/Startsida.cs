@@ -24,7 +24,7 @@ namespace Poddprojektet1
         public Startsida()
         {
             InitializeComponent();
-        //    InitializeComponents(); -- Bortkommenterad tills vidare
+            //    InitializeComponents(); -- Bortkommenterad tills vidare
             UppdateraPodcasts();
             // UppdateraGridMedPodcasts();
         }
@@ -68,68 +68,69 @@ namespace Poddprojektet1
 
         }
 
-      /*private void InitializeComponents()
-        {     
+        /*private void InitializeComponents()
+          {     
 
-        // Behåller denna bortkommenterade kod tills vidare ifall man manuellt 
-      // skulle vilja lägga till/konfigurera något i designvyn -- då kan den bli aktuell igen. 
-      Mycket av den är onödig dock och dess funktioner sköts mycket från Startsida.Designer 
-      //via automatiskt genererad kod
+          // Behåller denna bortkommenterade kod tills vidare ifall man manuellt 
+        // skulle vilja lägga till/konfigurera något i designvyn -- då kan den bli aktuell igen. 
+        Mycket av den är onödig dock och dess funktioner sköts mycket från Startsida.Designer 
+        //via automatiskt genererad kod
 
-            label1 = new Label();
-            rssFeedTextBox = new TextBox();
-            addFeedButton = new Button();
-            listPodcasts = new ListBox(); // Initialisera ListBoxen
+              label1 = new Label();
+              rssFeedTextBox = new TextBox();
+              addFeedButton = new Button();
+              listPodcasts = new ListBox(); // Initialisera ListBoxen
 
-            // Konfigurerar TextBox för RSS-flödet
+              // Konfigurerar TextBox för RSS-flödet
 
-           // rssFeedTextBox.Location = new Point(20, 20);  // Exempelposition
-           // rssFeedTextBox.Size = new Size(250, 30);       // Exempelstorlek
-          //  rssFeedTextBox.PlaceholderText = "Ange RSS-flödets URL här..."; // Instruktionstext
-          //  rssFeedTextBox.ForeColor = Color.Gray;
+             // rssFeedTextBox.Location = new Point(20, 20);  // Exempelposition
+             // rssFeedTextBox.Size = new Size(250, 30);       // Exempelstorlek
+            //  rssFeedTextBox.PlaceholderText = "Ange RSS-flödets URL här..."; // Instruktionstext
+            //  rssFeedTextBox.ForeColor = Color.Gray;
 
-          //   Bind Enter och Leave händelser
-            if (rssFeedTextBox != null)
-            {
-                rssFeedTextBox.Enter += RssFeedTextBox_Enter;
-                rssFeedTextBox.Leave += RssFeedTextBox_Leave;
-            }
+            //   Bind Enter och Leave händelser
+              if (rssFeedTextBox != null)
+              {
+                  rssFeedTextBox.Enter += RssFeedTextBox_Enter;
+                  rssFeedTextBox.Leave += RssFeedTextBox_Leave;
+              }
 
-            // Konfigurera knappen för att lägga till flöde
-            addFeedButton.Text = "Lägg till flöde";
-            addFeedButton.Location = new Point(280, 20); // Exempelposition bredvid TextBox
-            addFeedButton.Click += AddFeedButton_Click;  // Händelsehanterare
+              // Konfigurera knappen för att lägga till flöde
+              addFeedButton.Text = "Lägg till flöde";
+              addFeedButton.Location = new Point(280, 20); // Exempelposition bredvid TextBox
+              addFeedButton.Click += AddFeedButton_Click;  // Händelsehanterare
 
-            // Konfigurera knappen för att redigera podcast
-            editFeedButton = new Button
-            {
-                Text = "Redigera flöde",
-                Location = new Point(280, 60), // Exempelposition under andra knappen
-            };
-            editFeedButton.Click += EditFeedButton_Click;
+              // Konfigurera knappen för att redigera podcast
+              editFeedButton = new Button
+              {
+                  Text = "Redigera flöde",
+                  Location = new Point(280, 60), // Exempelposition under andra knappen
+              };
+              editFeedButton.Click += EditFeedButton_Click;
 
-            // Konfigurera knappen för att radera podcast
-            deleteFeedButton = new Button
-            {
-                Text = "Radera flöde",
-                Location = new Point(280, 100), // Exempelposition under redigera-knappen
-            };
-            deleteFeedButton.Click += DeleteFeedButton_Click;
+              // Konfigurera knappen för att radera podcast
+              deleteFeedButton = new Button
+              {
+                  Text = "Radera flöde",
+                  Location = new Point(280, 100), // Exempelposition under redigera-knappen
+              };
+              deleteFeedButton.Click += DeleteFeedButton_Click;
 
-            // Lägg till kontroller till formuläret
-            Controls.Add(rssFeedTextBox);
-            Controls.Add(addFeedButton);
-            Controls.Add(label1);
-            Controls.Add(listPodcasts);
-            Controls.Add(editFeedButton);
-            Controls.Add(deleteFeedButton);
-        }   */
+              // Lägg till kontroller till formuläret
+              Controls.Add(rssFeedTextBox);
+              Controls.Add(addFeedButton);
+              Controls.Add(label1);
+              Controls.Add(listPodcasts);
+              Controls.Add(editFeedButton);
+              Controls.Add(deleteFeedButton);
+          }   */
 
         private void RssFeedTextBox_Enter(object? sender, EventArgs e)
         {
             // Kod som körs när rssFeedTextBox får fokus
             if (rssFeedTextBox?.Text == "Ange RSS-flödets URL här...")
-            { rssFeedTextBox.Text = "";
+            {
+                rssFeedTextBox.Text = "";
                 rssFeedTextBox.ForeColor = Color.Black;
             }
         }
@@ -461,6 +462,12 @@ namespace Poddprojektet1
         {
 
         }
+
+        private void btnRedigeraPodcast_Click(object sender, EventArgs e)
+        {
+
+        }
+
 
         private void btnRaderaPodcast_Click(object sender, EventArgs e)
         {
