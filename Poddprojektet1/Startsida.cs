@@ -24,7 +24,7 @@ namespace Poddprojektet1
         public Startsida()
         {
             InitializeComponent();
-            InitializeComponents();
+        //    InitializeComponents(); -- Bortkommenterad tills vidare
             UppdateraPodcasts();
             // UppdateraGridMedPodcasts();
         }
@@ -68,8 +68,14 @@ namespace Poddprojektet1
 
         }
 
-        private void InitializeComponents()
-        {
+      /*private void InitializeComponents()
+        {     
+
+        // Behåller denna bortkommenterade kod tills vidare ifall man manuellt 
+      // skulle vilja lägga till/konfigurera något i designvyn -- då kan den bli aktuell igen. 
+      Mycket av den är onödig dock och dess funktioner sköts mycket från Startsida.Designer 
+      //via automatiskt genererad kod
+
             label1 = new Label();
             rssFeedTextBox = new TextBox();
             addFeedButton = new Button();
@@ -77,12 +83,12 @@ namespace Poddprojektet1
 
             // Konfigurerar TextBox för RSS-flödet
 
-            rssFeedTextBox.Location = new Point(20, 20);  // Exempelposition
-            rssFeedTextBox.Size = new Size(250, 30);       // Exempelstorlek
-            rssFeedTextBox.PlaceholderText = "Ange RSS-flödets URL här..."; // Instruktionstext
-            rssFeedTextBox.ForeColor = Color.Gray;
+           // rssFeedTextBox.Location = new Point(20, 20);  // Exempelposition
+           // rssFeedTextBox.Size = new Size(250, 30);       // Exempelstorlek
+          //  rssFeedTextBox.PlaceholderText = "Ange RSS-flödets URL här..."; // Instruktionstext
+          //  rssFeedTextBox.ForeColor = Color.Gray;
 
-            // Bind Enter och Leave händelser
+          //   Bind Enter och Leave händelser
             if (rssFeedTextBox != null)
             {
                 rssFeedTextBox.Enter += RssFeedTextBox_Enter;
@@ -117,7 +123,7 @@ namespace Poddprojektet1
             Controls.Add(listPodcasts);
             Controls.Add(editFeedButton);
             Controls.Add(deleteFeedButton);
-        }
+        }   */
 
         private void RssFeedTextBox_Enter(object? sender, EventArgs e)
         {
