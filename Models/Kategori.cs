@@ -14,15 +14,23 @@ namespace Models
     public class Kategori
     {
 
+        public string Namn { get; set; }
+        public int ID { get; set; }
 
+
+        public Kategori()
+        {
+
+            Namn = string.Empty;
+            ID = 0;
+
+        }
         public Kategori(int id, string namn)
         {
             Namn = namn;
             ID = id;
         }
 
-        public string Namn { get; set; }
-        public int ID { get; set; }
         // Andra relevanta egenskaper...
 
     }

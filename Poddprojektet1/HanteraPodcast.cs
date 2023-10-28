@@ -23,8 +23,6 @@ namespace Poddprojektet1
         public HanteraPodcast()
         {
             InitializeComponent();
-            kategoriController = new KategoriController(new KategoriRepository());
-            podcastController = new PodcastController();
             fyllMedKategorier(); 
     }
 
@@ -119,7 +117,7 @@ namespace Poddprojektet1
 
 
                 // Hämta kategori-ID för den valda podcasten
-                int existingKategoriId = selectedPodcast.ID;
+                int existingKategoriId = selectedPodcast.KategoriID;
 
                 Kategori existingKategori = kategoriController.GetKategoriById(existingKategoriId);
                 if (existingKategori == null)

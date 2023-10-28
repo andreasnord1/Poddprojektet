@@ -22,8 +22,8 @@ namespace Models
         public string? Beskrivning { get; set; }
         public string Author { get; set; }
         public string BildUrl { get; set; }
-
         public string CustomName { get; set; }
+        public int KategoriID { get; set; }
 
         // Andra relevanta egenskaper...
 
