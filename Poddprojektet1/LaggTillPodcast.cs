@@ -72,6 +72,10 @@ namespace Poddprojektet1
                 string podcastUrl = txtURL.Text.Trim();
                 string podcastTitel = txtNamn.Text.Trim();
                 string? podcastKategori = cmbPodcastKategori.SelectedItem?.ToString();
+                KategoriRepository kategoriRepo = new KategoriRepository();
+                KategoriController kategoriController = new KategoriController(kategoriRepo);
+
+
 
                 if (string.IsNullOrEmpty(podcastUrl) || string.IsNullOrEmpty(podcastTitel))
                 {
@@ -87,8 +91,7 @@ namespace Poddprojektet1
 
                 if (podcastKategori != null)
                 {
-                    KategoriController kategoriController = new KategoriController();
-                    int kategoriId = kategoriController.GetNextAvailableID(allaKategorier);
+                    int kategoriId = kategoriController.GetNextAvailableID();
                     newPodcast.PodcastKategori = new Kategori(kategoriId, podcastKategori);
                 }
 
