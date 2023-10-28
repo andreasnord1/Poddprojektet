@@ -460,7 +460,8 @@ namespace Poddprojektet1
 
         private void btnHanteraPodcast_Click(object sender, EventArgs e)
         {
-
+            HanteraPodcast hanteraPodcastForm = new HanteraPodcast();
+            hanteraPodcastForm.Visible= true;
         }
 
         private void btnRedigeraPodcast_Click(object sender, EventArgs e)

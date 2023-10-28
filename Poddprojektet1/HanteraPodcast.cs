@@ -17,12 +17,14 @@ namespace Poddprojektet1
     public partial class HanteraPodcast : Form
     {
 
-        private KategoriController kategoriController = new KategoriController(new KategoriRepository());
-        private PodcastController podcastController = new PodcastController();
+        private KategoriController kategoriController;
+        private PodcastController podcastController;
 
         public HanteraPodcast()
         {
             InitializeComponent();
+            kategoriController = new KategoriController(new KategoriRepository());
+            podcastController = new PodcastController();
             fyllMedKategorier(); 
     }
 

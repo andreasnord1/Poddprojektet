@@ -18,7 +18,7 @@ namespace Poddprojektet1
         public LaggTillPodcast()
         {
             InitializeComponent();
-            podcastController = new PodcastController(); 
+            podcastController = new PodcastController();
             kategoriController = new KategoriController(new KategoriRepository());
             LoadCategories();
 
@@ -92,7 +92,7 @@ namespace Poddprojektet1
                 if (podcastKategori != null)
                 {
                     // Använd instansen av KategoriController här.
-                    List<Kategori> allaKategorier = kategoriController.GetAllKategorier(); 
+                    List<Kategori> allaKategorier = kategoriController.GetAllKategorier();
                     int kategoriId = kategoriController.GetNextAvailableID(allaKategorier);
                     newPodcast.PodcastKategori = new Kategori(kategoriId, podcastKategori);
                 }
@@ -123,5 +123,6 @@ namespace Poddprojektet1
         {
             this.Dispose();
         }
+
     }
 }

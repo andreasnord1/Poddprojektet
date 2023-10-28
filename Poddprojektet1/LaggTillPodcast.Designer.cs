@@ -42,85 +42,81 @@
             // lblRubrik
             // 
             lblRubrik.AutoSize = true;
-            lblRubrik.Location = new Point(341, 68);
-            lblRubrik.Margin = new Padding(4, 0, 4, 0);
+            lblRubrik.Location = new Point(273, 54);
             lblRubrik.Name = "lblRubrik";
-            lblRubrik.Size = new Size(296, 25);
+            lblRubrik.Size = new Size(251, 20);
             lblRubrik.TabIndex = 0;
             lblRubrik.Text = "Lägg till en podcast till ditt bibliotek";
             // 
             // lblURL
             // 
             lblURL.AutoSize = true;
-            lblURL.Location = new Point(54, 188);
-            lblURL.Margin = new Padding(4, 0, 4, 0);
+            lblURL.Location = new Point(43, 150);
             lblURL.Name = "lblURL";
-            lblURL.Size = new Size(207, 25);
+            lblURL.Size = new Size(170, 20);
             lblURL.TabIndex = 1;
             lblURL.Text = "Skriv in RSS-flödets URL:";
             // 
             // txtURL
             // 
-            txtURL.Location = new Point(54, 230);
-            txtURL.Margin = new Padding(4, 3, 4, 3);
+            txtURL.Location = new Point(43, 184);
+            txtURL.Margin = new Padding(3, 2, 3, 2);
             txtURL.Name = "txtURL";
-            txtURL.Size = new Size(211, 31);
+            txtURL.Size = new Size(170, 27);
             txtURL.TabIndex = 2;
             // 
             // lblNamn
             // 
             lblNamn.AutoSize = true;
-            lblNamn.Location = new Point(396, 188);
-            lblNamn.Margin = new Padding(4, 0, 4, 0);
+            lblNamn.Location = new Point(317, 150);
             lblNamn.Name = "lblNamn";
-            lblNamn.Size = new Size(172, 25);
+            lblNamn.Size = new Size(142, 20);
             lblNamn.TabIndex = 3;
             lblNamn.Text = "Namnge podcasten:";
             // 
             // txtNamn
             // 
-            txtNamn.Location = new Point(396, 230);
-            txtNamn.Margin = new Padding(4, 3, 4, 3);
+            txtNamn.Location = new Point(317, 184);
+            txtNamn.Margin = new Padding(3, 2, 3, 2);
             txtNamn.Name = "txtNamn";
-            txtNamn.Size = new Size(210, 31);
+            txtNamn.Size = new Size(169, 27);
             txtNamn.TabIndex = 4;
             // 
             // btnLaggTill
             // 
-            btnLaggTill.Location = new Point(434, 397);
-            btnLaggTill.Margin = new Padding(4, 3, 4, 3);
+            btnLaggTill.Location = new Point(347, 318);
+            btnLaggTill.Margin = new Padding(3, 2, 3, 2);
             btnLaggTill.Name = "btnLaggTill";
-            btnLaggTill.Size = new Size(117, 37);
+            btnLaggTill.Size = new Size(94, 30);
             btnLaggTill.TabIndex = 5;
             btnLaggTill.Text = "Lägg till";
             btnLaggTill.UseVisualStyleBackColor = true;
-            btnLaggTill.Click += btnLaggTill_Click_1;
+            btnLaggTill.Click += btnLaggTill_Click;
             // 
             // lblKategori
             // 
             lblKategori.AutoSize = true;
-            lblKategori.Location = new Point(730, 188);
-            lblKategori.Margin = new Padding(4, 0, 4, 0);
+            lblKategori.Location = new Point(584, 150);
             lblKategori.Name = "lblKategori";
-            lblKategori.Size = new Size(113, 25);
+            lblKategori.Size = new Size(95, 20);
             lblKategori.TabIndex = 6;
             lblKategori.Text = "Välj kategori:";
             // 
             // cmbPodcastKategori
             // 
             cmbPodcastKategori.FormattingEnabled = true;
-            cmbPodcastKategori.Location = new Point(730, 228);
-            cmbPodcastKategori.Margin = new Padding(4, 3, 4, 3);
+            cmbPodcastKategori.Location = new Point(584, 182);
+            cmbPodcastKategori.Margin = new Padding(3, 2, 3, 2);
             cmbPodcastKategori.Name = "cmbPodcastKategori";
-            cmbPodcastKategori.Size = new Size(210, 33);
+            cmbPodcastKategori.Size = new Size(169, 28);
             cmbPodcastKategori.TabIndex = 7;
             // 
             // btnAvbryt
             // 
-            btnAvbryt.Location = new Point(434, 453);
-            btnAvbryt.Margin = new Padding(4, 3, 4, 3);
+            btnAvbryt.Location = new Point(347, 362);
+            btnAvbryt.Margin = new Padding(3, 2, 3, 2);
             btnAvbryt.Name = "btnAvbryt";
-            btnAvbryt.Size = new Size(117, 37);
+            btnAvbryt.Size = new Size(94, 30);
             btnAvbryt.TabIndex = 8;
             btnAvbryt.Text = "Avbryt";
             btnAvbryt.UseVisualStyleBackColor = true;
@@ -128,9 +124,9 @@
             // 
             // LaggTillPodcast
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1000, 563);
+            ClientSize = new Size(800, 450);
             Controls.Add(btnAvbryt);
             Controls.Add(cmbPodcastKategori);
             Controls.Add(lblKategori);
@@ -140,17 +136,13 @@
             Controls.Add(txtURL);
             Controls.Add(lblURL);
             Controls.Add(lblRubrik);
-            Margin = new Padding(4, 3, 4, 3);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "LaggTillPodcast";
             Text = "LaggTillPodcast";
             ResumeLayout(false);
             PerformLayout();
         }
 
-        private void btnLaggTill_Click_1(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
 
         #endregion
 
