@@ -16,15 +16,19 @@ namespace Poddprojektet1
 {
     public partial class HanteraPodcast : Form
     {
+
+        private KategoriController kategoriController = new KategoriController(new KategoriRepository());
+        private PodcastController podcastController = new PodcastController();
+
         public HanteraPodcast()
         {
             InitializeComponent();
             kategoriController = new KategoriController(new KategoriRepository());
             podcastController = new PodcastController();
-            fyllMedKategorier();
-        }
+            fyllMedKategorier(); 
+    }
 
-        private void btnRadera_Click(object sender, EventArgs e)
+    private void btnRadera_Click(object sender, EventArgs e)
         {
 
             try
@@ -32,17 +36,23 @@ namespace Poddprojektet1
                 if (gridPodcasts.SelectedRows.Count > 0)
                 {
                     // Hämta den valda podcasten från gridPodcasts : DataGridView
-                    Podcast selectedPodcast = gridPodcasts.SelectedRows[0].DataBoundItem as Podcast;
+                    var selectedPodcast = gridPodcasts.SelectedRows[0].DataBoundItem as Podcast;
 
                     // Anropa PodcastController för att radera podcasten baserat på dess ID
-                    //VARFÖR GÅR PODCASTCONTROLLER ATT KALLA PÅ i STARTSIDA MEN INTE I DENNA FORM??
-                    podcastController.DeletePodcast(selectedPodcast.ID);
 
-                    // Uppdatera gridPodcasts : DataGridView efter radering
-                    gridPodcasts.DataSource = null; // Ta bort datakällan
-                    gridPodcasts.DataSource = podcastController.GetAllPodcasts(); // Fyll på igen med uppdaterad data
+                    if (selectedPodcast != null) { 
 
-                    MessageBox.Show("Den valda Podcasten har nu raderats!");
+                        podcastController.DeletePodcast(selectedPodcast.ID);
+
+
+                        // Uppdatera gridPodcasts : DataGridView efter radering
+                        gridPodcasts.DataSource = null; // Ta bort datakällan
+                        gridPodcasts.DataSource = podcastController.GetAllPodcasts(); // Fyll på igen med uppdaterad data
+
+                        MessageBox.Show("Den valda Podcasten har nu raderats!");
+
+                    }
+                                        
                 }
                 else
                 {
@@ -62,12 +72,9 @@ namespace Poddprojektet1
             gridPodcasts.DataSource = podcasts;
         }
 
-
-        //Fyll comboBox med kategorier
         private void fyllMedKategorier()
         {
             IEnumerable<Kategori> kategorier = kategoriController.GetAllKategorier();
-
             cmbKategori.Items.Clear();
 
             foreach (Kategori item in kategorier)
@@ -87,34 +94,59 @@ namespace Poddprojektet1
         {
             try
             {
-                if (gridPodcasts.SelectedRows.Count > 0 && cmbKategori.SelectedItem != null)
-                {
-                    // Hämta det valda RSS-flödet från DataGridView
-                    Podcast selectedPodcast = gridPodcasts.SelectedRows[0].DataBoundItem as Podcast;
-
-                    // Hämta den valda nya kategorin
-                    string newCategory = cmbKategori.SelectedItem.ToString();
-
-                    // Ändra kategorin för det valda RSS-flödet
-                    selectedPodcast.PodcastKategori = new Kategori { Namn = newCategory };
-
-                    // Anropa PodcastController för att uppdatera flödet
-                    podcastController.UpdatePodcastCategory(selectedPodcast);
-
-                    // Uppdatera DataGridView efter ändringen
-                    gridPodcasts.Refresh();
-
-                    MessageBox.Show("Kategorin för RSS-flödet har ändrats framgångsrikt!");
-                }
-                else
+                // Kontrollera att en podcast och en kategori har valts
+                if (gridPodcasts.SelectedRows.Count == 0 || cmbKategori.SelectedItem == null)
                 {
                     MessageBox.Show("Vänligen välj ett RSS-flöde och en ny kategori.", "Fel", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
                 }
+
+                // Hämta det valda RSS-flödet från DataGridView
+                var selectedPodcast = gridPodcasts.SelectedRows[0].DataBoundItem as Podcast;
+
+                if (selectedPodcast == null)
+                {
+                    throw new InvalidOperationException("Ingen podcast vald eller ogiltig podcast-information.");
+                }
+
+                // Hämta den valda nya kategorin
+                string newCategoryName = cmbKategori.SelectedItem?.ToString() ?? string.Empty;
+                if (string.IsNullOrEmpty(newCategoryName))
+                {
+                    MessageBox.Show("Ingen kategori vald.", "Fel", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+
+                // Hämta kategori-ID för den valda podcasten
+                int existingKategoriId = selectedPodcast.ID;
+
+                Kategori existingKategori = kategoriController.GetKategoriById(existingKategoriId);
+                if (existingKategori == null)
+                {
+                    throw new Exception("Kategorin hittades inte.");
+                }
+
+
+                // Förbered den uppdaterade kategorin
+                Kategori updatedKategori = new Kategori(existingKategoriId, newCategoryName);
+
+
+                // Uppdatera kategorin genom KategoriController
+                kategoriController.UpdateKategori(existingKategoriId, updatedKategori);
+
+                // Reflektera ändringen i podcastens kategoriinformation
+                selectedPodcast.PodcastKategori = updatedKategori; // Eller uppdatera listan/gridden om nödvändigt
+
+                // Informera användaren om att operationen var framgångsrik
+                MessageBox.Show("Kategorin för RSS-flödet har ändrats framgångsrikt!");
             }
             catch (Exception ex)
             {
+                // Hantera eventuella fel och visa ett felmeddelande
                 MessageBox.Show(ex.Message, "Fel", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
     }
 }

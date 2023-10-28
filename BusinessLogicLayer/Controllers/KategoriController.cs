@@ -55,6 +55,11 @@ namespace BusinessLogicLayer.Controllers
             return _repository.GetAll();
         }
 
+        public Kategori GetKategoriById(int id)
+        {
+            return _repository.GetById(id); // Återger en Kategori-entitet baserad på ID
+        }
+
         public void UpdateKategori(int id, Kategori updatedKategori)
         {
 
