@@ -35,39 +35,38 @@ namespace Poddprojektet1
             {
                 if (gridPodcasts.SelectedRows.Count > 0)
                 {
-                    // Hämta den valda podcasten från gridPodcasts : DataGridView
-                    var selectedPodcast = gridPodcasts.SelectedRows[0].DataBoundItem as Podcast;
-
-                    // Anropa PodcastController för att radera podcasten baserat på dess ID
-
-                    if (selectedPodcast != null)
+                    // Hämtar den valda podcasten från gridPodcasts, men var medveten om att den kan vara null.
+                    var dataBoundItem = gridPodcasts.SelectedRows[0].DataBoundItem;
+                    if (dataBoundItem is Podcast selectedPodcast) // säkerställer att objektet är en Podcast
                     {
+                        // Nu är vi säkra på att selectedPodcast inte är null och kan säkert komma åt dess ID.
+                        podcastController?.DeletePodcast(selectedPodcast.ID);
 
-                        podcastController.DeletePodcast(selectedPodcast.ID);
-
-
-                        // Uppdatera gridPodcasts : DataGridView efter radering
+                        // Uppdatera gridPodcasts efter radering
                         gridPodcasts.DataSource = null; // Ta bort datakällan
-                        gridPodcasts.DataSource = podcastController.GetAllPodcasts(); // Fyll på igen med uppdaterad data
+                        gridPodcasts.DataSource = podcastController?.GetAllPodcasts(); // Fyll på igen med uppdaterad data
 
-                        MessageBox.Show("Den valda Podcasten har nu raderats!");
-
+                        MessageBox.Show("Den valda podcasten har nu raderats!");
                     }
-
+                    else
+                    {
+                        MessageBox.Show("Det valda objektet är inte en giltig podcast.", "Fel", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Vänligen välj en podcast att radera.", "Fel", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Vänligen välj en podcast att radera.", "Ingen podcast vald", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
-            catch (Exception ex)
+            catch (Exception ex) // Här fångas eventuella undantag som uppstår i try-blocket.
             {
                 MessageBox.Show(ex.Message, "Fel", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
         }
 
-        //Fyll DataGridView
-        private void gridPodcasts_Load(object sender, EventArgs e)
+            //Fyll DataGridView
+            private void gridPodcasts_Load(object sender, EventArgs e)
         {
             List<Podcast> podcasts = podcastController.GetAllPodcasts();
             gridPodcasts.DataSource = podcasts;
