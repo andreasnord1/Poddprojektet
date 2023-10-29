@@ -57,6 +57,8 @@ namespace Poddprojektet1
             kategori = new DataGridViewTextBoxColumn();
             senasteAvsnitt = new DataGridViewTextBoxColumn();
             comboBox1 = new ComboBox();
+            checkBoxFiltrera = new CheckBox();
+            cmbFiltreraKategori = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)picBoxPodcastBild).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gridPodcasts).BeginInit();
             SuspendLayout();
@@ -94,9 +96,9 @@ namespace Poddprojektet1
             // 
             // btnHanteraKategorier
             // 
-            btnHanteraKategorier.Location = new Point(543, 199);
+            btnHanteraKategorier.Location = new Point(271, 117);
             btnHanteraKategorier.Name = "btnHanteraKategorier";
-            btnHanteraKategorier.Size = new Size(156, 29);
+            btnHanteraKategorier.Size = new Size(186, 46);
             btnHanteraKategorier.TabIndex = 4;
             btnHanteraKategorier.Text = "Hantera Kategorier";
             btnHanteraKategorier.UseVisualStyleBackColor = true;
@@ -264,12 +266,33 @@ namespace Poddprojektet1
             comboBox1.Size = new Size(174, 28);
             comboBox1.TabIndex = 19;
             // 
+            // checkBoxFiltrera
+            // 
+            checkBoxFiltrera.AutoSize = true;
+            checkBoxFiltrera.Location = new Point(548, 170);
+            checkBoxFiltrera.Name = "checkBoxFiltrera";
+            checkBoxFiltrera.Size = new Size(77, 24);
+            checkBoxFiltrera.TabIndex = 20;
+            checkBoxFiltrera.Text = "Filtrera";
+            checkBoxFiltrera.UseVisualStyleBackColor = true;
+            // 
+            // cmbFiltreraKategori
+            // 
+            cmbFiltreraKategori.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbFiltreraKategori.FormattingEnabled = true;
+            cmbFiltreraKategori.Location = new Point(548, 200);
+            cmbFiltreraKategori.Name = "cmbFiltreraKategori";
+            cmbFiltreraKategori.Size = new Size(151, 28);
+            cmbFiltreraKategori.TabIndex = 21;
+            // 
             // Startsida
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
             ClientSize = new Size(1182, 767);
+            Controls.Add(cmbFiltreraKategori);
+            Controls.Add(checkBoxFiltrera);
             Controls.Add(comboBox1);
             Controls.Add(gridPodcasts);
             Controls.Add(label2);
@@ -289,7 +312,6 @@ namespace Poddprojektet1
             Controls.Add(lblPodcasts);
             Margin = new Padding(3, 4, 3, 4);
             Name = "Startsida";
-            Text = "Startsida";
             ((System.ComponentModel.ISupportInitialize)picBoxPodcastBild).EndInit();
             ((System.ComponentModel.ISupportInitialize)gridPodcasts).EndInit();
             ResumeLayout(false);
@@ -319,5 +341,7 @@ namespace Poddprojektet1
         private DataGridViewTextBoxColumn kategori;
         private DataGridViewTextBoxColumn senasteAvsnitt;
         private ComboBox comboBox1;
+        private CheckBox checkBoxFiltrera;
+        private ComboBox cmbFiltreraKategori;
     }
 }
