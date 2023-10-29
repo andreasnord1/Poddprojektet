@@ -59,12 +59,21 @@ namespace BusinessLogicLayer.Controllers
         {
             List<Podcast> allaPodcasts = GetAllPodcasts();
 
-            var podcasts = allaPodcasts.Where(p => p.PodcastKategori == kategori);
+            int kategoriID = kategori.ID;
+
+            var podcasts = allaPodcasts.Where(p => p.PodcastKategori.ID == kategoriID);
 
             List<Podcast> podcastsInomKategorin = podcasts.ToList();
 
             return podcastsInomKategorin;
         }
+
+        public Avsnitt GetPodcastensSenasteAvsnitt(Podcast valdPodcast)
+        {
+            Avsnitt senasteAvsnittet = valdPodcast.Avsnitt[0];
+            return senasteAvsnittet;
+        }
+
 
 
         public Podcast? GetPodcastByUrl(string url)

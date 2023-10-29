@@ -60,12 +60,14 @@ namespace Poddprojektet1
             {
                 foreach (Podcast podcast in podcasts)
                 {
+                    Avsnitt senasteAvsnittet = podcastController.GetPodcastensSenasteAvsnitt(podcast);
+
                     // Lägg till en ny rad i gridPodcasts som vi ladda innehållet till
                     int radIndex = gridPodcasts.Rows.Add();
                     gridPodcasts.Rows[radIndex].Cells["podcastNamn"].Value = podcast.Namn; // Istället för Exemplen här ska aktuell podcasts värden hämtas, exempelvis podcast.Namn
                     gridPodcasts.Rows[radIndex].Cells["podcastTitel"].Value = podcast.Titel;
                     gridPodcasts.Rows[radIndex].Cells["kategori"].Value = podcast.PodcastKategori.Namn;
-                    gridPodcasts.Rows[radIndex].Cells["senasteAvsnitt"].Value = "Senaste Avsnittet";
+                    gridPodcasts.Rows[radIndex].Cells["senasteAvsnitt"].Value = senasteAvsnittet.Titel;
                 }
             }
 
@@ -322,8 +324,8 @@ namespace Poddprojektet1
                 // Kontrollera om det finns några objekt i listan innan du ställer in vald index
                 if (listboxAvsnitt.Items.Count > 0)
                 {
-                    // Automarkerar det sist laddade avsnittet
-                    listboxAvsnitt.SelectedIndex = listboxAvsnitt.Items.Count - 1;
+                    // Automarkerar det först laddade avsnittet
+                    listboxAvsnitt.SelectedIndex = 0;
 
                     // Eftersom 'SelectedItem' inte är null här (vi har poster och en är vald), kan vi göra en säker omvandling
                     string? avsnittetsTitel = listboxAvsnitt.SelectedItem.ToString();
@@ -508,6 +510,7 @@ namespace Poddprojektet1
             else
             {
                 cmbFiltreraKategori.Enabled = false;
+                UppdateraGridMedPodcasts();
             }
 
 
@@ -521,14 +524,18 @@ namespace Poddprojektet1
 
             List<Podcast> podcastsEfterKategori = podcastController.GetPodcastsByKategori(valdKategori);
 
+            gridPodcasts.Rows.Clear();
+
             foreach (Podcast podcast in podcastsEfterKategori)
             {
+                Avsnitt senasteAvsnittet = podcastController.GetPodcastensSenasteAvsnitt(podcast);
+
                 // Lägg till en ny rad i gridPodcasts som vi ladda innehållet till
                 int radIndex = gridPodcasts.Rows.Add();
                 gridPodcasts.Rows[radIndex].Cells["podcastNamn"].Value = podcast.Namn; // Istället för Exemplen här ska aktuell podcasts värden hämtas, exempelvis podcast.Namn
                 gridPodcasts.Rows[radIndex].Cells["podcastTitel"].Value = podcast.Titel;
                 gridPodcasts.Rows[radIndex].Cells["kategori"].Value = podcast.PodcastKategori.Namn;
-                gridPodcasts.Rows[radIndex].Cells["senasteAvsnitt"].Value = "Senaste Avsnittet";
+                gridPodcasts.Rows[radIndex].Cells["senasteAvsnitt"].Value = senasteAvsnittet.Titel;
             }
         }
     }

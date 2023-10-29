@@ -193,5 +193,10 @@ namespace Poddprojektet1
         {
 
         }
+
+        private void LaggTillPodcast_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            startsidan.Enabled = true;
+        }
     }
 }

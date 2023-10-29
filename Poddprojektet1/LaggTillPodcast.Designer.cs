@@ -141,6 +141,7 @@
             Margin = new Padding(3, 2, 3, 2);
             Name = "LaggTillPodcast";
             Text = "LaggTillPodcast";
+            FormClosing += LaggTillPodcast_FormClosing;
             ResumeLayout(false);
             PerformLayout();
         }
