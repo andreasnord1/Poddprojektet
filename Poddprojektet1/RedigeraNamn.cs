@@ -79,7 +79,21 @@ namespace Poddprojektet1
 
         private void btnBekraftaAndringar_Click(object sender, EventArgs e)
         {
-            // TODO: Spara det nya namnet och uppdatera det i din datakälla.
+            // Kontrollera att det nya namnet inte är tomt.
+            if (string.IsNullOrWhiteSpace(textBox2.Text))
+            {
+                MessageBox.Show("Ange ett nytt namn för podcasten.");
+                return;
+            }
+
+            // Spara det nya namnet och uppdatera det i din datakälla.
+            _podcastToEdit.Namn = textBox2.Text;
+
+            var podcastController = new PodcastController();
+            podcastController.UpdatePodcast(_podcastToEdit.ID, _podcastToEdit);
+
+            MessageBox.Show("Podcastnamnet har uppdaterats framgångsrikt!");
+            this.Close();
         }
 
         private void btnAvbryt_Click(object sender, EventArgs e)
