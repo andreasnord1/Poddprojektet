@@ -69,7 +69,48 @@ namespace Poddprojektet1
             }
         }
 
-        private void btnLaggTill_Click(object sender, EventArgs e)
+        private async Task<SyndicationFeed> fixaNyFeedAsync(string url)
+        {
+            using (XmlReader reader = XmlReader.Create(url))
+            {
+                return await Task.Run(() => SyndicationFeed.Load(reader));
+            }
+        }
+
+        private async Task fixaPodcastensAvsnittAsync(string url)
+        {
+            SyndicationFeed feed = await fixaNyFeedAsync(url);
+
+            string podNamn = txtNamn.Text;
+            Kategori? valdKategori = kategoriController.GetAllKategorier().FirstOrDefault(k => k.Namn == cmbPodcastKategori.SelectedItem.ToString());
+
+            string podTitel = feed.Title.Text;
+            string podBeskrivning = feed.Description.Text;
+            string? author = feed.Authors.ToString();
+            string bildUrl = feed.ImageUrl.ToString();
+
+            List<Avsnitt> podcastensAvsnitt = new List<Avsnitt>();
+
+            foreach (SyndicationItem avsnitt in feed.Items)
+            {
+                string avsnittsTitel = avsnitt.Title.Text;
+                string avsnittsBeskrivning = avsnitt.Summary.Text;
+                DateTimeOffset publiceringsDatum = avsnitt.PublishDate;
+
+                Avsnitt nyttAvsnitt = new Avsnitt(avsnittsTitel, publiceringsDatum, avsnittsBeskrivning);
+
+                podcastensAvsnitt.Add(nyttAvsnitt);
+            }
+
+            Podcast nyPodcast = new Podcast(url, podNamn, podTitel, podBeskrivning, author,
+                        bildUrl, valdKategori, podcastensAvsnitt);
+
+            podcastController.AddPodcast(nyPodcast);
+        }
+
+
+
+        private async void btnLaggTill_Click(object sender, EventArgs e)
         {
             int minTeckenURL = 5;
             int maxTeckenURL = 100;
@@ -81,47 +122,51 @@ namespace Poddprojektet1
             int inskrivnaTeckenNamn = txtNamn.Text.Length;
             string typNamn = "namn";
 
-
-
-
             if (Validering.vardeFinns(txtURL) && Validering.vardeFinns(txtNamn) &&
                 Validering.vardeFinns(cmbPodcastKategori, "kategori") &&
                 Validering.KontrolleraTeckenAntal(inskrivnaTeckenURL, minTeckenURL, maxTeckenURL, typURL) &&
                 Validering.KontrolleraTeckenAntal(inskrivnaTeckenNamn, minTeckenNamn, maxTeckenNamn, typNamn)) // Valideringar som kollar så att kategori och podcast inte är upptagna ska läggas till
             {
                 string rssFeedURL = txtURL.Text;
-                string podNamn = txtNamn.Text;
-                Kategori? valdKategori = kategoriController.GetAllKategorier().FirstOrDefault(k => k.Namn == cmbPodcastKategori.SelectedItem.ToString());
+
+                await fixaPodcastensAvsnittAsync(rssFeedURL);
 
 
-                using (XmlReader reader = XmlReader.Create(rssFeedURL))
-                {
-                    SyndicationFeed feed = SyndicationFeed.Load(reader);
+                //string rssFeedURL = txtURL.Text;
+                //string podNamn = txtNamn.Text;
+                //Kategori? valdKategori = kategoriController.GetAllKategorier().FirstOrDefault(k => k.Namn == cmbPodcastKategori.SelectedItem.ToString());
 
-                    string podTitel = feed.Title.Text;
-                    string podBeskrivning = feed.Description.Text;
-                    string? author = feed.Authors.ToString();
-                    string bildUrl = feed.ImageUrl.ToString();
 
-                    List<Avsnitt> podcastensAvsnitt = new List<Avsnitt>();
+                //using (XmlReader reader = XmlReader.Create(rssFeedURL))
+                //{
+                //    SyndicationFeed feed = SyndicationFeed.Load(reader);
 
-                    foreach (SyndicationItem avsnitt in feed.Items)
-                    {
-                        string avsnittsTitel = avsnitt.Title.Text;
-                        string avsnittsBeskrivning = avsnitt.Summary.Text;
-                        DateTimeOffset publiceringsDatum = avsnitt.PublishDate;
+                //    string podTitel = feed.Title.Text;
+                //    string podBeskrivning = feed.Description.Text;
+                //    string? author = feed.Authors.ToString();
+                //    string bildUrl = feed.ImageUrl.ToString();
 
-                        Avsnitt nyttAvsnitt = new Avsnitt(avsnittsTitel, publiceringsDatum, avsnittsBeskrivning);
+                //    List<Avsnitt> podcastensAvsnitt = new List<Avsnitt>();
 
-                        podcastensAvsnitt.Add(nyttAvsnitt);
-                    }
+                //    foreach (SyndicationItem avsnitt in feed.Items)
+                //    {
+                //        string avsnittsTitel = avsnitt.Title.Text;
+                //        string avsnittsBeskrivning = avsnitt.Summary.Text;
+                //        DateTimeOffset publiceringsDatum = avsnitt.PublishDate;
 
-                    Podcast nyPodcast = new Podcast(rssFeedURL, podNamn, podTitel, podBeskrivning, author,
-                        bildUrl, valdKategori, podcastensAvsnitt);
+                //        Avsnitt nyttAvsnitt = new Avsnitt(avsnittsTitel, publiceringsDatum, avsnittsBeskrivning);
 
-                    podcastController.AddPodcast(nyPodcast);
+                //        podcastensAvsnitt.Add(nyttAvsnitt);
+                //    }
 
-                }
+                //    Podcast nyPodcast = new Podcast(rssFeedURL, podNamn, podTitel, podBeskrivning, author,
+                //        bildUrl, valdKategori, podcastensAvsnitt);
+                //
+                //podcastController.AddPodcast(nyPodcast);
+
+            }
+
+                
 
                 MessageBox.Show("En ny podcastfeed har lagts till!");
                 startsidan.UppdateraGridMedPodcasts();
@@ -179,7 +224,7 @@ namespace Poddprojektet1
             //{
             //    MessageBox.Show(ex.Message, "Fel", MessageBoxButtons.OK, MessageBoxIcon.Error);
             //}
-        }
+        //}
 
 
 
