@@ -121,9 +121,14 @@ namespace Poddprojektet1
 
                         // Uppdatera podcasten genom att använda PodcastController
                         PodcastController podcastController = new PodcastController();
+                        
+                      if(selectedPodcast.Url != null) { 
+
                         podcastController.UpdatePodcastByUrl(selectedPodcast.Url, updatedPodcast);
 
                         MessageBox.Show("Namnet på RSS-flödet har ändrats framgångsrikt!");
+                        }
+
                     }
                 }
             }
