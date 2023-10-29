@@ -197,6 +197,7 @@
             btnRedigeraNamn.TabIndex = 6;
             btnRedigeraNamn.Text = "Lägg till-/ändra namn";
             btnRedigeraNamn.UseVisualStyleBackColor = true;
+            btnRedigeraNamn.Click += btnRedigeraNamn_Click_1;
             // 
             // label1
             // 
