@@ -11,6 +11,10 @@ using BusinessLogicLayer.Controllers;
 using BusinessLogicLayer;
 using DataAccessLayer.Repositories;
 using Models;
+using DataAccessLayer;
+using Microsoft.VisualBasic;
+using static System.Net.Mime.MediaTypeNames;
+using static System.Resources.ResXFileRef;
 
 namespace Poddprojektet1
 {
@@ -119,30 +123,36 @@ namespace Poddprojektet1
 
                 var valdKategori = kategoriController.GetAllKategorier().FirstOrDefault(k => k.Namn == newCategoryName);
 
-                selectedPodcast.PodcastKategori = valdKategori;
+                if (valdKategori != null)
+                {
 
-                //// Hämta kategori-ID för den valda podcasten
-                //int existingKategoriId = selectedPodcast.KategoriID;
+                    selectedPodcast.PodcastKategori = valdKategori;
 
-                //Kategori existingKategori = kategoriController.GetKategoriById(existingKategoriId);
-                //if (existingKategori == null)
-                //{
-                //    throw new Exception("Kategorin hittades inte.");
-                //}
+                    //// Hämta kategori-ID för den valda podcasten
+                    //int existingKategoriId = selectedPodcast.KategoriID;
 
-
-                //// Förbered den uppdaterade kategorin
-                //Kategori updatedKategori = new Kategori(existingKategoriId, newCategoryName);
+                    //Kategori existingKategori = kategoriController.GetKategoriById(existingKategoriId);
+                    //if (existingKategori == null)
+                    //{
+                    //    throw new Exception("Kategorin hittades inte.");
+                    //}
 
 
-                //// Uppdatera kategorin genom KategoriController
-                //kategoriController.UpdateKategori(existingKategoriId, updatedKategori);
+                    //// Förbered den uppdaterade kategorin
+                    //Kategori updatedKategori = new Kategori(existingKategoriId, newCategoryName);
 
-                //// Reflektera ändringen i podcastens kategoriinformation
-                //selectedPodcast.PodcastKategori = updatedKategori; // Eller uppdatera listan/gridden om nödvändigt
 
-                // Informera användaren om att operationen var framgångsrik
-                MessageBox.Show("Kategorin för RSS-flödet har ändrats framgångsrikt!");
+                    //// Uppdatera kategorin genom KategoriController
+                    //kategoriController.UpdateKategori(existingKategoriId, updatedKategori);
+
+                    //// Reflektera ändringen i podcastens kategoriinformation
+                    //selectedPodcast.PodcastKategori = updatedKategori; // Eller uppdatera listan/gridden om nödvändigt
+
+                    // Informera användaren om att operationen var framgångsrik
+
+
+                    MessageBox.Show("Kategorin för RSS-flödet har ändrats framgångsrikt!");
+                }
             }
             catch (Exception ex)
             {
