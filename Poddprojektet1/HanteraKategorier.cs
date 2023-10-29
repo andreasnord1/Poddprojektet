@@ -22,7 +22,7 @@ namespace Poddprojektet1
         public HanteraKategorier()
         {
             InitializeComponent();
-            kategoriController = new KategoriController(new KategoriRepository());
+            kategoriController = new KategoriController();
             fyllMedKategorier();
         }
 

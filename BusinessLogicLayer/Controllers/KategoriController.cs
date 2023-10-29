@@ -19,9 +19,9 @@ namespace BusinessLogicLayer.Controllers
 
         IRepository<Kategori> _repository;
 
-        public KategoriController(IRepository<Kategori> repository)
+        public KategoriController()
         {
-            _repository = repository;
+            _repository = new KategoriRepository();
         }
 
         public void AddKategori(string namn)

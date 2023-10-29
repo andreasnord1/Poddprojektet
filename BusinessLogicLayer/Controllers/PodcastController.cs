@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using DataAccessLayer.Repositories;
 using Models;
+using System.Xml;
+using System.ServiceModel.Syndication;
 
 namespace BusinessLogicLayer.Controllers
 {
@@ -36,10 +38,6 @@ namespace BusinessLogicLayer.Controllers
                 throw new ArgumentException("Podcast måste ha ett namn.");
             }
 
-            if (string.IsNullOrEmpty(newPodcast.PodcastKategori?.Namn))
-            {
-                throw new ArgumentException("Podcast måste ha en kategori.");
-            }
 
             // Kontrollera om en podcast med samma URL redan finns.
             var existingPodcast = IRepository.GetAll().FirstOrDefault(p => p.Url == newPodcast.Url);
@@ -115,26 +113,25 @@ namespace BusinessLogicLayer.Controllers
 
 
 
-        public void UpdatePodcastCustomName(int id, string newCustomName)
-        {
-            var existingPodcast = IRepository.GetAll().FirstOrDefault(p => p.ID == id);
-            if (existingPodcast == null)
-            {
-                throw new InvalidOperationException("Podcasten hittades inte.");
-            }
+        ////public void UpdatePodcastCustomName(int id, string newCustomName)
+        ////{
+        ////    var existingPodcast = IRepository.GetAll().FirstOrDefault(p => p.ID == id);
+        ////    if (existingPodcast == null)
+        ////    {
+        ////        throw new InvalidOperationException("Podcasten hittades inte.");
+        ////    }
 
-            if (string.IsNullOrWhiteSpace(newCustomName))
-            {
-                throw new ArgumentException("Custom name måste ha ett värde.");
-            }
+        ////    if (string.IsNullOrWhiteSpace(newCustomName))
+        ////    {
+        ////        throw new ArgumentException("Custom name måste ha ett värde.");
+        ////    }
 
-            // Uppdatera det anpassade namnet för podcasten
-            existingPodcast.CustomName = newCustomName;
+        ////    // Uppdatera det anpassade namnet för podcasten
+        ////    existingPodcast.CustomName = newCustomName;
 
-            // Här använder vi Update-metoden från ditt repository för att spara ändringarna
-            IRepository.Update(id, existingPodcast);
-        }
-
+        ////    // Här använder vi Update-metoden från ditt repository för att spara ändringarna
+        ////    IRepository.Update(id, existingPodcast);
+        ////}
 
 
         // ... andra relevanta metoder för affärslogik ...

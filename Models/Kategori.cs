@@ -21,9 +21,6 @@ namespace Models
         public Kategori()
         {
 
-            Namn = string.Empty;
-            ID = 0;
-
         }
         public Kategori(int id, string namn)
         {

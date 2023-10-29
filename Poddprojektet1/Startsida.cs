@@ -15,7 +15,7 @@ namespace Poddprojektet1
         private Button? addFeedButton;
         private Label? label1;
         private ListBox? listPodcasts; // Ny ListBox för att visa podcasts
-        private PodcastController? podcastController = new PodcastController();
+        private PodcastController podcastController;
         private Button? editFeedButton; // Ny knapp för att redigera podcast
         private Button? deleteFeedButton; // Ny knapp för att radera podcast
 
@@ -24,9 +24,10 @@ namespace Poddprojektet1
         public Startsida()
         {
             InitializeComponent();
+            podcastController = new PodcastController();
             //    InitializeComponents(); -- Bortkommenterad tills vidare
-            UppdateraPodcasts();
-            // UppdateraGridMedPodcasts();
+            // UppdateraPodcasts();
+            UppdateraGridMedPodcasts();
         }
 
         private void UppdateraPodcasts()
@@ -47,7 +48,7 @@ namespace Poddprojektet1
             }
         }
 
-        private void UppdateraGridMedPodcasts()
+        public void UppdateraGridMedPodcasts()
         {
             // Rensar gridboxen innan laddning av uppdaterad lista
             gridPodcasts.Rows.Clear();
@@ -59,10 +60,10 @@ namespace Poddprojektet1
                 {
                     // Lägg till en ny rad i gridPodcasts som vi ladda innehållet till
                     int radIndex = gridPodcasts.Rows.Add();
-                    gridPodcasts.Rows[radIndex].Cells["podcastNamn"].Value = "Exempelnamn"; // Istället för Exemplen här ska aktuell podcasts värden hämtas, exempelvis podcast.Namn
-                    gridPodcasts.Rows[radIndex].Cells["podcastTitel"].Value = "Exempeltitel";
-                    gridPodcasts.Rows[radIndex].Cells["kategori"].Value = "ExempelKategori";
-                    gridPodcasts.Rows[radIndex].Cells["senasteAvsnitt"].Value = "ExempelSenaste Avsnitt";
+                    gridPodcasts.Rows[radIndex].Cells["podcastNamn"].Value = podcast.Namn; // Istället för Exemplen här ska aktuell podcasts värden hämtas, exempelvis podcast.Namn
+                    gridPodcasts.Rows[radIndex].Cells["podcastTitel"].Value = podcast.Titel;
+                    gridPodcasts.Rows[radIndex].Cells["kategori"].Value = podcast.PodcastKategori.ToString();
+                    gridPodcasts.Rows[radIndex].Cells["senasteAvsnitt"].Value = "Senaste Avsnittet";
                 }
             }
 
@@ -150,47 +151,47 @@ namespace Poddprojektet1
             // Händelsehanterare för klick på label1
         }
 
-        private void AddFeedButton_Click(object? sender, EventArgs e)
-        {
-            AddFeedButton_Click(sender, e, rssFeedTextBox);
-        }
+        //private void AddFeedButton_Click(object? sender, EventArgs e)
+        //{
+        //    AddFeedButton_Click(sender, e, rssFeedTextBox);
+        //}
 
-        private void AddFeedButton_Click(object? sender, EventArgs e, TextBox? rssFeedTextBox)
-        {
-            // Check if rssFeedTextBox is not null
-            if (rssFeedTextBox != null)
-            {
-                // Hämta URL från TextBox
-                string url = rssFeedTextBox.Text;
+        //private void AddFeedButton_Click(object? sender, EventArgs e, TextBox? rssFeedTextBox)
+        //{
+        //    // Check if rssFeedTextBox is not null
+        //    if (rssFeedTextBox != null)
+        //    {
+        //        // Hämta URL från TextBox
+        //        string url = rssFeedTextBox.Text;
 
-                // Skapa en ny podcast med hämtad URL
-                Podcast newPodcast = new Podcast
-                {
-                    Url = url
-                    // Andra egenskaper kan också sättas här
-                };
+        //        // Skapa en ny podcast med hämtad URL
+        //        Podcast newPodcast = new Podcast
+        //        {
+        //            Url = url
+        //            // Andra egenskaper kan också sättas här
+        //        };
 
-                try
-                {
-                    podcastController?.AddPodcast(newPodcast); // Använd instansen istället för klassnamnet
+        //        try
+        //        {
+        //            podcastController?.AddPodcast(newPodcast); // Använd instansen istället för klassnamnet
 
-                    MessageBox.Show("Flödet lades till!");
+        //            MessageBox.Show("Flödet lades till!");
 
-                    // Check if listPodcasts is not null before accessing its Items
-                    listPodcasts?.Items.Add(url);
-                    rssFeedTextBox.Clear();
-                    UppdateraPodcasts();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Ett fel uppstod: {ex.Message}");
-                }
-            }
-            else
-            {
-                MessageBox.Show("RSS textfältet är tomt.");
-            }
-        }
+        //            // Check if listPodcasts is not null before accessing its Items
+        //            listPodcasts?.Items.Add(url);
+        //            rssFeedTextBox.Clear();
+        //            UppdateraPodcasts();
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            MessageBox.Show($"Ett fel uppstod: {ex.Message}");
+        //        }
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("RSS textfältet är tomt.");
+        //    }
+        //}
 
         private void btnHanteraKategorier_Click(object sender, EventArgs e)
         {
@@ -454,8 +455,9 @@ namespace Poddprojektet1
 
         private void btnLaggTillPodcast_Click(object sender, EventArgs e)
         {
-            LaggTillPodcast laggTillPodcastForm = new LaggTillPodcast();
+            LaggTillPodcast laggTillPodcastForm = new LaggTillPodcast(this);
             laggTillPodcastForm.Visible = true;
+            this.Enabled = false;
         }
 
         private void btnHanteraPodcast_Click(object sender, EventArgs e)

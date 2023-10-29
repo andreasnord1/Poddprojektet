@@ -23,7 +23,7 @@ namespace Poddprojektet1
         public HanteraPodcast()
         {
             InitializeComponent();
-            kategoriController = new KategoriController(new KategoriRepository());
+            kategoriController = new KategoriController();
             podcastController = new PodcastController();
             fyllMedKategorier();
         }
@@ -117,26 +117,29 @@ namespace Poddprojektet1
                     return;
                 }
 
+                var valdKategori = kategoriController.GetAllKategorier().FirstOrDefault(k => k.Namn == newCategoryName);
 
-                // Hämta kategori-ID för den valda podcasten
-                int existingKategoriId = selectedPodcast.KategoriID;
+                selectedPodcast.PodcastKategori = valdKategori;
 
-                Kategori existingKategori = kategoriController.GetKategoriById(existingKategoriId);
-                if (existingKategori == null)
-                {
-                    throw new Exception("Kategorin hittades inte.");
-                }
+                //// Hämta kategori-ID för den valda podcasten
+                //int existingKategoriId = selectedPodcast.KategoriID;
 
-
-                // Förbered den uppdaterade kategorin
-                Kategori updatedKategori = new Kategori(existingKategoriId, newCategoryName);
+                //Kategori existingKategori = kategoriController.GetKategoriById(existingKategoriId);
+                //if (existingKategori == null)
+                //{
+                //    throw new Exception("Kategorin hittades inte.");
+                //}
 
 
-                // Uppdatera kategorin genom KategoriController
-                kategoriController.UpdateKategori(existingKategoriId, updatedKategori);
+                //// Förbered den uppdaterade kategorin
+                //Kategori updatedKategori = new Kategori(existingKategoriId, newCategoryName);
 
-                // Reflektera ändringen i podcastens kategoriinformation
-                selectedPodcast.PodcastKategori = updatedKategori; // Eller uppdatera listan/gridden om nödvändigt
+
+                //// Uppdatera kategorin genom KategoriController
+                //kategoriController.UpdateKategori(existingKategoriId, updatedKategori);
+
+                //// Reflektera ändringen i podcastens kategoriinformation
+                //selectedPodcast.PodcastKategori = updatedKategori; // Eller uppdatera listan/gridden om nödvändigt
 
                 // Informera användaren om att operationen var framgångsrik
                 MessageBox.Show("Kategorin för RSS-flödet har ändrats framgångsrikt!");
