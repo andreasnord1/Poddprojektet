@@ -30,6 +30,7 @@ namespace Poddprojektet1
             kategoriController = new KategoriController();
             podcastController = new PodcastController();
             fyllMedKategorier();
+            this.Load += gridPodcasts_Load;
         }
 
         private void btnRadera_Click(object sender, EventArgs e)
@@ -70,7 +71,7 @@ namespace Poddprojektet1
         }
 
         //Fyll DataGridView
-        private void gridPodcasts_Load(object sender, EventArgs e)
+        private void gridPodcasts_Load(object? sender, EventArgs e)
         {
             List<Podcast> podcasts = podcastController.GetAllPodcasts();
             gridPodcasts.DataSource = podcasts;
