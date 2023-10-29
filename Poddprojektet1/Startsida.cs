@@ -62,7 +62,7 @@ namespace Poddprojektet1
                     int radIndex = gridPodcasts.Rows.Add();
                     gridPodcasts.Rows[radIndex].Cells["podcastNamn"].Value = podcast.Namn; // Istället för Exemplen här ska aktuell podcasts värden hämtas, exempelvis podcast.Namn
                     gridPodcasts.Rows[radIndex].Cells["podcastTitel"].Value = podcast.Titel;
-                    gridPodcasts.Rows[radIndex].Cells["kategori"].Value = podcast.PodcastKategori.ToString();
+                    gridPodcasts.Rows[radIndex].Cells["kategori"].Value = podcast.PodcastKategori.Namn;
                     gridPodcasts.Rows[radIndex].Cells["senasteAvsnitt"].Value = "Senaste Avsnittet";
                 }
             }
@@ -281,7 +281,7 @@ namespace Poddprojektet1
             lblAuthor.Text = valdPodcast.Author ?? "Information saknas";
             lblPodcastBeskrivning.Text = valdPodcast.Beskrivning ?? "Information saknas";
             string bildUrl = valdPodcast.BildUrl;
-            lblKategori.Text = valdPodcast.PodcastKategori?.ToString() ?? "Okategoriserad";
+            lblKategori.Text = valdPodcast.PodcastKategori.Namn ?? "Okategoriserad";
 
             laddaUppBildFranUrl(bildUrl); // Antag att denna metod kan hantera null 'bildUrl'
 
@@ -475,6 +475,6 @@ namespace Poddprojektet1
         {
 
         }
-          
+
     }
 }
