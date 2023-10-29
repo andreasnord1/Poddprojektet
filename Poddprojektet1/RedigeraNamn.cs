@@ -8,32 +8,50 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Serialization;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+using System.IO;
+
+// Business och Data Access Layers
 using BusinessLogicLayer.Controllers;
 using BusinessLogicLayer;
 using DataAccessLayer.Repositories;
 using Models;
 using DataAccessLayer;
+
+// Andra
 using Microsoft.VisualBasic;
 using static System.Net.Mime.MediaTypeNames;
 using static System.Resources.ResXFileRef;
-using System.IO;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+
 
 
 namespace Poddprojektet1
 {
     public partial class RedigeraNamn : Form
     {
-        public RedigeraNamn()
+        private Podcast _podcastToEdit;
+
+        public RedigeraNamn(Podcast selectedPodcast)
         {
             InitializeComponent();
+
+            _podcastToEdit = selectedPodcast;
+
+            // Om man vill visa podcastens nuvarande namn i ett textfält kan du göra det här:
+            txtPodcastName.Text = _podcastToEdit.Namn;
+
         }
+
+        public Podcast UpdatedPodcast
+        {
+            get
+            {
+                // Om man vill hämta det uppdaterade namnet från ett textfält:
+                _podcastToEdit.Namn = txtPodcastName.Text;
+
+                return _podcastToEdit;
+            }
+        }
+
 
         private void RedigeraNamn_Load(object sender, EventArgs e)
         {
@@ -42,28 +60,17 @@ namespace Poddprojektet1
 
         private void LaddaKategorier()
         {
-            try
-            {
-                var serializer = new XmlSerializer(typeof(CategoryList));
-                CategoryList categories;
+            var kategoriRepository = new KategoriRepository();
+            var kategoriLista = kategoriRepository.LoadCategoryList();
 
-                using (FileStream file = new FileStream("path_till_din_xml_fil.xml", FileMode.Open))
-                {
-                    categories = (CategoryList)serializer.Deserialize(file);
-                }
-
-                // Lägg till kategorierna i dropdown-listan (ComboBox)
-                comboBox1.Items.Clear();
-                foreach (var category in categories.Categories)
-                {
-                    comboBox1.Items.Add(category);
-                }
-            }
-            catch (Exception ex)
+            // Antag att din dropdown-lista heter 'dropdownKategorier':
+            comboBox1.Items.Clear();
+            foreach (var kategori in kategoriLista.Categories)
             {
-                MessageBox.Show(ex.Message, "Fel vid inläsning av kategorier", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                comboBox1.Items.Add(kategori);
             }
         }
+
 
 
         private void KategoriVald(object sender, EventArgs e)

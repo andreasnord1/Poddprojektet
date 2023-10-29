@@ -96,75 +96,42 @@ namespace Poddprojektet1
 
         private void btnRedigeraNamn_Click_1(object sender, EventArgs e)
         {
-             try
+            try
+            {
+                // Kontrollera att en podcast är vald
+                if (gridPodcasts.SelectedRows.Count == 0)
                 {
-                    PodcastController podcastController = new PodcastController();
-
-                    // Kontroll för valda rader
-                    if (gridPodcasts.SelectedRows.Count == 0)
-                    {
-                        MessageBox.Show("Vänligen välj en podcast först.");
-                        return;
-                    }
-
-                    // Hämta det valda RSS-flödets URL från DataGridView
-                    var selectedPodcast = gridPodcasts.SelectedRows[0].DataBoundItem as Podcast;
-                    if (selectedPodcast == null)
-                    {
-                        throw new InvalidOperationException("Ingen podcast vald eller ogiltig podcast-information.");
-                    }
-
-                    // Null-kontroll för URL
-                    if (string.IsNullOrWhiteSpace(selectedPodcast.Url))
-                    {
-                        throw new InvalidOperationException("Podcastens URL saknas eller är ogiltig.");
-                    }
-
-                    // Hantera kategori
-                    object selectedItem = cmbKategori.SelectedItem;
-                    if (selectedItem == null)
-                    {
-                        MessageBox.Show("Vänligen välj en kategori först.");
-                        return;
-                    }
-                    string? selectedCategory = selectedItem?.ToString();
-
-                    // Hantera podcastnamn
-                    DataGridViewRow selectedRow = gridPodcasts.SelectedRows[0];
-                    // Kontroll för antal celler
-                    if (selectedRow.Cells.Count <= 1)
-                    {
-                        MessageBox.Show("Vald rad saknar tillräckligt med celler.");
-                        return;
-                    }
-
-                    object cellValue = selectedRow.Cells[1].Value;
-                    if (cellValue == null)
-                    {
-                        MessageBox.Show("Vald podcast saknar namn.");
-                        return;
-                    }
-                    string? podcastName = cellValue?.ToString();
-
-                    // Skapa uppdaterad podcast
-                    Podcast updatedPodcast = new Podcast
-                    {
-                        ID = selectedPodcast.ID,
-                        Namn = podcastName ?? "Standard Namn",
-                        Url = selectedPodcast.Url,
-                        // ... kopiera eventuellt andra fält här ...
-                    };
-
-                    // Uppdatera podcasten med den angivna URL:en genom att använda PodcastController
-                    podcastController.UpdatePodcastByUrl(selectedPodcast.Url, updatedPodcast);
-
-                    MessageBox.Show("Namnet på RSS-flödet har ändrats framgångsrikt!");
+                    MessageBox.Show("Vänligen välj en podcast först.");
+                    return;
                 }
-                catch (Exception ex)
+
+                var selectedPodcast = gridPodcasts.SelectedRows[0].DataBoundItem as Podcast;
+                if (selectedPodcast == null)
                 {
-                    MessageBox.Show(ex.Message, "Fel", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    throw new InvalidOperationException("Ingen podcast vald eller ogiltig podcast-information.");
+                }
+
+                // Öppna RedigeraNamnForm som en modal dialogruta
+                using (RedigeraNamn redigeraNamnForm = new RedigeraNamn(selectedPodcast))
+                {
+                    if (redigeraNamnForm.ShowDialog() == DialogResult.OK)
+                    {
+                        // Om användaren tryckte på OK i RedigeraNamnForm, hämta uppdaterad podcast-information
+                        Podcast updatedPodcast = redigeraNamnForm.UpdatedPodcast;
+
+                        // Uppdatera podcasten genom att använda PodcastController
+                        PodcastController podcastController = new PodcastController();
+                        podcastController.UpdatePodcastByUrl(selectedPodcast.Url, updatedPodcast);
+
+                        MessageBox.Show("Namnet på RSS-flödet har ändrats framgångsrikt!");
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Fel", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
 
 

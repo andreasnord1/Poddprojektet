@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -55,6 +56,30 @@ namespace DataAccessLayer.Repositories
                 throw;
             }
         }
+
+        public KategoriLista LoadCategoryList()
+        {
+            var kategoriLista = new KategoriLista { Categories = new List<string>() };
+
+            foreach (var kategori in GetAll())
+            {
+                kategoriLista.Categories.Add(kategori.Namn); 
+            }
+
+            return kategoriLista;
+        }
+
+        public void SaveCategoryList(KategoriLista kategoriLista)
+        {
+            // Konvertera från KategoriLista till List<Kategori> och spara
+            kategorier.Clear();
+            foreach (var kategoriNamn in kategoriLista.Categories)
+            {
+                kategorier.Add(new Kategori { Namn = kategoriNamn }); 
+            }
+            SaveChanges();
+        }
+
 
         public void SaveChanges()
         {
