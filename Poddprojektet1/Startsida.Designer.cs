@@ -189,6 +189,7 @@ namespace Poddprojektet1
             picBoxPodcastBild.Location = new Point(935, 240);
             picBoxPodcastBild.Name = "picBoxPodcastBild";
             picBoxPodcastBild.Size = new Size(186, 126);
+            picBoxPodcastBild.SizeMode = PictureBoxSizeMode.Zoom;
             picBoxPodcastBild.TabIndex = 16;
             picBoxPodcastBild.TabStop = false;
             // 
