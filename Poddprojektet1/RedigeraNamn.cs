@@ -23,7 +23,6 @@ using static System.Net.Mime.MediaTypeNames;
 using static System.Resources.ResXFileRef;
 
 
-
 namespace Poddprojektet1
 {
     public partial class RedigeraNamn : Form
@@ -37,7 +36,7 @@ namespace Poddprojektet1
             _podcastToEdit = selectedPodcast;
 
             // Om man vill visa podcastens nuvarande namn i ett textfält kan du göra det här:
-            txtPodcastName.Text = _podcastToEdit.Namn;
+            textBox1.Text = _podcastToEdit.Namn;
 
         }
 
@@ -46,7 +45,7 @@ namespace Poddprojektet1
             get
             {
                 // Om man vill hämta det uppdaterade namnet från ett textfält:
-                _podcastToEdit.Namn = txtPodcastName.Text;
+                _podcastToEdit.Namn = textBox2.Text;
 
                 return _podcastToEdit;
             }
