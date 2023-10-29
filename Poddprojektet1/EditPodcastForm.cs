@@ -11,7 +11,7 @@ namespace Poddprojektet1
             this.selectedPodcast = selectedPodcast;
         }
 
-        public Podcast UpdatedPodcast { get; internal set; }
+        public Podcast? UpdatedPodcast { get; internal set; }
 
         internal DialogResult ShowDialog(Startsida startsida)
         {
