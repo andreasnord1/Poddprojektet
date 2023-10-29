@@ -84,16 +84,16 @@ namespace Poddprojektet1
 
 
 
-            if (Validering.vardeFinns(txtURL) && Validering.vardeFinns(txtNamn) && 
-                Validering.vardeFinns(cmbPodcastKategori, "kategori") && 
-                Validering.KontrolleraTeckenAntal(inskrivnaTeckenURL, minTeckenURL, maxTeckenURL, typURL) && 
+            if (Validering.vardeFinns(txtURL) && Validering.vardeFinns(txtNamn) &&
+                Validering.vardeFinns(cmbPodcastKategori, "kategori") &&
+                Validering.KontrolleraTeckenAntal(inskrivnaTeckenURL, minTeckenURL, maxTeckenURL, typURL) &&
                 Validering.KontrolleraTeckenAntal(inskrivnaTeckenNamn, minTeckenNamn, maxTeckenNamn, typNamn)) // Valideringar som kollar så att kategori och podcast inte är upptagna ska läggas till
             {
                 string rssFeedURL = txtURL.Text;
                 string podNamn = txtNamn.Text;
-                var valdKategori = kategoriController.GetAllKategorier().FirstOrDefault(k => k.Namn == cmbPodcastKategori.SelectedItem.ToString());
+                Kategori? valdKategori = kategoriController.GetAllKategorier().FirstOrDefault(k => k.Namn == cmbPodcastKategori.SelectedItem.ToString());
 
-                
+
                 using (XmlReader reader = XmlReader.Create(rssFeedURL))
                 {
                     SyndicationFeed feed = SyndicationFeed.Load(reader);
@@ -116,11 +116,11 @@ namespace Poddprojektet1
                         podcastensAvsnitt.Add(nyttAvsnitt);
                     }
 
-                    Podcast nyPodcast = new Podcast(rssFeedURL, podNamn, podTitel, podBeskrivning, author, 
+                    Podcast nyPodcast = new Podcast(rssFeedURL, podNamn, podTitel, podBeskrivning, author,
                         bildUrl, valdKategori, podcastensAvsnitt);
 
                     podcastController.AddPodcast(nyPodcast);
-                    
+
                 }
 
                 MessageBox.Show("En ny podcastfeed har lagts till!");
@@ -189,5 +189,9 @@ namespace Poddprojektet1
             this.Dispose();
         }
 
+        private void cmbPodcastKategori_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

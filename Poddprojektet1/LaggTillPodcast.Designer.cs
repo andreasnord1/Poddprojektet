@@ -104,12 +104,14 @@
             // 
             // cmbPodcastKategori
             // 
+            cmbPodcastKategori.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbPodcastKategori.FormattingEnabled = true;
             cmbPodcastKategori.Location = new Point(584, 182);
             cmbPodcastKategori.Margin = new Padding(3, 2, 3, 2);
             cmbPodcastKategori.Name = "cmbPodcastKategori";
             cmbPodcastKategori.Size = new Size(169, 28);
             cmbPodcastKategori.TabIndex = 7;
+            cmbPodcastKategori.SelectedIndexChanged += cmbPodcastKategori_SelectedIndexChanged;
             // 
             // btnAvbryt
             // 
