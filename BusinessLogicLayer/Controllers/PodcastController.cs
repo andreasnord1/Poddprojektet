@@ -55,6 +55,18 @@ namespace BusinessLogicLayer.Controllers
             return IRepository.GetAll();
         }
 
+        public List<Podcast> GetPodcastsByKategori(Kategori kategori)
+        {
+            List<Podcast> allaPodcasts = GetAllPodcasts();
+
+            var podcasts = allaPodcasts.Where(p => p.PodcastKategori == kategori);
+
+            List<Podcast> podcastsInomKategorin = podcasts.ToList();
+
+            return podcastsInomKategorin;
+        }
+
+
         public Podcast? GetPodcastByUrl(string url)
         {
             return IRepository.GetAll().FirstOrDefault(p => p.Url == url);

@@ -16,6 +16,7 @@ namespace Poddprojektet1
         private Label? label1;
         private ListBox? listPodcasts; // Ny ListBox för att visa podcasts
         private PodcastController podcastController;
+        private KategoriController kategoriController;
         private Button? editFeedButton; // Ny knapp för att redigera podcast
         private Button? deleteFeedButton; // Ny knapp för att radera podcast
 
@@ -25,6 +26,7 @@ namespace Poddprojektet1
         {
             InitializeComponent();
             podcastController = new PodcastController();
+            kategoriController = new KategoriController();
             //    InitializeComponents(); -- Bortkommenterad tills vidare
             // UppdateraPodcasts();
             UppdateraGridMedPodcasts();
@@ -68,6 +70,21 @@ namespace Poddprojektet1
             }
 
         }
+
+        public void UppdateraComboBoxMedKategorier()
+        {
+            // Rensa comboboxen på kategorier
+            cmbFiltreraKategori.Items.Clear();
+
+            List<Kategori> kategorier = kategoriController.GetAllKategorier();
+
+            foreach (Kategori kategori in kategorier)
+            {
+                cmbFiltreraKategori.Items.Add(kategori.Namn);
+            }
+        }
+
+
 
         /*private void InitializeComponents()
           {     
@@ -479,6 +496,40 @@ namespace Poddprojektet1
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void checkBoxFiltrera_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxFiltrera.Checked == true)
+            {
+                cmbFiltreraKategori.Enabled = true;
+                UppdateraComboBoxMedKategorier();
+            }
+            else
+            {
+                cmbFiltreraKategori.Enabled = false;
+            }
+
+
+        }
+
+        private void cmbFiltreraKategori_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string? kategoriNamn = cmbFiltreraKategori.SelectedItem.ToString();
+
+            var valdKategori = kategoriController.GetAllKategorier().FirstOrDefault(k => k.Namn == kategoriNamn);
+
+            List<Podcast> podcastsEfterKategori = podcastController.GetPodcastsByKategori(valdKategori);
+
+            foreach (Podcast podcast in podcastsEfterKategori)
+            {
+                // Lägg till en ny rad i gridPodcasts som vi ladda innehållet till
+                int radIndex = gridPodcasts.Rows.Add();
+                gridPodcasts.Rows[radIndex].Cells["podcastNamn"].Value = podcast.Namn; // Istället för Exemplen här ska aktuell podcasts värden hämtas, exempelvis podcast.Namn
+                gridPodcasts.Rows[radIndex].Cells["podcastTitel"].Value = podcast.Titel;
+                gridPodcasts.Rows[radIndex].Cells["kategori"].Value = podcast.PodcastKategori.Namn;
+                gridPodcasts.Rows[radIndex].Cells["senasteAvsnitt"].Value = "Senaste Avsnittet";
+            }
         }
     }
 }

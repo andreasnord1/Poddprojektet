@@ -25,7 +25,7 @@ namespace BusinessLogicLayer
         public static Boolean vardeFinns (ComboBox comboBoxAttValidera, string typ)
         {
             Boolean resultat = true;
-            if (comboBoxAttValidera.SelectedIndex <= 0)
+            if (comboBoxAttValidera.SelectedIndex < 0)
             {
                 MessageBox.Show($"Vänligen välj {typ}!");
                 resultat = false;

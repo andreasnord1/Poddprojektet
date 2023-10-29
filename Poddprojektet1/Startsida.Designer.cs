@@ -275,6 +275,7 @@ namespace Poddprojektet1
             checkBoxFiltrera.TabIndex = 20;
             checkBoxFiltrera.Text = "Filtrera";
             checkBoxFiltrera.UseVisualStyleBackColor = true;
+            checkBoxFiltrera.CheckedChanged += checkBoxFiltrera_CheckedChanged;
             // 
             // cmbFiltreraKategori
             // 
@@ -284,6 +285,7 @@ namespace Poddprojektet1
             cmbFiltreraKategori.Name = "cmbFiltreraKategori";
             cmbFiltreraKategori.Size = new Size(151, 28);
             cmbFiltreraKategori.TabIndex = 21;
+            cmbFiltreraKategori.SelectedIndexChanged += cmbFiltreraKategori_SelectedIndexChanged;
             // 
             // Startsida
             // 
