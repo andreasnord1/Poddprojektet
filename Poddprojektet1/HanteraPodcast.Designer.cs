@@ -37,7 +37,6 @@
             beskrivningDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             authorDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             bildUrlDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            customNameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             podcastBindingSource1 = new BindingSource(components);
             podcastBindingSource = new BindingSource(components);
             avsnittBindingSource = new BindingSource(components);
@@ -58,9 +57,9 @@
             // 
             gridPodcasts.AutoGenerateColumns = false;
             gridPodcasts.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            gridPodcasts.Columns.AddRange(new DataGridViewColumn[] { urlDataGridViewTextBoxColumn, namnDataGridViewTextBoxColumn, titelDataGridViewTextBoxColumn, podcastKategoriDataGridViewTextBoxColumn, beskrivningDataGridViewTextBoxColumn, authorDataGridViewTextBoxColumn, bildUrlDataGridViewTextBoxColumn, customNameDataGridViewTextBoxColumn });
+            gridPodcasts.Columns.AddRange(new DataGridViewColumn[] { urlDataGridViewTextBoxColumn, namnDataGridViewTextBoxColumn, titelDataGridViewTextBoxColumn, podcastKategoriDataGridViewTextBoxColumn, beskrivningDataGridViewTextBoxColumn, authorDataGridViewTextBoxColumn, bildUrlDataGridViewTextBoxColumn });
             gridPodcasts.DataSource = podcastBindingSource1;
-            gridPodcasts.Location = new Point(149, 32);
+            gridPodcasts.Location = new Point(124, 34);
             gridPodcasts.Margin = new Padding(4);
             gridPodcasts.Name = "gridPodcasts";
             gridPodcasts.RowHeadersWidth = 51;
@@ -123,14 +122,6 @@
             bildUrlDataGridViewTextBoxColumn.MinimumWidth = 6;
             bildUrlDataGridViewTextBoxColumn.Name = "bildUrlDataGridViewTextBoxColumn";
             bildUrlDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // customNameDataGridViewTextBoxColumn
-            // 
-            customNameDataGridViewTextBoxColumn.DataPropertyName = "CustomName";
-            customNameDataGridViewTextBoxColumn.HeaderText = "CustomName";
-            customNameDataGridViewTextBoxColumn.MinimumWidth = 6;
-            customNameDataGridViewTextBoxColumn.Name = "customNameDataGridViewTextBoxColumn";
-            customNameDataGridViewTextBoxColumn.Width = 125;
             // 
             // podcastBindingSource1
             // 
