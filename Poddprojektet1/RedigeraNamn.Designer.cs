@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             comboBox1 = new ComboBox();
             textBox1 = new TextBox();
             btnBekraftaAndringar = new Button();
@@ -35,28 +36,33 @@
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
+            label4 = new Label();
+            textBox2 = new TextBox();
+            bindingSource1 = new BindingSource(components);
+            ((System.ComponentModel.ISupportInitialize)bindingSource1).BeginInit();
             SuspendLayout();
             // 
             // comboBox1
             // 
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(312, 77);
-            comboBox1.Margin = new Padding(2, 2, 2, 2);
+            comboBox1.Location = new Point(205, 60);
+            comboBox1.Margin = new Padding(2);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(129, 23);
             comboBox1.TabIndex = 0;
+            
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(312, 113);
-            textBox1.Margin = new Padding(2, 2, 2, 2);
+            textBox1.Location = new Point(205, 93);
+            textBox1.Margin = new Padding(2);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(129, 23);
             textBox1.TabIndex = 1;
             // 
             // btnBekraftaAndringar
             // 
-            btnBekraftaAndringar.Location = new Point(312, 158);
+            btnBekraftaAndringar.Location = new Point(205, 163);
             btnBekraftaAndringar.Name = "btnBekraftaAndringar";
             btnBekraftaAndringar.Size = new Size(129, 23);
             btnBekraftaAndringar.TabIndex = 2;
@@ -66,7 +72,7 @@
             // 
             // btnAvbryt
             // 
-            btnAvbryt.Location = new Point(337, 187);
+            btnAvbryt.Location = new Point(229, 206);
             btnAvbryt.Name = "btnAvbryt";
             btnAvbryt.Size = new Size(75, 23);
             btnAvbryt.TabIndex = 4;
@@ -77,16 +83,16 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(289, 30);
+            label1.Location = new Point(166, 24);
             label1.Name = "label1";
-            label1.Size = new Size(167, 15);
+            label1.Size = new Size(202, 15);
             label1.TabIndex = 5;
-            label1.Text = "Ändra namn (Podcastens titel)";
+            label1.Text = "Välj en podcast och ändra dess namn";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(231, 80);
+            label2.Location = new Point(129, 63);
             label2.Name = "label2";
             label2.Size = new Size(71, 15);
             label2.TabIndex = 6;
@@ -95,17 +101,36 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(262, 116);
+            label3.Location = new Point(27, 96);
             label3.Name = "label3";
-            label3.Size = new Size(40, 15);
+            label3.Size = new Size(173, 15);
             label3.TabIndex = 7;
-            label3.Text = "Namn";
+            label3.Text = "Nuvarande namn på podcasten";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(62, 127);
+            label4.Name = "label4";
+            label4.Size = new Size(138, 15);
+            label4.TabIndex = 8;
+            label4.Text = "Nytt namn på podcasten";
+            // 
+            // textBox2
+            // 
+            textBox2.Location = new Point(205, 124);
+            textBox2.Margin = new Padding(2);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(129, 23);
+            textBox2.TabIndex = 9;
             // 
             // RedigeraNamn
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(700, 337);
+            Controls.Add(textBox2);
+            Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -114,8 +139,9 @@
             Controls.Add(textBox1);
             Controls.Add(comboBox1);
             Name = "RedigeraNamn";
-            Text = "RedigeraNamn";
+            Text = "Uppdatera Podcast-namn";
             Load += RedigeraNamn_Load;
+            ((System.ComponentModel.ISupportInitialize)bindingSource1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -129,5 +155,8 @@
         private Label label1;
         private Label label2;
         private Label label3;
+        private Label label4;
+        private TextBox textBox2;
+        private BindingSource bindingSource1;
     }
 }
