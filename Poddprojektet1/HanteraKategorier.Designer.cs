@@ -172,6 +172,7 @@
             Controls.Add(lblKategorier);
             Name = "HanteraKategorier";
             Text = "Hantera Kategorier";
+            FormClosing += HanteraKategorier_FormClosing;
             ResumeLayout(false);
             PerformLayout();
         }

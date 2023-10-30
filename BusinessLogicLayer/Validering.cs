@@ -37,7 +37,7 @@ namespace BusinessLogicLayer
         public static Boolean vardeFinns(ListBox listBoxAttValidera, string typ)
         {
             Boolean resultat = true;
-            if (listBoxAttValidera.SelectedIndex <= 0)
+            if (listBoxAttValidera.SelectedIndex < 0)
             {
                 MessageBox.Show($"Vänligen välj {typ}!");
                 resultat = false;

@@ -17,6 +17,7 @@ namespace Poddprojektet1
         Kategori kategoriAttTaBort;
         KategoriController kategoriControllern;
         HanteraKategorier hanterakategorier;
+        PodcastController podcastController;
 
         public BekraftaTaBortKategori(Kategori kategori, KategoriController kategoriController, HanteraKategorier hanteraKategorier)
         {
@@ -24,6 +25,7 @@ namespace Poddprojektet1
             kategoriAttTaBort = kategori;
             setTextToLabel(kategoriAttTaBort);
             kategoriControllern = kategoriController;
+            podcastController = new PodcastController();
             hanterakategorier = hanteraKategorier;
 
         }
@@ -36,6 +38,19 @@ namespace Poddprojektet1
 
         private void btnBekraftaTaBort_Click(object sender, EventArgs e)
         {
+            int kategoriID = kategoriAttTaBort.ID;
+
+
+
+            var podcastsInomKategorinManTarBort = podcastController.GetAllPodcasts().Where(p => 
+            p.PodcastKategori.ID == kategoriID);
+
+            foreach (Podcast podcast in podcastsInomKategorinManTarBort)
+            {
+                AndraPodcastensKategori andraKategori = new AndraPodcastensKategori(podcast, kategoriAttTaBort);
+                andraKategori.Show();
+            }
+            
             kategoriControllern.DeleteKategori(kategoriAttTaBort.ID);
             MessageBox.Show("Kategorin har tagits bort!");
             hanterakategorier.Enabled = true;

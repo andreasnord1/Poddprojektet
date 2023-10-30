@@ -144,7 +144,7 @@ namespace Poddprojektet1
                     fyllMedKategorier();
 
                     UpdateUIAfterKategoriChange();
-                    
+
                     if (podcastsMedKategorin != null)
                     {
                         foreach (Podcast podcastAttUppdatera in podcastsMedKategorin)
@@ -153,7 +153,7 @@ namespace Poddprojektet1
                             podcastController.UpdatePodcast(podcastAttUppdatera.ID, podcastAttUppdatera);
                         }
                     }
-                    
+
                 }
             }
         }
@@ -241,7 +241,7 @@ namespace Poddprojektet1
                 {
                     BekraftaTaBortKategori bekraftaTaBortKategori = new BekraftaTaBortKategori(kategoriAttTaBort, kategoriController, this);
                     bekraftaTaBortKategori.Visible = true;
-                    this.Enabled = false; 
+                    this.Enabled = false;
                 }
                 else
                 {
@@ -297,6 +297,11 @@ namespace Poddprojektet1
 
             //}
 
+        }
+
+        private void HanteraKategorier_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            startsidan.UppdateraGridMedPodcasts();
         }
     }
 }
