@@ -115,6 +115,13 @@ namespace Poddprojektet1
                 // Öppna RedigeraNamnForm som en modal dialogruta
                 using (RedigeraNamn redigeraNamnForm = new RedigeraNamn(selectedPodcast))
                 {
+                    redigeraNamnForm.PodcastUpdated += () =>
+                    {
+                        // Uppdatera din DataGridView eller annan kontroll här.
+                        gridPodcasts.DataSource = null;
+                        gridPodcasts.DataSource = podcastController?.GetAllPodcasts();
+                    };
+
                     if (redigeraNamnForm.ShowDialog() == DialogResult.OK)
                     {
                         // Om användaren tryckte på OK i RedigeraNamnForm, hämta uppdaterad podcast-information

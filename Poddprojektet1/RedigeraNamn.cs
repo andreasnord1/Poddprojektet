@@ -28,14 +28,22 @@ namespace Poddprojektet1
     public partial class RedigeraNamn : Form
     {
         private Podcast _podcastToEdit;
+        public event Action? PodcastUpdated;
 
         public RedigeraNamn(Podcast selectedPodcast)
         {
+            // Grundläggande kontroll: om selectedPodcast är null kasta ett undantag.
+            if (selectedPodcast == null)
+            {
+                throw new ArgumentNullException(nameof(selectedPodcast), "Podcast kan inte vara null.");
+            }
+
             InitializeComponent();
 
+            // Tilldela podcast för redigering.
             _podcastToEdit = selectedPodcast;
 
-            // Om man vill visa podcastens nuvarande namn i ett textfält kan du göra det här:
+            // Visa podcastens nuvarande namn i textBox1.
             textBox1.Text = _podcastToEdit.Namn;
 
         }
@@ -91,6 +99,8 @@ namespace Poddprojektet1
 
             var podcastController = new PodcastController();
             podcastController.UpdatePodcast(_podcastToEdit.ID, _podcastToEdit);
+
+            PodcastUpdated?.Invoke();
 
             MessageBox.Show("Podcastnamnet har uppdaterats framgångsrikt!");
             this.Close();
