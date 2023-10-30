@@ -34,7 +34,7 @@
             btnBekraftaAndringar = new Button();
             btnAvbryt = new Button();
             label1 = new Label();
-            lblKategori = new Label();
+            label2 = new Label();
             label3 = new Label();
             label4 = new Label();
             textBox2 = new TextBox();
@@ -91,14 +91,14 @@
             label1.TabIndex = 5;
             label1.Text = "Välj en podcast och ändra dess namn";
             // 
-            // lblKategori
+            // label2
             // 
-            lblKategori.AutoSize = true;
-            lblKategori.Location = new Point(149, 63);
-            lblKategori.Name = "lblKategori";
-            lblKategori.Size = new Size(51, 15);
-            lblKategori.TabIndex = 6;
-            lblKategori.Text = "Kategori";
+            label2.AutoSize = true;
+            label2.Location = new Point(129, 63);
+            label2.Name = "label2";
+            label2.Size = new Size(71, 15);
+            label2.TabIndex = 6;
+            label2.Text = "Välj kategori";
             // 
             // label3
             // 
@@ -154,7 +154,7 @@
             Controls.Add(textBox2);
             Controls.Add(label4);
             Controls.Add(label3);
-            Controls.Add(lblKategori);
+            Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(btnAvbryt);
             Controls.Add(btnBekraftaAndringar);
@@ -175,7 +175,7 @@
         private Button btnBekraftaAndringar;
         private Button btnAvbryt;
         private Label label1;
-        private Label lblKategori;
+        private Label label2;
         private Label label3;
         private Label label4;
         private TextBox textBox2;
