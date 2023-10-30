@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms; 
+using System.Windows.Forms;
+using Models;
 
 namespace BusinessLogicLayer
 {
@@ -57,7 +58,28 @@ namespace BusinessLogicLayer
             return resultat;
         }
 
+        //Denna privata metod kommer att användas i metoden precis under
+        private static bool PodcastUrlExisterar(string url, List<Podcast> befintligaPodcasts)
+        {
+            return befintligaPodcasts.Any(podcast => podcast.Url == url);
+        }
 
+        public static Boolean ValideraURL(string url, List<Podcast> befintligaPodcasts)
+        {
+            if (string.IsNullOrWhiteSpace(url))
+            {
+                MessageBox.Show("Textrutan saknar värde!");
+                return false;
+            }
+
+            if (PodcastUrlExisterar(url, befintligaPodcasts))
+            {
+                MessageBox.Show("Podcasten med denna URL finns redan i listan.");
+                return false;
+            }
+
+            return true;
+        }
 
 
     }

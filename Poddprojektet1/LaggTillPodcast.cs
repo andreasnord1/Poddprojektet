@@ -122,7 +122,8 @@ namespace Poddprojektet1
             int inskrivnaTeckenNamn = txtNamn.Text.Length;
             string typNamn = "namn";
 
-            if (Validering.vardeFinns(txtURL) && Validering.vardeFinns(txtNamn) &&
+            if (Validering.ValideraURL(txtURL.Text, podcastController.GetAllPodcasts()) &&
+                Validering.vardeFinns(txtURL) && Validering.vardeFinns(txtNamn) &&
                 Validering.vardeFinns(cmbPodcastKategori, "kategori") &&
                 Validering.KontrolleraTeckenAntal(inskrivnaTeckenURL, minTeckenURL, maxTeckenURL, typURL) &&
                 Validering.KontrolleraTeckenAntal(inskrivnaTeckenNamn, minTeckenNamn, maxTeckenNamn, typNamn)) // Valideringar som kollar så att kategori och podcast inte är upptagna ska läggas till
@@ -165,8 +166,6 @@ namespace Poddprojektet1
                 //podcastController.AddPodcast(nyPodcast);
 
             }
-
-                
 
                 MessageBox.Show("En ny podcastfeed har lagts till!");
                 startsidan.UppdateraGridMedPodcasts();
