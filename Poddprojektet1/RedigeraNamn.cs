@@ -70,12 +70,7 @@ namespace Poddprojektet1
             var kategoriRepository = new KategoriRepository();
             var kategoriLista = kategoriRepository.LoadCategoryList();
 
-            // Antag att din dropdown-lista heter 'dropdownKategorier':
-            comboBox1.Items.Clear();
-            foreach (var kategori in kategoriLista.Categories)
-            {
-                comboBox1.Items.Add(kategori);
-            }
+            
         }
 
 
