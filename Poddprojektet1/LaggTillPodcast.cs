@@ -132,6 +132,11 @@ namespace Poddprojektet1
 
                 await fixaPodcastensAvsnittAsync(rssFeedURL);
 
+                MessageBox.Show("En ny podcastfeed har lagts till!");
+                startsidan.UppdateraGridMedPodcasts();
+                this.Dispose();
+                startsidan.Enabled = true;
+
 
                 //string rssFeedURL = txtURL.Text;
                 //string podNamn = txtNamn.Text;
@@ -167,10 +172,7 @@ namespace Poddprojektet1
 
             }
 
-                MessageBox.Show("En ny podcastfeed har lagts till!");
-                startsidan.UppdateraGridMedPodcasts();
-                this.Dispose();
-                startsidan.Enabled = true;
+
             }
 
 
