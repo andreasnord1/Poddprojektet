@@ -185,6 +185,10 @@ namespace Poddprojektet1
 
                     selectedPodcast.PodcastKategori = valdKategori;
 
+                    int podcastID = selectedPodcast.ID;
+
+                    podcastController.UpdatePodcast(podcastID, selectedPodcast);
+
                     //// Hämta kategori-ID för den valda podcasten
                     //int existingKategoriId = selectedPodcast.KategoriID;
 
