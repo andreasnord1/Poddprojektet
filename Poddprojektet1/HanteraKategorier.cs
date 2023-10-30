@@ -19,10 +19,14 @@ namespace Poddprojektet1
     public partial class HanteraKategorier : Form
     {
         KategoriController kategoriController;
-        public HanteraKategorier()
+        PodcastController podcastController;
+        Startsida startsidan;
+        public HanteraKategorier(Startsida startsida)
         {
             InitializeComponent();
             kategoriController = new KategoriController();
+            podcastController = new PodcastController();
+            startsidan = startsida;
             fyllMedKategorier();
         }
 
@@ -107,6 +111,7 @@ namespace Poddprojektet1
         private void btnBekraftaAndradKategori_Click(object sender, EventArgs e)
         {
             TryUpdateKategori();
+            startsidan.UppdateraGridMedPodcasts();
         }
 
         private void TryUpdateKategori()
@@ -125,6 +130,9 @@ namespace Poddprojektet1
                 {
                     Kategori? kategoriAttUppdatera = kategoriController.GetAllKategorier().FirstOrDefault(k => k.Namn == tidigareNamn);
 
+                    // Hämta podcasts som tillhör kategorin som uppdateras
+                    List<Podcast> podcastsMedKategorin = podcastController.GetPodcastsByKategori(kategoriAttUppdatera);
+
                     if (kategoriAttUppdatera != null)
 
                         kategoriAttUppdatera.Namn = nyttNamnPaKategori;
@@ -136,6 +144,16 @@ namespace Poddprojektet1
                     fyllMedKategorier();
 
                     UpdateUIAfterKategoriChange();
+                    
+                    if (podcastsMedKategorin != null)
+                    {
+                        foreach (Podcast podcastAttUppdatera in podcastsMedKategorin)
+                        {
+                            podcastAttUppdatera.PodcastKategori.Namn = nyttNamnPaKategori;
+                            podcastController.UpdatePodcast(podcastAttUppdatera.ID, podcastAttUppdatera);
+                        }
+                    }
+                    
                 }
             }
         }
@@ -221,9 +239,9 @@ namespace Poddprojektet1
 
                 if (kategoriAttTaBort != null)
                 {
-                    BekraftaTaBortKategori bekraftaTaBortKategori = new BekraftaTaBortKategori(kategoriAttTaBort, kategoriController);
+                    BekraftaTaBortKategori bekraftaTaBortKategori = new BekraftaTaBortKategori(kategoriAttTaBort, kategoriController, this);
                     bekraftaTaBortKategori.Visible = true;
-                    this.Dispose();
+                    this.Enabled = false; 
                 }
                 else
                 {

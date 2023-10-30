@@ -62,11 +62,13 @@ namespace Poddprojektet1
                 {
                     Avsnitt senasteAvsnittet = podcastController.GetPodcastensSenasteAvsnitt(podcast);
 
+                    Kategori podcastensKategori = podcast.PodcastKategori;
+
                     // Lägg till en ny rad i gridPodcasts som vi ladda innehållet till
                     int radIndex = gridPodcasts.Rows.Add();
                     gridPodcasts.Rows[radIndex].Cells["podcastNamn"].Value = podcast.Namn; // Istället för Exemplen här ska aktuell podcasts värden hämtas, exempelvis podcast.Namn
                     gridPodcasts.Rows[radIndex].Cells["podcastTitel"].Value = podcast.Titel;
-                    gridPodcasts.Rows[radIndex].Cells["kategori"].Value = podcast.PodcastKategori.Namn;
+                    gridPodcasts.Rows[radIndex].Cells["kategori"].Value = podcastensKategori.Namn;
                     gridPodcasts.Rows[radIndex].Cells["senasteAvsnitt"].Value = senasteAvsnittet.Titel;
                 }
             }
@@ -214,7 +216,7 @@ namespace Poddprojektet1
 
         private void btnHanteraKategorier_Click(object sender, EventArgs e)
         {
-            HanteraKategorier kategoriForm = new HanteraKategorier();
+            HanteraKategorier kategoriForm = new HanteraKategorier(this);
             kategoriForm.Visible = true;
         }
 
@@ -530,11 +532,13 @@ namespace Poddprojektet1
             {
                 Avsnitt senasteAvsnittet = podcastController.GetPodcastensSenasteAvsnitt(podcast);
 
+                Kategori podcastensKategori = podcast.PodcastKategori;
+
                 // Lägg till en ny rad i gridPodcasts som vi ladda innehållet till
                 int radIndex = gridPodcasts.Rows.Add();
                 gridPodcasts.Rows[radIndex].Cells["podcastNamn"].Value = podcast.Namn; // Istället för Exemplen här ska aktuell podcasts värden hämtas, exempelvis podcast.Namn
                 gridPodcasts.Rows[radIndex].Cells["podcastTitel"].Value = podcast.Titel;
-                gridPodcasts.Rows[radIndex].Cells["kategori"].Value = podcast.PodcastKategori.Namn;
+                gridPodcasts.Rows[radIndex].Cells["kategori"].Value = podcastensKategori.Namn;
                 gridPodcasts.Rows[radIndex].Cells["senasteAvsnitt"].Value = senasteAvsnittet.Titel;
             }
         }

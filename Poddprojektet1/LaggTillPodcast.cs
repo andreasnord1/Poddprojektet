@@ -43,15 +43,15 @@ namespace Poddprojektet1
             }
         }
 
-        private void btnManageCategories_Click(object sender, EventArgs e)
-        {
-            // Öppna Hantera Kategorier-formuläret och ladda om kategorierna när det stängs
-            using (var form = new HanteraKategorier())
-            {
-                form.ShowDialog();
-                LoadCategories();
-            }
-        }
+        //private void btnManageCategories_Click(object sender, EventArgs e)
+        //{
+        //    // Öppna Hantera Kategorier-formuläret och ladda om kategorierna när det stängs
+        //    using (var form = new HanteraKategorier())
+        //    {
+        //        form.ShowDialog();
+        //        LoadCategories();
+        //    }
+        //}
 
 
         private void LaggTillPodcast_Load(object sender, EventArgs e)

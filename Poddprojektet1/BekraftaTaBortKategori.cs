@@ -16,13 +16,15 @@ namespace Poddprojektet1
     {
         Kategori kategoriAttTaBort;
         KategoriController kategoriControllern;
+        HanteraKategorier hanterakategorier;
 
-        public BekraftaTaBortKategori(Kategori kategori, KategoriController kategoriController)
+        public BekraftaTaBortKategori(Kategori kategori, KategoriController kategoriController, HanteraKategorier hanteraKategorier)
         {
             InitializeComponent();
             kategoriAttTaBort = kategori;
             setTextToLabel(kategoriAttTaBort);
             kategoriControllern = kategoriController;
+            hanterakategorier = hanteraKategorier;
 
         }
 
@@ -36,15 +38,13 @@ namespace Poddprojektet1
         {
             kategoriControllern.DeleteKategori(kategoriAttTaBort.ID);
             MessageBox.Show("Kategorin har tagits bort!");
-            HanteraKategorier hanteraKategorier = new HanteraKategorier();
-            hanteraKategorier.Visible = true;
+            hanterakategorier.Enabled = true;
             this.Dispose();
         }
 
         private void btnAvbryt_Click(object sender, EventArgs e)
         {
-            HanteraKategorier hanteraKategorier = new HanteraKategorier();
-            hanteraKategorier.Visible = true;
+            hanterakategorier.Enabled = true;
             this.Dispose();
         }
     }
