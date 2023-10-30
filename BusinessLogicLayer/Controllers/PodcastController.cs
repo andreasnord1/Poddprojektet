@@ -89,7 +89,7 @@ namespace BusinessLogicLayer.Controllers
             }
 
             // Validering för att inte tillåta URL att ändras.
-            if (existingPodcast.Url != updatedPodcast.Url)
+            if ((existingPodcast.Url?.Trim() ?? string.Empty) != (updatedPodcast.Url?.Trim() ?? string.Empty))
             {
                 throw new InvalidOperationException("Det är inte tillåtet att ändra podcastens URL.");
             }
