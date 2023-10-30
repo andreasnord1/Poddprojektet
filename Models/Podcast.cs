@@ -12,7 +12,7 @@ namespace Models
 
     public class Podcast
     {
-        public int ID;
+        public int ID { get; }
         private static int nastaID = 1;
         public string? Url { get; set; }
         public string Namn { get; set; }
@@ -38,6 +38,7 @@ namespace Models
             BildUrl = bildUrl;
             PodcastKategori = kategori;
             Avsnitt = avsnittsLista;
+            ID= nastaID++;
         }
 
         public Podcast()
