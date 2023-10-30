@@ -486,7 +486,7 @@ namespace Poddprojektet1
             // - Victor
 
 
-            HanteraPodcast hanteraPodcastForm = new HanteraPodcast();
+            HanteraPodcast hanteraPodcastForm = new HanteraPodcast(this);
             hanteraPodcastForm.ShowDialog();
         }
 

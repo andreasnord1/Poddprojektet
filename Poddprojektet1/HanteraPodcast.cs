@@ -23,12 +23,14 @@ namespace Poddprojektet1
 
         private KategoriController kategoriController;
         private PodcastController podcastController;
+        private Startsida startsidan;
 
-        public HanteraPodcast()
+        public HanteraPodcast(Startsida startsida)
         {
             InitializeComponent();
             kategoriController = new KategoriController();
             podcastController = new PodcastController();
+            startsidan = startsida;
             fyllMedKategorier();
             this.Load += gridPodcasts_Load;
         }
@@ -129,12 +131,13 @@ namespace Poddprojektet1
 
                         // Uppdatera podcasten genom att använda PodcastController
                         PodcastController podcastController = new PodcastController();
-                        
-                      if(selectedPodcast.Url != null) { 
 
-                        podcastController.UpdatePodcastByUrl(selectedPodcast.Url, updatedPodcast);
+                        if (selectedPodcast.Url != null)
+                        {
 
-                        MessageBox.Show("Namnet på RSS-flödet har ändrats framgångsrikt!");
+                            podcastController.UpdatePodcastByUrl(selectedPodcast.Url, updatedPodcast);
+
+                            MessageBox.Show("Namnet på RSS-flödet har ändrats framgångsrikt!");
                         }
 
                     }
@@ -148,7 +151,7 @@ namespace Poddprojektet1
 
 
 
-            private void btnAndraKategori_Click(object sender, EventArgs e)
+        private void btnAndraKategori_Click(object sender, EventArgs e)
         {
             try
             {
@@ -215,6 +218,15 @@ namespace Poddprojektet1
             }
         }
 
-       
+        private void HanteraPodcast_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            startsidan.UppdateraGridMedPodcasts();
+        }
+
+        private void btnAvbryt_Click(object sender, EventArgs e)
+        {
+            startsidan.UppdateraGridMedPodcasts();
+            this.Dispose();
+        }
     }
 }
