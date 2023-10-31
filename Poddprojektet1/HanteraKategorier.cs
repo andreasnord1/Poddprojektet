@@ -112,6 +112,7 @@ namespace Poddprojektet1
         {
             TryUpdateKategori();
             startsidan.UppdateraGridMedPodcasts();
+            startsidan.UppdateraComboBoxMedKategorier();
         }
 
         private void TryUpdateKategori()
@@ -179,6 +180,7 @@ namespace Poddprojektet1
             kategoriController.AddKategori(nyKategori);
 
             fyllMedKategorier();
+            startsidan.UppdateraComboBoxMedKategorier();
 
             textBoxNyEllerAndra.Visible = false;
             btnBekraftaNyKategori.Visible = false;
@@ -302,6 +304,7 @@ namespace Poddprojektet1
         private void HanteraKategorier_FormClosing(object sender, FormClosingEventArgs e)
         {
             startsidan.UppdateraGridMedPodcasts();
+            startsidan.UppdateraComboBoxMedKategorier();
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Net;
 using BusinessLogicLayer.Controllers;
 using Models;
+using HtmlAgilityPack;
 
 namespace Poddprojektet1
 {
@@ -297,10 +298,14 @@ namespace Poddprojektet1
                 return; // Avsluta metoden eftersom det inte finns någon podcast att bearbeta
             }
 
+            //string podcastBeskrivning = valdPodcast.Beskrivning ?? "Information saknas";
+
+            //var podcastBeskrivningHTML = new HtmlAgilityPack.HtmlDocument();
+            //podcastBeskrivningHTML.LoadHtml(podcastBeskrivning);
+
             lblPodcastNamn.Text = valdPodcast.Namn ?? "Information saknas";
             lblPodcastTitel.Text = valdPodcast.Titel ?? "Information saknas";
             txtBoxPodcastBeskrivning.Text = valdPodcast.Beskrivning ?? "Information saknas";
-            //lblPodcastBeskrivning.Text = valdPodcast.Beskrivning ?? "Information saknas";
             string bildUrl = valdPodcast.BildUrl;
             lblKategori.Text = valdPodcast.PodcastKategori.Namn ?? "Okategoriserad";
 
