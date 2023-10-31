@@ -130,7 +130,7 @@ namespace Poddprojektet1
                         Podcast updatedPodcast = redigeraNamnForm.UpdatedPodcast;
 
                         // Uppdatera podcasten genom att använda PodcastController
-                        PodcastController podcastController = new PodcastController();
+                        // PodcastController podcastController = new PodcastController();
 
                         if (selectedPodcast.Url != null)
                         {

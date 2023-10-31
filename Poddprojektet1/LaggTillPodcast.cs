@@ -94,12 +94,29 @@ namespace Poddprojektet1
             foreach (SyndicationItem avsnitt in feed.Items)
             {
                 string avsnittsTitel = avsnitt.Title.Text;
-                string avsnittsBeskrivning = avsnitt.Summary.Text;
-                DateTimeOffset publiceringsDatum = avsnitt.PublishDate;
+                
+                // Kontrollerar så att inte avsnittsbeskrivningen saknas
+                if (avsnitt.Summary.Text != null)
+                {
+                    string avsnittsBeskrivning = avsnitt.Summary.Text;
 
-                Avsnitt nyttAvsnitt = new Avsnitt(avsnittsTitel, publiceringsDatum, avsnittsBeskrivning);
+                    DateTimeOffset publiceringsDatum = avsnitt.PublishDate;
 
-                podcastensAvsnitt.Add(nyttAvsnitt);
+                    Avsnitt nyttAvsnitt = new Avsnitt(avsnittsTitel, publiceringsDatum, avsnittsBeskrivning);
+
+                    podcastensAvsnitt.Add(nyttAvsnitt);
+                }
+                else
+                {
+                    string avsnittsBeskrivning = "Avsnittsbeskrivning saknas";
+
+                    DateTimeOffset publiceringsDatum = avsnitt.PublishDate;
+
+                    Avsnitt nyttAvsnitt = new Avsnitt(avsnittsTitel, publiceringsDatum, avsnittsBeskrivning);
+
+                    podcastensAvsnitt.Add(nyttAvsnitt);
+                }
+
             }
 
             Podcast nyPodcast = new Podcast(url, podNamn, podTitel, podBeskrivning, author,

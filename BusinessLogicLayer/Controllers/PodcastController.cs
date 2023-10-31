@@ -13,6 +13,7 @@ namespace BusinessLogicLayer.Controllers
     public class PodcastController
     {
 
+        private const int INITIAL_ID = 1;
 
         private readonly IRepository<Podcast> IRepository; // Vårt data repository.
 
@@ -45,6 +46,12 @@ namespace BusinessLogicLayer.Controllers
             {
                 throw new InvalidOperationException("En podcast med samma URL finns redan.");
             }
+
+            List<Podcast> allaPodcasts = GetAllPodcasts();
+
+            int podcastensID = GetNextAvailableID(allaPodcasts);
+
+            newPodcast.ID = podcastensID;
 
             IRepository.Create(newPodcast);
         }
@@ -130,6 +137,20 @@ namespace BusinessLogicLayer.Controllers
             {
                 throw new InvalidOperationException("Ingen podcast med den angivna URL:en hittades.");
             }
+        }
+
+        public int GetNextAvailableID(List<Podcast> allaPodcasts)
+        {
+            // Hämtar nästa lediga ID
+            if (allaPodcasts.Count == 0)
+            {
+                return INITIAL_ID;
+            }
+
+            // Om listan inte är tom, hämtar vi det högsta ID:t och lägger till 1
+
+            int maxID = allaPodcasts.Max(k => k.ID);
+            return maxID + 1;
         }
 
 
