@@ -299,8 +299,8 @@ namespace Poddprojektet1
 
             lblPodcastNamn.Text = valdPodcast.Namn ?? "Information saknas";
             lblPodcastTitel.Text = valdPodcast.Titel ?? "Information saknas";
-            lblAuthor.Text = valdPodcast.Author ?? "Information saknas";
-            lblPodcastBeskrivning.Text = valdPodcast.Beskrivning ?? "Information saknas";
+            txtBoxPodcastBeskrivning.Text = valdPodcast.Beskrivning ?? "Information saknas";
+            //lblPodcastBeskrivning.Text = valdPodcast.Beskrivning ?? "Information saknas";
             string bildUrl = valdPodcast.BildUrl;
             lblKategori.Text = valdPodcast.PodcastKategori.Namn ?? "Okategoriserad";
 
@@ -381,7 +381,8 @@ namespace Poddprojektet1
         {
             lblAvsnittsTitel.Text = avsnitt.Titel;
             lblPubDate.Text = avsnitt.PubliceringsDatum.ToString();
-            lblAvsnittsBeskrivning.Text = avsnitt.Beskrivning;
+            txtBoxAvsnittsBeskrivning.Text = avsnitt.Beskrivning;
+            //lblAvsnittsBeskrivning.Text = avsnitt.Beskrivning;
         }
 
         private void gridPodcasts_SelectedIndexChanged(object? sender, EventArgs e)
@@ -541,6 +542,11 @@ namespace Poddprojektet1
                 gridPodcasts.Rows[radIndex].Cells["kategori"].Value = podcastensKategori.Namn;
                 gridPodcasts.Rows[radIndex].Cells["senasteAvsnitt"].Value = senasteAvsnittet.Titel;
             }
+        }
+
+        private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+
         }
     }
 }
