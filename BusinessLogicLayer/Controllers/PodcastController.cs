@@ -89,21 +89,36 @@ namespace BusinessLogicLayer.Controllers
         }
         public void UpdatePodcast(int id, Podcast updatedPodcast)
         {
-            var existingPodcast = IRepository.GetAll().FirstOrDefault(p => p.ID == id);
-            if (existingPodcast == null)
+
+            try
             {
-                throw new InvalidOperationException("Podcasten hittades inte.");
+                var existingPodcast = IRepository.GetAll().FirstOrDefault(p => p.ID == id);
+                if (existingPodcast == null)
+                {
+                    throw new InvalidOperationException("Podcasten hittades inte.");
+                }
+
+                Console.WriteLine("Befintlig URL: " + existingPodcast.Url);
+                Console.WriteLine("Uppdaterad URL: " + updatedPodcast.Url);
+
+                // Validering för att inte tillåta URL att ändras.
+                if ((existingPodcast.Url?.Trim() ?? string.Empty) != (updatedPodcast.Url?.Trim() ?? string.Empty))
+                {
+                    throw new InvalidOperationException("Det är inte tillåtet att ändra podcastens URL.");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
 
-            // Validering för att inte tillåta URL att ändras.
-            if ((existingPodcast.Url?.Trim() ?? string.Empty) != (updatedPodcast.Url?.Trim() ?? string.Empty))
-            {
-                throw new InvalidOperationException("Det är inte tillåtet att ändra podcastens URL.");
-            }
 
             // Du kan lägga till fler valideringar här om det behövs.
 
-            IRepository.Update(id, updatedPodcast);
+              IRepository.Update(id, updatedPodcast);
+
+
         }
 
 

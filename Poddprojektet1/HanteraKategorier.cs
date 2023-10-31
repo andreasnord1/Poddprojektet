@@ -141,7 +141,9 @@ namespace Poddprojektet1
                         // Uppdatera podcasts som tillhör kategorin
                         foreach (Podcast podcastAttUppdatera in podcastsMedKategorin)
                         {
-                            podcastAttUppdatera.PodcastKategori.Namn = nyttNamnPaKategori;
+                            // Ändra hela kategori-referensen för podcasten snarare än bara namnet
+                            podcastAttUppdatera.PodcastKategori = kategoriAttUppdatera;
+                            Console.WriteLine(podcastAttUppdatera.Url);
                             podcastController.UpdatePodcast(podcastAttUppdatera.ID, podcastAttUppdatera);
                         }
 
@@ -151,6 +153,8 @@ namespace Poddprojektet1
                 }
             }
         }
+
+
 
 
         private void UpdateUIAfterKategoriChange()

@@ -23,7 +23,7 @@ namespace Poddprojektet1
         {
             InitializeComponent();
             podcast = podcastAttAndra;
-            kategoriSomTasbort = kategoriSomTasBort;
+            this.kategoriSomTasbort = kategoriSomTasBort;
             podcastController = new PodcastController();
             kategoriController = new KategoriController();
             fyllCombobox();
@@ -56,12 +56,16 @@ namespace Poddprojektet1
 
         private void andraKategorin()
         {
-            string valdKategoriNamn = cmbAndraKategori.SelectedItem.ToString();
+            string valdKategoriNamn = cmbAndraKategori.SelectedItem?.ToString() ?? string.Empty;
+
 
             var valdKategori = kategoriController.GetAllKategorier().FirstOrDefault(k => k.Namn == valdKategoriNamn);
 
-            podcast.PodcastKategori = valdKategori;
-            sparaAndringar();
+            if (valdKategori != null)
+            {
+                podcast.PodcastKategori = valdKategori;
+                sparaAndringar();
+            }
         }
 
         private void sparaAndringar()
