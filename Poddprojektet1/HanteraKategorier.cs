@@ -78,8 +78,6 @@ namespace Poddprojektet1
                 if (stringKategori == null) return; // Avbryt metoden om kastningen misslyckades.
 
 
-
-
                 textBoxNyEllerAndra.Text = stringKategori;
                 textBoxNyEllerAndra.Visible = true;
 
@@ -131,33 +129,29 @@ namespace Poddprojektet1
                 {
                     Kategori? kategoriAttUppdatera = kategoriController.GetAllKategorier().FirstOrDefault(k => k.Namn == tidigareNamn);
 
-                    // Hämta podcasts som tillhör kategorin som uppdateras
-                    List<Podcast> podcastsMedKategorin = podcastController.GetPodcastsByKategori(kategoriAttUppdatera);
-
                     if (kategoriAttUppdatera != null)
-
+                    {
+                        // Uppdatera kategorin
                         kategoriAttUppdatera.Namn = nyttNamnPaKategori;
-
-                    if (kategoriAttUppdatera != null)
-
                         kategoriController.UpdateKategori(kategoriAttUppdatera.ID, kategoriAttUppdatera);
 
-                    fyllMedKategorier();
+                        // Hämta podcasts som tillhör kategorin som uppdateras
+                        List<Podcast> podcastsMedKategorin = podcastController.GetPodcastsByKategori(kategoriAttUppdatera);
 
-                    UpdateUIAfterKategoriChange();
-
-                    if (podcastsMedKategorin != null)
-                    {
+                        // Uppdatera podcasts som tillhör kategorin
                         foreach (Podcast podcastAttUppdatera in podcastsMedKategorin)
                         {
                             podcastAttUppdatera.PodcastKategori.Namn = nyttNamnPaKategori;
                             podcastController.UpdatePodcast(podcastAttUppdatera.ID, podcastAttUppdatera);
                         }
-                    }
 
+                        fyllMedKategorier();
+                        UpdateUIAfterKategoriChange();
+                    }
                 }
             }
         }
+
 
         private void UpdateUIAfterKategoriChange()
         {
@@ -251,53 +245,6 @@ namespace Poddprojektet1
                 }
 
             }
-
-
-            //private void textBoxNyEllerAndra_GotFocus(object sender, EventArgs e)
-            //{
-            //    if (textBoxNyEllerAndra.Text == "Nytt kategorinamn...")
-            //    {
-            //        textBoxNyEllerAndra.Text = "";
-            //        textBoxNyEllerAndra.ForeColor = System.Drawing.SystemColors.WindowText;
-            //    }
-            //}
-
-            //private void textBoxNyEllerAndra_LostFocus(object sender, EventArgs e)
-            //{
-            //    if (string.IsNullOrWhiteSpace(textBoxNyEllerAndra.Text))
-            //    {
-            //        textBoxNyEllerAndra.Text = "Nytt kategorinamn...";
-            //        textBoxNyEllerAndra.ForeColor = System.Drawing.SystemColors.InactiveCaption;
-            //    }
-            //}
-
-
-            //private void textBoxNyEllerAndra_Enter(object sender, EventArgs e)
-            //{
-            //    if (textBoxNyEllerAndra.Text == "Ny Kategori")
-            //    {
-            //        textBoxNyEllerAndra.Text = "";
-            //        textBoxNyEllerAndra.ForeColor = Color.Black;
-            //    }
-            //}
-
-            //private void textBoxNyEllerAndra_Leave(object sender, EventArgs e)
-            //{
-            //    if (textBoxNyEllerAndra.Text == "")
-            //    {
-            //        textBoxNyEllerAndra.Text = "Ny Kategori";
-            //        textBoxNyEllerAndra.ForeColor = Color.LightGray;
-            //    }
-            //}
-
-            //private void HanteraKategorier_Load(object sender, EventArgs e)
-            //{
-            //    textBoxNyEllerAndra.Text = "Ny Kategori";
-            //    textBoxNyEllerAndra.ForeColor = Color.LightGray;
-
-
-
-            //}
 
         }
 

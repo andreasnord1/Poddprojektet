@@ -189,29 +189,6 @@ namespace Poddprojektet1
 
                     podcastController.UpdatePodcast(podcastID, selectedPodcast);
 
-                    //// Hämta kategori-ID för den valda podcasten
-                    //int existingKategoriId = selectedPodcast.KategoriID;
-
-                    //Kategori existingKategori = kategoriController.GetKategoriById(existingKategoriId);
-                    //if (existingKategori == null)
-                    //{
-                    //    throw new Exception("Kategorin hittades inte.");
-                    //}
-
-
-                    //// Förbered den uppdaterade kategorin
-                    //Kategori updatedKategori = new Kategori(existingKategoriId, newCategoryName);
-
-
-                    //// Uppdatera kategorin genom KategoriController
-                    //kategoriController.UpdateKategori(existingKategoriId, updatedKategori);
-
-                    //// Reflektera ändringen i podcastens kategoriinformation
-                    //selectedPodcast.PodcastKategori = updatedKategori; // Eller uppdatera listan/gridden om nödvändigt
-
-                    // Informera användaren om att operationen var framgångsrik
-
-
                     MessageBox.Show("Kategorin för RSS-flödet har ändrats framgångsrikt!");
                 }
             }

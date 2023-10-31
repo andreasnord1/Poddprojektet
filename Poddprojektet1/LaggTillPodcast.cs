@@ -43,17 +43,6 @@ namespace Poddprojektet1
             }
         }
 
-        //private void btnManageCategories_Click(object sender, EventArgs e)
-        //{
-        //    // Öppna Hantera Kategorier-formuläret och ladda om kategorierna när det stängs
-        //    using (var form = new HanteraKategorier())
-        //    {
-        //        form.ShowDialog();
-        //        LoadCategories();
-        //    }
-        //}
-
-
         private void LaggTillPodcast_Load(object sender, EventArgs e)
         {
             try
@@ -86,7 +75,10 @@ namespace Poddprojektet1
 
             string podTitel = feed.Title.Text;
             string podBeskrivning = feed.Description.Text;
-            string? author = feed.Authors.ToString();
+
+            // Hantera authors: Konvertera författarsamlingen till en kommaseparerad sträng eller använd "Okänd" om ingen författare hittas.
+            string author = string.Join(", ", feed.Authors.Select(a => a.Name)) ?? "Okänd";
+
             string bildUrl = feed.ImageUrl.ToString();
 
             List<Avsnitt> podcastensAvsnitt = new List<Avsnitt>();
@@ -94,7 +86,7 @@ namespace Poddprojektet1
             foreach (SyndicationItem avsnitt in feed.Items)
             {
                 string avsnittsTitel = avsnitt.Title.Text;
-                
+
                 // Kontrollerar så att inte avsnittsbeskrivningen saknas
                 if (avsnitt.Summary.Text != null)
                 {
@@ -119,8 +111,16 @@ namespace Poddprojektet1
 
             }
 
+            // Hantera valdKategori
+            if (valdKategori == null)
+            {
+                // Här kan du visa ett felmeddelande eller hantera felet på något sätt
+                MessageBox.Show("Vänligen välj en kategori!");
+                return;
+            }
+
             Podcast nyPodcast = new Podcast(url, podNamn, podTitel, podBeskrivning, author,
-                        bildUrl, valdKategori, podcastensAvsnitt);
+                    bildUrl, valdKategori, podcastensAvsnitt);
 
             podcastController.AddPodcast(nyPodcast);
         }
@@ -154,95 +154,11 @@ namespace Poddprojektet1
                 this.Dispose();
                 startsidan.Enabled = true;
 
-
-                //string rssFeedURL = txtURL.Text;
-                //string podNamn = txtNamn.Text;
-                //Kategori? valdKategori = kategoriController.GetAllKategorier().FirstOrDefault(k => k.Namn == cmbPodcastKategori.SelectedItem.ToString());
-
-
-                //using (XmlReader reader = XmlReader.Create(rssFeedURL))
-                //{
-                //    SyndicationFeed feed = SyndicationFeed.Load(reader);
-
-                //    string podTitel = feed.Title.Text;
-                //    string podBeskrivning = feed.Description.Text;
-                //    string? author = feed.Authors.ToString();
-                //    string bildUrl = feed.ImageUrl.ToString();
-
-                //    List<Avsnitt> podcastensAvsnitt = new List<Avsnitt>();
-
-                //    foreach (SyndicationItem avsnitt in feed.Items)
-                //    {
-                //        string avsnittsTitel = avsnitt.Title.Text;
-                //        string avsnittsBeskrivning = avsnitt.Summary.Text;
-                //        DateTimeOffset publiceringsDatum = avsnitt.PublishDate;
-
-                //        Avsnitt nyttAvsnitt = new Avsnitt(avsnittsTitel, publiceringsDatum, avsnittsBeskrivning);
-
-                //        podcastensAvsnitt.Add(nyttAvsnitt);
-                //    }
-
-                //    Podcast nyPodcast = new Podcast(rssFeedURL, podNamn, podTitel, podBeskrivning, author,
-                //        bildUrl, valdKategori, podcastensAvsnitt);
-                //
-                //podcastController.AddPodcast(nyPodcast);
-
-            }
+                  }
 
 
             }
-
-
-
-            //try
-            //{
-            //    string podcastUrl = txtURL.Text.Trim();
-            //    string podcastTitel = txtNamn.Text.Trim();
-            //    string? podcastKategori = cmbPodcastKategori.SelectedItem?.ToString();
-
-            //    // Skapar en instans av repositoriet och kontrollern en gång.
-            //    KategoriRepository kategoriRepo = new KategoriRepository();
-            //    KategoriController kategoriController = new KategoriController(kategoriRepo);
-
-            //    if (string.IsNullOrEmpty(podcastUrl) || string.IsNullOrEmpty(podcastTitel))
-            //    {
-            //        MessageBox.Show("Vänligen ange både en URL och ett namn för podcasten.", "Fel", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //        return;
-            //    }
-
-            //    Podcast newPodcast = new Podcast()
-            //    {
-            //        Url = podcastUrl,
-            //        Titel = podcastTitel
-            //    };
-
-            //    if (podcastKategori != null)
-            //    {
-            //        // Använd instansen av KategoriController här.
-            //        List<Kategori> allaKategorier = kategoriController.GetAllKategorier();
-            //        int kategoriId = kategoriController.GetNextAvailableID(allaKategorier);
-            //        newPodcast.PodcastKategori = new Kategori(kategoriId, podcastKategori);
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("Välj en kategori för podcasten.", "Kategori saknas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //        return;
-            //    }
-
-            //    podcastController.AddPodcast(newPodcast);
-
-            //    // Uppdatera XML-filen med den nya podcasten
-            //    List<Podcast> podcasts = Serialiserare.DeSerialiseraPodcasts();
-            //    podcasts.Add(newPodcast);
-            //    Serialiserare.SerialiseraPodcasts(podcasts);
-
-            //    MessageBox.Show("Podcast har lagts till framgångsrikt!");
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message, "Fel", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
-        //}
+                  
 
 
 

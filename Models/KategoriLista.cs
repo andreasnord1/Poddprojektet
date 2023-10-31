@@ -15,6 +15,15 @@ namespace Models
         [XmlElement("Category")]
         public List<string> Categories { get; set; }
 
+
+        public KategoriLista()
+        {
+            Categories = new List<string>();
+        }
+
+
+
+
     }
 
 }

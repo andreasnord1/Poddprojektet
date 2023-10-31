@@ -247,7 +247,6 @@
         private DataGridViewTextBoxColumn beskrivningDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn authorDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn bildUrlDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn customNameDataGridViewTextBoxColumn;
         private BindingSource podcastBindingSource1;
         private BindingSource podcastBindingSource;
         private BindingSource avsnittBindingSource;

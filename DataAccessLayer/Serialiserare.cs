@@ -11,13 +11,11 @@ namespace DataAccessLayer
 {
     public class Serialiserare
     {
-        private static readonly string filePathPodcasts = "Podcasts.xml";
-        private static readonly string filePathKategorier = "Kategorier.xml";
         // Centraliserar filnamnet så att man enkelt kan ändra det senare om det behövs.
 
-
-        // Vi bör skapa ett serializer-interface eller serializer-arv(?) !!
-        // Alternativt ska kategorier bara vara ett string-värde så kanske det ska sparas i en txt?
+        private static readonly string filePathPodcasts = "Podcasts.xml";
+        private static readonly string filePathKategorier = "Kategorier.xml";
+       
 
 
         public void SerialiseraPodcasts(List<Podcast> podcastLista)

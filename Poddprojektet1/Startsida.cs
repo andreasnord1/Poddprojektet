@@ -15,11 +15,10 @@ namespace Poddprojektet1
         private TextBox? rssFeedTextBox;
         private Button? addFeedButton;
         private Label? label1;
-        private ListBox? listPodcasts; // Ny ListBox för att visa podcasts
+        private ListBox? listPodcasts; 
         private PodcastController podcastController;
         private KategoriController kategoriController;
-        private Button? editFeedButton; // Ny knapp för att redigera podcast
-        private Button? deleteFeedButton; // Ny knapp för att radera podcast
+
 
 
 
@@ -61,13 +60,16 @@ namespace Poddprojektet1
             {
                 foreach (Podcast podcast in podcasts)
                 {
-                    Avsnitt senasteAvsnittet = podcastController.GetPodcastensSenasteAvsnitt(podcast);
+                    Avsnitt? senasteAvsnittet = podcastController?.GetPodcastensSenasteAvsnitt(podcast); // Notera '?' tecknet för att indikera nullable
+
+                    if (senasteAvsnittet == null)  // Kontrollera om senasteAvsnittet är null
+                        continue;  // Hoppa över denna iteration av loopen om det är null
 
                     Kategori podcastensKategori = podcast.PodcastKategori;
 
                     // Lägg till en ny rad i gridPodcasts som vi ladda innehållet till
                     int radIndex = gridPodcasts.Rows.Add();
-                    gridPodcasts.Rows[radIndex].Cells["podcastNamn"].Value = podcast.Namn; // Istället för Exemplen här ska aktuell podcasts värden hämtas, exempelvis podcast.Namn
+                    gridPodcasts.Rows[radIndex].Cells["podcastNamn"].Value = podcast.Namn;
                     gridPodcasts.Rows[radIndex].Cells["podcastTitel"].Value = podcast.Titel;
                     gridPodcasts.Rows[radIndex].Cells["kategori"].Value = podcastensKategori.Namn;
                     gridPodcasts.Rows[radIndex].Cells["senasteAvsnitt"].Value = senasteAvsnittet.Titel;
@@ -88,65 +90,6 @@ namespace Poddprojektet1
                 cmbFiltreraKategori.Items.Add(kategori.Namn);
             }
         }
-
-
-
-        /*private void InitializeComponents()
-          {     
-
-          // Behåller denna bortkommenterade kod tills vidare ifall man manuellt 
-        // skulle vilja lägga till/konfigurera något i designvyn -- då kan den bli aktuell igen. 
-        Mycket av den är onödig dock och dess funktioner sköts mycket från Startsida.Designer 
-        //via automatiskt genererad kod
-
-              label1 = new Label();
-              rssFeedTextBox = new TextBox();
-              addFeedButton = new Button();
-              listPodcasts = new ListBox(); // Initialisera ListBoxen
-
-              // Konfigurerar TextBox för RSS-flödet
-
-             // rssFeedTextBox.Location = new Point(20, 20);  // Exempelposition
-             // rssFeedTextBox.Size = new Size(250, 30);       // Exempelstorlek
-            //  rssFeedTextBox.PlaceholderText = "Ange RSS-flödets URL här..."; // Instruktionstext
-            //  rssFeedTextBox.ForeColor = Color.Gray;
-
-            //   Bind Enter och Leave händelser
-              if (rssFeedTextBox != null)
-              {
-                  rssFeedTextBox.Enter += RssFeedTextBox_Enter;
-                  rssFeedTextBox.Leave += RssFeedTextBox_Leave;
-              }
-
-              // Konfigurera knappen för att lägga till flöde
-              addFeedButton.Text = "Lägg till flöde";
-              addFeedButton.Location = new Point(280, 20); // Exempelposition bredvid TextBox
-              addFeedButton.Click += AddFeedButton_Click;  // Händelsehanterare
-
-              // Konfigurera knappen för att redigera podcast
-              editFeedButton = new Button
-              {
-                  Text = "Redigera flöde",
-                  Location = new Point(280, 60), // Exempelposition under andra knappen
-              };
-              editFeedButton.Click += EditFeedButton_Click;
-
-              // Konfigurera knappen för att radera podcast
-              deleteFeedButton = new Button
-              {
-                  Text = "Radera flöde",
-                  Location = new Point(280, 100), // Exempelposition under redigera-knappen
-              };
-              deleteFeedButton.Click += DeleteFeedButton_Click;
-
-              // Lägg till kontroller till formuläret
-              Controls.Add(rssFeedTextBox);
-              Controls.Add(addFeedButton);
-              Controls.Add(label1);
-              Controls.Add(listPodcasts);
-              Controls.Add(editFeedButton);
-              Controls.Add(deleteFeedButton);
-          }   */
 
         private void RssFeedTextBox_Enter(object? sender, EventArgs e)
         {
@@ -173,49 +116,7 @@ namespace Poddprojektet1
             // Händelsehanterare för klick på label1
         }
 
-        //private void AddFeedButton_Click(object? sender, EventArgs e)
-        //{
-        //    AddFeedButton_Click(sender, e, rssFeedTextBox);
-        //}
-
-        //private void AddFeedButton_Click(object? sender, EventArgs e, TextBox? rssFeedTextBox)
-        //{
-        //    // Check if rssFeedTextBox is not null
-        //    if (rssFeedTextBox != null)
-        //    {
-        //        // Hämta URL från TextBox
-        //        string url = rssFeedTextBox.Text;
-
-        //        // Skapa en ny podcast med hämtad URL
-        //        Podcast newPodcast = new Podcast
-        //        {
-        //            Url = url
-        //            // Andra egenskaper kan också sättas här
-        //        };
-
-        //        try
-        //        {
-        //            podcastController?.AddPodcast(newPodcast); // Använd instansen istället för klassnamnet
-
-        //            MessageBox.Show("Flödet lades till!");
-
-        //            // Check if listPodcasts is not null before accessing its Items
-        //            listPodcasts?.Items.Add(url);
-        //            rssFeedTextBox.Clear();
-        //            UppdateraPodcasts();
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            MessageBox.Show($"Ett fel uppstod: {ex.Message}");
-        //        }
-        //    }
-        //    else
-        //    {
-        //        MessageBox.Show("RSS textfältet är tomt.");
-        //    }
-        //}
-
-        private void btnHanteraKategorier_Click(object sender, EventArgs e)
+       private void btnHanteraKategorier_Click(object sender, EventArgs e)
         {
             HanteraKategorier kategoriForm = new HanteraKategorier(this);
             kategoriForm.Visible = true;
@@ -526,9 +427,21 @@ namespace Poddprojektet1
 
         private void cmbFiltreraKategori_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string? kategoriNamn = cmbFiltreraKategori.SelectedItem.ToString();
+            if (cmbFiltreraKategori.SelectedItem == null)
+            {
+                // Ingen kategori vald.
+                return;
+            }
+
+            string? kategoriNamn = cmbFiltreraKategori?.SelectedItem.ToString();
 
             var valdKategori = kategoriController.GetAllKategorier().FirstOrDefault(k => k.Namn == kategoriNamn);
+
+            if (valdKategori == null)
+            {
+                // Ingen kategori hittades som matchar det valda kategoriNamn.
+                return;
+            }
 
             List<Podcast> podcastsEfterKategori = podcastController.GetPodcastsByKategori(valdKategori);
 
@@ -542,7 +455,7 @@ namespace Poddprojektet1
 
                 // Lägg till en ny rad i gridPodcasts som vi ladda innehållet till
                 int radIndex = gridPodcasts.Rows.Add();
-                gridPodcasts.Rows[radIndex].Cells["podcastNamn"].Value = podcast.Namn; // Istället för Exemplen här ska aktuell podcasts värden hämtas, exempelvis podcast.Namn
+                gridPodcasts.Rows[radIndex].Cells["podcastNamn"].Value = podcast.Namn;
                 gridPodcasts.Rows[radIndex].Cells["podcastTitel"].Value = podcast.Titel;
                 gridPodcasts.Rows[radIndex].Cells["kategori"].Value = podcastensKategori.Namn;
                 gridPodcasts.Rows[radIndex].Cells["senasteAvsnitt"].Value = senasteAvsnittet.Titel;

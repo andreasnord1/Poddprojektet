@@ -74,12 +74,6 @@ namespace Poddprojektet1
         }
 
 
-
-        private void KategoriVald(object sender, EventArgs e)
-        {
-            // TODO: När en kategori är vald, hämta det nuvarande namnet på podcasten.
-        }
-
         private void btnBekraftaAndringar_Click(object sender, EventArgs e)
         {
             // Kontrollera att det nya namnet inte är tomt.
