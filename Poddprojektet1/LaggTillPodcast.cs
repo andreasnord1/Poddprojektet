@@ -88,7 +88,7 @@ namespace Poddprojektet1
                 string avsnittsTitel = avsnitt.Title.Text;
 
                 // Kontrollerar så att inte avsnittsbeskrivningen saknas
-                if (avsnitt.Summary.Text != null)
+                if (avsnitt.Summary != null && avsnitt.Summary.Text != null)
                 {
                     string avsnittsBeskrivning = avsnitt.Summary.Text;
 
