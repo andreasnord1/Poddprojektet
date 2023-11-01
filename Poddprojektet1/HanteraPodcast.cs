@@ -122,6 +122,9 @@ namespace Poddprojektet1
                         // Uppdatera din DataGridView eller annan kontroll här.
                         gridPodcasts.DataSource = null;
                         gridPodcasts.DataSource = podcastController?.GetAllPodcasts();
+
+                        // Uppdatera Startsida's GridView direkt efter att podcastnamnet har ändrats.
+                        startsidan.UppdateraGridMedPodcasts();
                     };
 
                     if (redigeraNamnForm.ShowDialog() == DialogResult.OK)
@@ -190,6 +193,10 @@ namespace Poddprojektet1
                     podcastController.UpdatePodcast(podcastID, selectedPodcast);
 
                     MessageBox.Show("Kategorin för RSS-flödet har ändrats framgångsrikt!");
+
+                    // Uppdatera GridView i Startsida direkt efter att podcast-kategorin har ändrats.
+                    startsidan.UppdateraGridMedPodcasts();
+
                 }
             }
             catch (Exception ex)
