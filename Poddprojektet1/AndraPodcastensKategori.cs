@@ -27,6 +27,7 @@ namespace Poddprojektet1
             podcastController = new PodcastController();
             kategoriController = new KategoriController();
             fyllCombobox();
+            setLabel();
         }
 
         private void fyllCombobox()
@@ -71,14 +72,14 @@ namespace Poddprojektet1
         private void sparaAndringar()
         {
             int podcastID = podcast.ID;
-            
+
             podcastController.UpdatePodcast(podcastID, podcast);
         }
 
         private void btnBekraftaAndradKategori_Click(object sender, EventArgs e)
         {
             andraKategorin();
-            
+
             this.Dispose();
         }
 

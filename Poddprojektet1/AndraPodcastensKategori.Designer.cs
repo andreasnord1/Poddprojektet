@@ -55,7 +55,7 @@
             // 
             lblAndraKategori.AutoSize = true;
             lblAndraKategori.Font = new Font("Corbel", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            lblAndraKategori.Location = new Point(46, 66);
+            lblAndraKategori.Location = new Point(29, 45);
             lblAndraKategori.Name = "lblAndraKategori";
             lblAndraKategori.Size = new Size(237, 24);
             lblAndraKategori.TabIndex = 2;

@@ -41,7 +41,7 @@ namespace Poddprojektet1
             int kategoriID = kategoriAttTaBort.ID;
 
 
-
+            // Hantering av podcasts som ligger inom kategorin man tar bort
             var podcastsInomKategorinManTarBort = podcastController.GetAllPodcasts().Where(p => 
             p.PodcastKategori.ID == kategoriID);
 
@@ -53,6 +53,7 @@ namespace Poddprojektet1
             
             kategoriControllern.DeleteKategori(kategoriAttTaBort.ID);
             MessageBox.Show("Kategorin har tagits bort!");
+            hanterakategorier.fyllMedKategorier();
             hanterakategorier.Enabled = true;
             this.Dispose();
         }

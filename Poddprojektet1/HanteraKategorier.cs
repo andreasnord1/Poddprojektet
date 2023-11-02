@@ -30,7 +30,7 @@ namespace Poddprojektet1
             fyllMedKategorier();
         }
 
-        private void fyllMedKategorier()
+        public void fyllMedKategorier()
         {
             IEnumerable<Kategori> kategorier = kategoriController.GetAllKategorier();
 
