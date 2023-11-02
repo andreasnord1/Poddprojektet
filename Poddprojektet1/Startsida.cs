@@ -55,12 +55,15 @@ namespace Poddprojektet1
             // Rensar gridboxen innan laddning av uppdaterad lista
             gridPodcasts.Rows.Clear();
 
-            var podcasts = podcastController?.GetAllPodcasts();
+            // Skapar en ny controller med uppdaterad lista för att kunna hantera multipla ändringar
+            PodcastController pController = new PodcastController();
+
+            var podcasts = pController?.GetAllPodcasts();
             if (podcasts != null)
             {
                 foreach (Podcast podcast in podcasts)
                 {
-                    Avsnitt? senasteAvsnittet = podcastController?.GetPodcastensSenasteAvsnitt(podcast); // Notera '?' tecknet för att indikera nullable
+                    Avsnitt? senasteAvsnittet = pController?.GetPodcastensSenasteAvsnitt(podcast); // Notera '?' tecknet för att indikera nullable
 
                     if (senasteAvsnittet == null)  // Kontrollera om senasteAvsnittet är null
                         continue;  // Hoppa över denna iteration av loopen om det är null

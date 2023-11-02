@@ -72,8 +72,10 @@ namespace Poddprojektet1
         private void sparaAndringar()
         {
             int podcastID = podcast.ID;
+            
+            PodcastController pController = new PodcastController();
 
-            podcastController.UpdatePodcast(podcastID, podcast);
+            pController.UpdatePodcast(podcastID, podcast);
         }
 
         private void btnBekraftaAndradKategori_Click(object sender, EventArgs e)
