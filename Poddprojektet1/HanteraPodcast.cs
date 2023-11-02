@@ -58,7 +58,7 @@ namespace Poddprojektet1
                         //Uppdatera datagridview i denna form
                         gridPodcasts.Refresh();
 
-                        // Uppdatera GridView i Startsida direkt efter att podcast-kategorin har ändrats.
+                        // Uppdatera GridView i Startsida direkt efter att podcasten har raderats.
                         startsidan.UppdateraGridMedPodcasts();
                     }
                     else
