@@ -142,12 +142,16 @@ namespace Poddprojektet1
                         if (result == DialogResult.OK)
                         {
                             // Hämta den uppdaterade podcasten från formuläret
-                            Podcast updatedPodcast = editForm.UpdatedPodcast;
+                            Podcast? updatedPodcast = editForm.UpdatedPodcast;
 
                             // Uppdatera podcasten i lagringen
-                            if (podcastController != null && selectedPodcast != null)
+                            if (podcastController != null && updatedPodcast != null)
                             {
                                 podcastController.UpdatePodcast(selectedPodcast.ID, updatedPodcast);
+                            }
+                            else if (updatedPodcast == null)
+                            {
+                                MessageBox.Show("Uppdaterad podcast saknas. Ändringarna har inte sparats.");
                             }
 
                             UppdateraPodcasts(); // Uppdatera listan med podcasts
@@ -452,7 +456,12 @@ namespace Poddprojektet1
 
             foreach (Podcast podcast in podcastsEfterKategori)
             {
-                Avsnitt senasteAvsnittet = podcastController.GetPodcastensSenasteAvsnitt(podcast);
+                Avsnitt? senasteAvsnittet = podcastController.GetPodcastensSenasteAvsnitt(podcast);
+
+                if (senasteAvsnittet == null)
+                {
+                    continue; // Hoppa över denna iteration av loopen om senasteAvsnittet är null
+                }
 
                 Kategori podcastensKategori = podcast.PodcastKategori;
 
@@ -464,6 +473,12 @@ namespace Poddprojektet1
                 gridPodcasts.Rows[radIndex].Cells["senasteAvsnitt"].Value = senasteAvsnittet.Titel;
             }
         }
+
+
+
+
+
+
 
         private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
         {
