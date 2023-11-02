@@ -70,7 +70,7 @@ namespace Poddprojektet1
             var kategoriRepository = new KategoriRepository();
             var kategoriLista = kategoriRepository.LoadCategoryList();
 
-            
+
         }
 
 

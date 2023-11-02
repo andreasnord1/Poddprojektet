@@ -64,6 +64,7 @@
             gridPodcasts.Name = "gridPodcasts";
             gridPodcasts.RowHeadersWidth = 51;
             gridPodcasts.RowTemplate.Height = 29;
+            gridPodcasts.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             gridPodcasts.Size = new Size(551, 188);
             gridPodcasts.TabIndex = 0;
             // 
@@ -189,7 +190,7 @@
             btnRedigeraNamn.Name = "btnRedigeraNamn";
             btnRedigeraNamn.Size = new Size(158, 29);
             btnRedigeraNamn.TabIndex = 6;
-            btnRedigeraNamn.Text = "Lägg till-/ändra namn";
+            btnRedigeraNamn.Text = "Byt namn";
             btnRedigeraNamn.UseVisualStyleBackColor = true;
             btnRedigeraNamn.Click += btnRedigeraNamn_Click_1;
             // 

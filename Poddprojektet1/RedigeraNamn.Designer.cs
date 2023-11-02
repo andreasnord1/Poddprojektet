@@ -43,17 +43,19 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(294, 160);
+            textBox1.Enabled = false;
+            textBox1.Location = new Point(235, 128);
+            textBox1.Margin = new Padding(2, 2, 2, 2);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(183, 31);
+            textBox1.Size = new Size(147, 27);
             textBox1.TabIndex = 1;
             // 
             // btnBekraftaAndringar
             // 
-            btnBekraftaAndringar.Location = new Point(293, 272);
-            btnBekraftaAndringar.Margin = new Padding(4, 5, 4, 5);
+            btnBekraftaAndringar.Location = new Point(234, 218);
+            btnBekraftaAndringar.Margin = new Padding(3, 4, 3, 4);
             btnBekraftaAndringar.Name = "btnBekraftaAndringar";
-            btnBekraftaAndringar.Size = new Size(184, 38);
+            btnBekraftaAndringar.Size = new Size(147, 30);
             btnBekraftaAndringar.TabIndex = 2;
             btnBekraftaAndringar.Text = "Bekräfta ändringar";
             btnBekraftaAndringar.UseVisualStyleBackColor = true;
@@ -61,10 +63,10 @@
             // 
             // btnAvbryt
             // 
-            btnAvbryt.Location = new Point(327, 338);
-            btnAvbryt.Margin = new Padding(4, 5, 4, 5);
+            btnAvbryt.Location = new Point(262, 270);
+            btnAvbryt.Margin = new Padding(3, 4, 3, 4);
             btnAvbryt.Name = "btnAvbryt";
-            btnAvbryt.Size = new Size(107, 38);
+            btnAvbryt.Size = new Size(86, 30);
             btnAvbryt.TabIndex = 4;
             btnAvbryt.Text = "Avbryt";
             btnAvbryt.UseVisualStyleBackColor = true;
@@ -73,45 +75,43 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(215, 79);
-            label1.Margin = new Padding(4, 0, 4, 0);
+            label1.Location = new Point(172, 63);
             label1.Name = "label1";
-            label1.Size = new Size(307, 25);
+            label1.Size = new Size(254, 20);
             label1.TabIndex = 5;
             label1.Text = "Välj en podcast och ändra dess namn";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(26, 160);
-            label3.Margin = new Padding(4, 0, 4, 0);
+            label3.Location = new Point(21, 128);
             label3.Name = "label3";
-            label3.Size = new Size(261, 25);
+            label3.Size = new Size(216, 20);
             label3.TabIndex = 7;
             label3.Text = "Nuvarande namn på podcasten";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(77, 207);
-            label4.Margin = new Padding(4, 0, 4, 0);
+            label4.Location = new Point(62, 166);
             label4.Name = "label4";
-            label4.Size = new Size(209, 25);
+            label4.Size = new Size(172, 20);
             label4.TabIndex = 8;
             label4.Text = "Nytt namn på podcasten";
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(293, 207);
+            textBox2.Location = new Point(234, 166);
+            textBox2.Margin = new Padding(2, 2, 2, 2);
             textBox2.Name = "textBox2";
-            textBox2.Size = new Size(183, 31);
+            textBox2.Size = new Size(147, 27);
             textBox2.TabIndex = 9;
             // 
             // RedigeraNamn
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(778, 444);
+            ClientSize = new Size(622, 355);
             Controls.Add(textBox2);
             Controls.Add(label4);
             Controls.Add(label3);
@@ -119,7 +119,7 @@
             Controls.Add(btnAvbryt);
             Controls.Add(btnBekraftaAndringar);
             Controls.Add(textBox1);
-            Margin = new Padding(4, 5, 4, 5);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "RedigeraNamn";
             Text = "Uppdatera Podcast-namn";
             Load += RedigeraNamn_Load;
