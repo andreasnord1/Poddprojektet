@@ -54,6 +54,12 @@ namespace Poddprojektet1
                         gridPodcasts.DataSource = podcastController?.GetAllPodcasts(); // Fyll på igen med uppdaterad data
 
                         MessageBox.Show("Den valda podcasten har nu raderats!");
+
+                        //Uppdatera datagridview i denna form
+                        gridPodcasts.Refresh();
+
+                        // Uppdatera GridView i Startsida direkt efter att podcast-kategorin har ändrats.
+                        startsidan.UppdateraGridMedPodcasts();
                     }
                     else
                     {
@@ -78,6 +84,8 @@ namespace Poddprojektet1
             List<Podcast> podcasts = podcastController.GetAllPodcasts();
             gridPodcasts.DataSource = podcasts;
         }
+
+     
 
         private void fyllMedKategorier()
         {
