@@ -20,6 +20,10 @@ namespace Models
         public string? Beskrivning { get; set; }
         public string Author { get; set; } = string.Empty;  // Standardvärde
         public string BildUrl { get; set; } = string.Empty;  // Standardvärde
+        public string KategoriNamn
+        {
+            get { return PodcastKategori.Namn; }
+        }
 
         public Podcast(string url, string namn, string titel, string beskrivning, string author,
             string bildUrl, Kategori kategori, List<Avsnitt> avsnittsLista)

@@ -194,6 +194,9 @@ namespace Poddprojektet1
 
                     MessageBox.Show("Kategorin för RSS-flödet har ändrats framgångsrikt!");
 
+                    //Uppdatera datagridview i denna form
+                    gridPodcasts.Refresh();
+
                     // Uppdatera GridView i Startsida direkt efter att podcast-kategorin har ändrats.
                     startsidan.UppdateraGridMedPodcasts();
 

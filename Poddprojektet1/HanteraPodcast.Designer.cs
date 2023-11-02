@@ -30,13 +30,6 @@
         {
             components = new System.ComponentModel.Container();
             gridPodcasts = new DataGridView();
-            urlDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            namnDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            titelDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            podcastKategoriDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            beskrivningDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            authorDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            bildUrlDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             podcastBindingSource1 = new BindingSource(components);
             podcastBindingSource = new BindingSource(components);
             avsnittBindingSource = new BindingSource(components);
@@ -48,6 +41,9 @@
             btnRedigeraNamn = new Button();
             label1 = new Label();
             btnAvbryt = new Button();
+            titelDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            namnDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            KategoriNamn = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)gridPodcasts).BeginInit();
             ((System.ComponentModel.ISupportInitialize)podcastBindingSource1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)podcastBindingSource).BeginInit();
@@ -58,71 +54,15 @@
             // 
             gridPodcasts.AutoGenerateColumns = false;
             gridPodcasts.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            gridPodcasts.Columns.AddRange(new DataGridViewColumn[] { urlDataGridViewTextBoxColumn, namnDataGridViewTextBoxColumn, titelDataGridViewTextBoxColumn, podcastKategoriDataGridViewTextBoxColumn, beskrivningDataGridViewTextBoxColumn, authorDataGridViewTextBoxColumn, bildUrlDataGridViewTextBoxColumn });
+            gridPodcasts.Columns.AddRange(new DataGridViewColumn[] { titelDataGridViewTextBoxColumn, namnDataGridViewTextBoxColumn, KategoriNamn });
             gridPodcasts.DataSource = podcastBindingSource1;
-            gridPodcasts.Location = new Point(99, 27);
+            gridPodcasts.Location = new Point(182, 25);
             gridPodcasts.Name = "gridPodcasts";
             gridPodcasts.RowHeadersWidth = 51;
             gridPodcasts.RowTemplate.Height = 29;
             gridPodcasts.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            gridPodcasts.Size = new Size(551, 188);
+            gridPodcasts.Size = new Size(429, 188);
             gridPodcasts.TabIndex = 0;
-            // 
-            // urlDataGridViewTextBoxColumn
-            // 
-            urlDataGridViewTextBoxColumn.DataPropertyName = "Url";
-            urlDataGridViewTextBoxColumn.HeaderText = "Url";
-            urlDataGridViewTextBoxColumn.MinimumWidth = 6;
-            urlDataGridViewTextBoxColumn.Name = "urlDataGridViewTextBoxColumn";
-            urlDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // namnDataGridViewTextBoxColumn
-            // 
-            namnDataGridViewTextBoxColumn.DataPropertyName = "Namn";
-            namnDataGridViewTextBoxColumn.HeaderText = "Namn";
-            namnDataGridViewTextBoxColumn.MinimumWidth = 6;
-            namnDataGridViewTextBoxColumn.Name = "namnDataGridViewTextBoxColumn";
-            namnDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // titelDataGridViewTextBoxColumn
-            // 
-            titelDataGridViewTextBoxColumn.DataPropertyName = "Titel";
-            titelDataGridViewTextBoxColumn.HeaderText = "Titel";
-            titelDataGridViewTextBoxColumn.MinimumWidth = 6;
-            titelDataGridViewTextBoxColumn.Name = "titelDataGridViewTextBoxColumn";
-            titelDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // podcastKategoriDataGridViewTextBoxColumn
-            // 
-            podcastKategoriDataGridViewTextBoxColumn.DataPropertyName = "PodcastKategori";
-            podcastKategoriDataGridViewTextBoxColumn.HeaderText = "PodcastKategori";
-            podcastKategoriDataGridViewTextBoxColumn.MinimumWidth = 6;
-            podcastKategoriDataGridViewTextBoxColumn.Name = "podcastKategoriDataGridViewTextBoxColumn";
-            podcastKategoriDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // beskrivningDataGridViewTextBoxColumn
-            // 
-            beskrivningDataGridViewTextBoxColumn.DataPropertyName = "Beskrivning";
-            beskrivningDataGridViewTextBoxColumn.HeaderText = "Beskrivning";
-            beskrivningDataGridViewTextBoxColumn.MinimumWidth = 6;
-            beskrivningDataGridViewTextBoxColumn.Name = "beskrivningDataGridViewTextBoxColumn";
-            beskrivningDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // authorDataGridViewTextBoxColumn
-            // 
-            authorDataGridViewTextBoxColumn.DataPropertyName = "Author";
-            authorDataGridViewTextBoxColumn.HeaderText = "Author";
-            authorDataGridViewTextBoxColumn.MinimumWidth = 6;
-            authorDataGridViewTextBoxColumn.Name = "authorDataGridViewTextBoxColumn";
-            authorDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // bildUrlDataGridViewTextBoxColumn
-            // 
-            bildUrlDataGridViewTextBoxColumn.DataPropertyName = "BildUrl";
-            bildUrlDataGridViewTextBoxColumn.HeaderText = "BildUrl";
-            bildUrlDataGridViewTextBoxColumn.MinimumWidth = 6;
-            bildUrlDataGridViewTextBoxColumn.Name = "bildUrlDataGridViewTextBoxColumn";
-            bildUrlDataGridViewTextBoxColumn.Width = 125;
             // 
             // podcastBindingSource1
             // 
@@ -213,6 +153,31 @@
             btnAvbryt.UseVisualStyleBackColor = true;
             btnAvbryt.Click += btnAvbryt_Click;
             // 
+            // titelDataGridViewTextBoxColumn
+            // 
+            titelDataGridViewTextBoxColumn.DataPropertyName = "Titel";
+            titelDataGridViewTextBoxColumn.HeaderText = "Titel";
+            titelDataGridViewTextBoxColumn.MinimumWidth = 6;
+            titelDataGridViewTextBoxColumn.Name = "titelDataGridViewTextBoxColumn";
+            titelDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // namnDataGridViewTextBoxColumn
+            // 
+            namnDataGridViewTextBoxColumn.DataPropertyName = "Namn";
+            namnDataGridViewTextBoxColumn.HeaderText = "Namn";
+            namnDataGridViewTextBoxColumn.MinimumWidth = 6;
+            namnDataGridViewTextBoxColumn.Name = "namnDataGridViewTextBoxColumn";
+            namnDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // KategoriNamn
+            // 
+            KategoriNamn.DataPropertyName = "KategoriNamn";
+            KategoriNamn.HeaderText = "KategoriNamn";
+            KategoriNamn.MinimumWidth = 6;
+            KategoriNamn.Name = "KategoriNamn";
+            KategoriNamn.ReadOnly = true;
+            KategoriNamn.Width = 125;
+            // 
             // HanteraPodcast
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -241,13 +206,6 @@
         #endregion
 
         private DataGridView gridPodcasts;
-        private DataGridViewTextBoxColumn urlDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn namnDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn titelDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn podcastKategoriDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn beskrivningDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn authorDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn bildUrlDataGridViewTextBoxColumn;
         private BindingSource podcastBindingSource1;
         private BindingSource podcastBindingSource;
         private BindingSource avsnittBindingSource;
@@ -259,5 +217,8 @@
         private Button btnRedigeraNamn;
         private Label label1;
         private Button btnAvbryt;
+        private DataGridViewTextBoxColumn titelDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn namnDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn KategoriNamn;
     }
 }
