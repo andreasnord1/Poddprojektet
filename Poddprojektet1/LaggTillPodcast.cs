@@ -111,6 +111,14 @@ namespace Poddprojektet1
 
             }
 
+            // Hantera valdKategori
+            if (valdKategori == null)
+            {
+                // Här kan du visa ett felmeddelande eller hantera felet på något sätt
+                MessageBox.Show("Vänligen välj en kategori!");
+                return;
+            }
+
             Podcast nyPodcast = new Podcast(url, podNamn, podTitel, podBeskrivning, author,
                     bildUrl, valdKategori, podcastensAvsnitt);
 
