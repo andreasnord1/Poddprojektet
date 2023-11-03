@@ -153,6 +153,7 @@ namespace Poddprojektet1
                 startsidan.UppdateraGridMedPodcasts();
                 this.Dispose();
                 startsidan.Enabled = true;
+                startsidan.BringToFront();
 
                   }
 
