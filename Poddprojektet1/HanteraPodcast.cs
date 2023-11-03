@@ -55,6 +55,9 @@ namespace Poddprojektet1
 
                         MessageBox.Show("Den valda podcasten har nu raderats!");
 
+                        // Rensa informationen på startsidan så att den borttagna podcastens information inte visas
+                        startsidan.rensaPodcastinformation();
+
                         //Uppdatera datagridview i denna form
                         gridPodcasts.Refresh();
 
@@ -85,7 +88,7 @@ namespace Poddprojektet1
             gridPodcasts.DataSource = podcasts;
         }
 
-     
+
 
         private void fyllMedKategorier()
         {

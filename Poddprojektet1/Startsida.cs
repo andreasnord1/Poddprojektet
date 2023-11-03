@@ -262,6 +262,18 @@ namespace Poddprojektet1
             }
         }
 
+        public void rensaPodcastinformation()
+        {
+            lblPodcastNamn.Text = "Podcastnamn";
+            lblPodcastTitel.Text = "Podcasttitel";
+            txtBoxPodcastBeskrivning.Text = "Podcastbeskrivning";
+            lblKategori.Text = "Kategori";
+            picBoxPodcastBild.Image = null;
+            lblAvsnittsTitel.Text = "Avsnittstitel";
+            lblPubDate.Text = "Publiceringsdatum";
+            txtBoxAvsnittsBeskrivning.Text = "Avsnittsbeskrivning";
+            listboxAvsnitt.Items.Clear();
+        }
 
         private async void laddaUppBildFranUrl(string bildUrl)
         {

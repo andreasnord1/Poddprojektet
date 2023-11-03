@@ -30,6 +30,9 @@
         {
             components = new System.ComponentModel.Container();
             gridPodcasts = new DataGridView();
+            titelDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            namnDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            KategoriNamn = new DataGridViewTextBoxColumn();
             podcastBindingSource1 = new BindingSource(components);
             podcastBindingSource = new BindingSource(components);
             avsnittBindingSource = new BindingSource(components);
@@ -41,9 +44,6 @@
             btnRedigeraNamn = new Button();
             label1 = new Label();
             btnAvbryt = new Button();
-            titelDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            namnDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            KategoriNamn = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)gridPodcasts).BeginInit();
             ((System.ComponentModel.ISupportInitialize)podcastBindingSource1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)podcastBindingSource).BeginInit();
@@ -58,11 +58,37 @@
             gridPodcasts.DataSource = podcastBindingSource1;
             gridPodcasts.Location = new Point(182, 25);
             gridPodcasts.Name = "gridPodcasts";
+            gridPodcasts.ReadOnly = true;
             gridPodcasts.RowHeadersWidth = 51;
             gridPodcasts.RowTemplate.Height = 29;
             gridPodcasts.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             gridPodcasts.Size = new Size(429, 188);
             gridPodcasts.TabIndex = 0;
+            // 
+            // titelDataGridViewTextBoxColumn
+            // 
+            titelDataGridViewTextBoxColumn.DataPropertyName = "Titel";
+            titelDataGridViewTextBoxColumn.HeaderText = "Titel";
+            titelDataGridViewTextBoxColumn.MinimumWidth = 6;
+            titelDataGridViewTextBoxColumn.Name = "titelDataGridViewTextBoxColumn";
+            titelDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // namnDataGridViewTextBoxColumn
+            // 
+            namnDataGridViewTextBoxColumn.DataPropertyName = "Namn";
+            namnDataGridViewTextBoxColumn.HeaderText = "Namn";
+            namnDataGridViewTextBoxColumn.MinimumWidth = 6;
+            namnDataGridViewTextBoxColumn.Name = "namnDataGridViewTextBoxColumn";
+            namnDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // KategoriNamn
+            // 
+            KategoriNamn.DataPropertyName = "KategoriNamn";
+            KategoriNamn.HeaderText = "KategoriNamn";
+            KategoriNamn.MinimumWidth = 6;
+            KategoriNamn.Name = "KategoriNamn";
+            KategoriNamn.ReadOnly = true;
+            KategoriNamn.Width = 125;
             // 
             // podcastBindingSource1
             // 
@@ -152,31 +178,6 @@
             btnAvbryt.Text = "Avbryt";
             btnAvbryt.UseVisualStyleBackColor = true;
             btnAvbryt.Click += btnAvbryt_Click;
-            // 
-            // titelDataGridViewTextBoxColumn
-            // 
-            titelDataGridViewTextBoxColumn.DataPropertyName = "Titel";
-            titelDataGridViewTextBoxColumn.HeaderText = "Titel";
-            titelDataGridViewTextBoxColumn.MinimumWidth = 6;
-            titelDataGridViewTextBoxColumn.Name = "titelDataGridViewTextBoxColumn";
-            titelDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // namnDataGridViewTextBoxColumn
-            // 
-            namnDataGridViewTextBoxColumn.DataPropertyName = "Namn";
-            namnDataGridViewTextBoxColumn.HeaderText = "Namn";
-            namnDataGridViewTextBoxColumn.MinimumWidth = 6;
-            namnDataGridViewTextBoxColumn.Name = "namnDataGridViewTextBoxColumn";
-            namnDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // KategoriNamn
-            // 
-            KategoriNamn.DataPropertyName = "KategoriNamn";
-            KategoriNamn.HeaderText = "KategoriNamn";
-            KategoriNamn.MinimumWidth = 6;
-            KategoriNamn.Name = "KategoriNamn";
-            KategoriNamn.ReadOnly = true;
-            KategoriNamn.Width = 125;
             // 
             // HanteraPodcast
             // 
